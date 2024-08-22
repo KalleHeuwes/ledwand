@@ -11,12 +11,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './spieltag.component.css'
 })
 export class SpieltagComponent {
-  public toreHeim: Observable<number>;
+  public toreHeim: number = 0;
   public toreGast: number = 0;
   count$: Observable<number>;
 
   constructor(private store: Store<{ count: number }>) {
     this.count$ = store.select('count');
-    this.toreHeim = store.select('count');
   }
 }
