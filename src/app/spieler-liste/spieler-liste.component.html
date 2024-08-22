@@ -1,0 +1,15 @@
+<h1>Spielerliste</h1>
+{{message}}
+<mat-grid-list cols="4">
+    @for (spieler of spielerliste; track spieler) {
+    <mat-grid-tile>
+        <app-spielerkarte 
+        nr={{spieler.id}} 
+        pic={{spieler.pic}} 
+        name1={{spieler.name1}} 
+        name2={{spieler.name2}}>
+        </app-spielerkarte>
+    </mat-grid-tile>
+}
+</mat-grid-list>
+

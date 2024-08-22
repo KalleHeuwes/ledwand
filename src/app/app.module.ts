@@ -1,0 +1,53 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import {MatGridListModule, MatGridTile} from '@angular/material/grid-list';
+import { SpielerListeComponent } from './spieler-liste/spieler-liste.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AufstellungComponent } from './aufstellung/aufstellung.component';
+import { StatusupdateComponent } from './statusupdate/statusupdate.component';
+import { SpieltagComponent } from './spieltag/spieltag.component';
+import { StoreModule } from '@ngrx/store';
+
+import { counterReducer } from './statemgmt/counter.reducer'; 
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent
+  ],
+  imports: [
+    MatCardModule, 
+    MatButtonModule,
+    MatSlideToggleModule,
+    MatGridListModule,
+    MatGridTile,
+    SpielerListeComponent,
+    AufstellungComponent,
+    StatusupdateComponent,
+    SpieltagComponent,
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      {path: 'players-list', component: SpielerListeComponent},
+      {path: 'aufstellung', component: AufstellungComponent},
+      {path: 'spieltag', component: SpieltagComponent},
+      {path: 'statusupdatexxx', component: StatusupdateComponent},
+      {path: '', redirectTo: '/players-list', pathMatch: 'full'},
+      {path: '**', component: PageNotFoundComponent}
+    ]), 
+    StoreModule.forRoot({ count: counterReducer }),
+  ],
+  providers: [
+    provideAnimationsAsync()
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

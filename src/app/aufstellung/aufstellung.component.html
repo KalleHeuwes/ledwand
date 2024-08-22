@@ -1,0 +1,33 @@
+
+<h1>Aufstellung</h1>
+{{message}}
+
+<div class="container">
+    <div class="fixed">
+        <mat-grid-list cols="1" rowHeight="50px" style="background-color: aqua;">
+            @for (spieler of startelf; track spieler) {
+            <mat-grid-tile>
+                <app-spielerkarte-klein
+                nr={{spieler.id}} 
+                name1={{spieler.name1}} 
+                name2={{spieler.name2}}>
+                </app-spielerkarte-klein>
+            </mat-grid-tile>
+            }
+        </mat-grid-list>
+    </div>
+    <div class="flex-item">
+        <mat-grid-list cols="1" rowHeight="50px" style="background-color: brown;">
+            @for (spieler2 of bank; track spieler2) {
+            <mat-grid-tile>
+                <app-spielerkarte-klein
+                nr={{spieler2.id}} 
+                name1={{spieler2.name1}} 
+                name2={{spieler2.name2}}>
+                </app-spielerkarte-klein>
+            </mat-grid-tile>
+            }
+        </mat-grid-list>
+    </div>
+</div>
+
