@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { map, Observable, share, Subscription, timer } from "rxjs";
 import { CommonModule } from '@angular/common';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-spieltag',
@@ -15,12 +15,13 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   rxTime = new Date();
   intervalId: any;
   subscription!: Subscription;
+  url: string = 'http://heuweslap2:8080/spielstand';
   public toreHeim: number = 0;
   public toreGast: number = 0;
-  count$: Observable<number>;
+  public spielstand: string = '';
 
-  constructor(private store: Store<{ count: number }>) {
-    this.count$ = store.select('count');
+  public constructor(private http: HttpClient) {
+    
   }
 
   
@@ -28,6 +29,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     // Using Basic Interval
     this.intervalId = setInterval(() => {
       this.time = new Date();
+      this.spielstandAbfragen();
     }, 1000);
 
     // Using RxJS Timer
@@ -42,7 +44,6 @@ export class SpieltagComponent implements OnInit, OnDestroy {
         let seconds = this.rxTime.getSeconds();
         //let a = time.toLocaleString('en-US', { hour: 'numeric', hour12: true });
         let NewTime = hour + ":" + minuts + ":" + seconds
-        console.log(NewTime);
       });
   }
 
@@ -51,5 +52,14 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  spielstandAbfragen(){
+    this.http.get(this.url, {responseType: 'text'}).subscribe((response) => {
+      //console.log(response);
+      var pos1 = response.indexOf(':');
+      this.toreHeim = parseInt(response.substring(pos1+1,pos1+2));
+      this.spielstand = response;
+    })
   }
 }

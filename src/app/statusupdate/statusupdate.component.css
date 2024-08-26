@@ -1,0 +1,16 @@
+.updbutton{
+    background-color: aquamarine;
+    font-size: 32px;
+    color: brown;
+    border-radius: 12px;
+    width: 70px;
+}
+
+.titel{
+    background-color: black;
+    font-size: 52px;
+    font-weight: bold;
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+}
