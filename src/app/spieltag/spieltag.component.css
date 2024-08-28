@@ -1,8 +1,8 @@
 .spielstand{
     cursor: pointer;
     color: whitesmoke;
-    font-family: Arial, sans-serif;
-    font-size: 185px;
+    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;
+    font-size: 325px;
     font-weight: bold;
 }
 
@@ -24,7 +24,7 @@
   /* Top left text */
 .top-left {
     position: absolute;
-    top: 10%;
+    top: 20%;
     left: 50%;
     transform: translate( -50%, -50%);
   }

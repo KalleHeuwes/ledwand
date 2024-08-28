@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatGridListModule, MatGridTile} from '@angular/material/grid-list';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,15 +10,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './statusupdate.component.html',
   styleUrl: './statusupdate.component.css'
 })
-export class StatusupdateComponent {
+export class StatusupdateComponent implements OnInit {
   url: string = 'http://heuweslap2:8080/spielstand';
   public toreHeim: number = 0;
   public toreGast: number = 0;
   public tsNummer: number = -1;
   public spielstand: string = '';
+  intervalId: any;
 
   public constructor(private http: HttpClient) {
     
+  }
+  
+  ngOnInit() {
+    // Using Basic Interval
+    this.intervalId = setInterval(() => {
+      this.spielstandAbfragen();
+    }, 1000);
   }
 
   increment(hg: string) {
@@ -50,6 +58,16 @@ export class StatusupdateComponent {
     })
   }
 
+  spielstandAbfragen(){
+    this.http.get(this.url, {responseType: 'text'}).subscribe((response) => {
+      //console.log(response);
+      var pos1 = response.indexOf(':');
+      this.toreHeim = parseInt(response.substring(pos1+1,pos1+2));
+      var pos1 = response.indexOf(':', pos1 + 1);
+      this.toreGast = parseInt(response.substring(pos1+1,pos1+2));
+      this.spielstand = response;
+    })
+  }
   playSound(){
     let audio = new Audio();
     audio.src="../assets/sounds/punk.wav";

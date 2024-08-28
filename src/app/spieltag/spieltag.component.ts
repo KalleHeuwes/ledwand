@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map, Observable, share, Subscription, timer } from "rxjs";
 import { CommonModule } from '@angular/common';
 import { HttpClient } from "@angular/common/http";
+import { SpielstandUpdate } from '../spielstand-update';
 
 @Component({
   selector: 'app-spieltag',
@@ -19,6 +20,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public toreHeim: number = 0;
   public toreGast: number = 0;
   public spielstand: string = '';
+  public spielstandUpdate: SpielstandUpdate | undefined;
 
   public constructor(private http: HttpClient) {
     
@@ -59,7 +61,10 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       //console.log(response);
       var pos1 = response.indexOf(':');
       this.toreHeim = parseInt(response.substring(pos1+1,pos1+2));
+      var pos1 = response.indexOf(':', pos1 + 1);
+      this.toreGast = parseInt(response.substring(pos1+1,pos1+2));
       this.spielstand = response;
     })
   }
+
 }
