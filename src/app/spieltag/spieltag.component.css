@@ -1,3 +1,13 @@
+.laufschrift {
+    position: absolute;
+    top: 80%;
+    left: 1%;
+    color: whitesmoke;
+    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;
+    font-size: 55px;
+    font-weight: bold;
+  }
+
 .spielstand{
     cursor: pointer;
     color: whitesmoke;
@@ -46,6 +56,18 @@
     font-weight: bold;
   }
 
+  .logoHeim {
+    position: absolute;
+    bottom: 40%;
+    left: 16px;
+  }
+
+  .logoGast {
+    position: absolute;
+    bottom: 40%;
+    right: 16px;
+
+  }
   
   /* Bottom right text */
 .bottom-right {
