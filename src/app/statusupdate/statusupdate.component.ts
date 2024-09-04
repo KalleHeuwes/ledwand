@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatGridListModule, MatGridTile} from '@angular/material/grid-list';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-statusupdate',
   standalone: true,
-  imports: [CommonModule, MatGridListModule, MatGridTile],
+  imports: [CommonModule, MatGridListModule, MatGridTile, FormsModule, MatFormFieldModule, MatInputModule],
   templateUrl: './statusupdate.component.html',
   styleUrl: './statusupdate.component.css'
 })
@@ -14,6 +17,8 @@ export class StatusupdateComponent implements OnInit {
   url: string = 'http://heuweslap2:8080/spielstand';
   public toreHeim: number = 0;
   public toreGast: number = 0;
+
+  @Input() 
   public tsNummer: number = -1;
   public spielstand: string = '';
   intervalId: any;

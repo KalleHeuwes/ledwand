@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -14,9 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AufstellungComponent } from './aufstellung/aufstellung.component';
 import { StatusupdateComponent } from './statusupdate/statusupdate.component';
 import { SpieltagComponent } from './spieltag/spieltag.component';
-import { StoreModule } from '@ngrx/store';
 
-import { counterReducer } from './statemgmt/counter.reducer'; 
+import { CheckitoutComponent } from './checkitout/checkitout.component';
 
 @NgModule({
   declarations: [
@@ -34,16 +34,17 @@ import { counterReducer } from './statemgmt/counter.reducer';
     StatusupdateComponent,
     SpieltagComponent,
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
       {path: 'players-list', component: SpielerListeComponent},
       {path: 'aufstellung', component: AufstellungComponent},
       {path: 'spieltag', component: SpieltagComponent},
       {path: 'statusupdatexxx', component: StatusupdateComponent},
+      {path: 'checkitout', component: CheckitoutComponent},
       {path: '', redirectTo: '/players-list', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
     ]), 
-    StoreModule.forRoot({ count: counterReducer }),
   ],
   providers: [
     provideAnimationsAsync()

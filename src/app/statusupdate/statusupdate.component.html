@@ -1,21 +1,23 @@
-<mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile><div class="titel">HEIM</div></mat-grid-tile>
-    <mat-grid-tile><div class="titel">GAST</div></mat-grid-tile>
-    <mat-grid-tile><div class="titel">{{ toreHeim }}</div></mat-grid-tile>
-    <mat-grid-tile><div class="titel">{{ toreGast }}</div></mat-grid-tile>
-    <mat-grid-tile>
-        <button class="updbutton" (click)="increment('H')">+</button>
-        <button class="updbutton" (click)="decrement('H')">-</button>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <button class="updbutton" (click)="increment('G')">+</button>
-        <button class="updbutton" (click)="decrement('G')">-</button>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <div class="titel">TS</div>
-        <div class="titel">{{ tsNummer }}</div>
-    </mat-grid-tile>
-    <mat-grid-tile>></mat-grid-tile>
-</mat-grid-list>
-
-<button class="updbutton" (click)="reset()">Reset Counter</button>
+<div style="height: 400px;">
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile><div class="titel">HEIM</div></mat-grid-tile>
+        <mat-grid-tile><div class="titel">GAST</div></mat-grid-tile>
+        <mat-grid-tile><div class="titel">{{ toreHeim }}</div></mat-grid-tile>
+        <mat-grid-tile><div class="titel">{{ toreGast }}</div></mat-grid-tile>
+        <mat-grid-tile>
+            <button class="updbutton" (click)="increment('H')">+</button>
+            <button class="updbutton" (click)="decrement('H')">-</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button class="updbutton" (click)="increment('G')">+</button>
+            <button class="updbutton" (click)="decrement('G')">-</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="titel">TS</div>
+            <input class="eingabefeld" [(ngModel)]="tsNummer" required />
+        </mat-grid-tile>
+        <mat-grid-tile>></mat-grid-tile>
+    </mat-grid-list>
+    
+    <button class="updbutton" (click)="reset()">Reset Counter</button>
+</div>

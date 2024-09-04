@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map, Observable, share, Subscription, timer } from "rxjs";
 import { CommonModule } from '@angular/common';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { SpielstandUpdate } from '../spielstand-update';
 
 @Component({
@@ -59,12 +59,26 @@ export class SpieltagComponent implements OnInit, OnDestroy {
 
   spielstandAbfragen(){
     this.http.get(this.url, {responseType: 'text'}).subscribe((response) => {
-      //console.log(response);
+      if("[]" == response){
+        this.toreHeim = 0;
+        this.toreGast = 0;
+        this.spielstandSetzen('', -99);
+      }
       var pos1 = response.indexOf(':');
       this.toreHeim = parseInt(response.substring(pos1+1,pos1+2));
       var pos1 = response.indexOf(':', pos1 + 1);
       this.toreGast = parseInt(response.substring(pos1+1,pos1+2));
       this.spielstand = response;
+    })
+  }
+  
+  spielstandSetzen(hg:string, tsNum: number){
+    var data = JSON.parse('{"heim": ' + this.toreHeim + ', "gast": ' + this.toreGast + ', "hg": "' + hg + '", "tsNummer": ' + tsNum + '}');
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    this.http.patch(this.url, data, {headers: headers}).subscribe((response) => {
+      console.log(response);
     })
   }
 

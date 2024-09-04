@@ -31,3 +31,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 git add .
 git commit -m "20240828 a"
 git push -f origin master
+
+ng serve --host 0.0.0.0

@@ -14,3 +14,13 @@
     border-radius: 6px;
     padding: 10px;
 }
+
+.eingabefeld{
+    background-color: black;
+    font-size: 52px;
+    font-weight: bold;
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+    width: 66px;
+}

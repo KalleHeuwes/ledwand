@@ -1,1 +1,36 @@
 <p>checkitout works!</p>
+<button (click)="aufstellungAuslesen()">Aufstellung auslesen</button>
+
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <table>
+                    <tbody>
+                        @for (spieler of startelf; track spieler) {
+                            <tr>
+                                <td>{{spieler.id}}</td>
+                                <td>{{spieler.name1}}</td>
+                                <td>{{spieler.name2}}</td>
+                            </tr>
+                            }
+                        </tbody>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tbody>
+                        @for (spieler of bank; track spieler) {
+                            <tr>
+                                <td>{{spieler.id}}</td>
+                                <td>{{spieler.name1}}</td>
+                                <td>{{spieler.name2}}</td>
+                            </tr>
+                            }
+                        </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
