@@ -60,6 +60,8 @@
     position: absolute;
     bottom: 40%;
     left: 16px;
+    width:280px;
+    height: 320px;
   }
 
   .logoGast {
