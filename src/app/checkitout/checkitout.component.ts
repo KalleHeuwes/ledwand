@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Player } from '../player';
 import { HttpClient } from '@angular/common/http';
+import { UploadService } from '../upload.service';
 
 @Component({
   selector: 'app-checkitout',
@@ -13,9 +14,29 @@ export class CheckitoutComponent implements OnInit {
   public startelf: Player[] = [];
   public bank: Player[] = [];
   public message!: string;
-  public constructor(private http: HttpClient) {
+  public constructor(private http: HttpClient, private uploadService: UploadService) {
     
   }
+
+  file: File | undefined;
+
+  
+  onFilechange(event: any) {
+    console.log(event.target.files[0])
+    this.file = event.target.files[0]
+  }
+  
+  upload() {
+    if (this.file) {
+      this.uploadService.uploadfile(this.file).subscribe(resp => {
+        alert("Uploaded")
+      })
+    } else {
+      alert("Please select a file first")
+    }
+  }
+
+
   ngOnInit(): void {
     //throw new Error('Method not implemented.');
   }
