@@ -3,7 +3,7 @@ import { SpielerkarteKleinComponent } from '../spielerkarte-klein/spielerkarte-k
 import { CommonModule } from '@angular/common';
 import { HttpClient } from "@angular/common/http";
 import {MatGridListModule, MatGridTile} from '@angular/material/grid-list';
-import { Player } from '../player';
+import { Player } from '../models/player';
 
 @Component({
   standalone: true,

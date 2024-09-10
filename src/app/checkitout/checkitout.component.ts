@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Player } from '../player';
+import { Player } from '../models/player';
 import { HttpClient } from '@angular/common/http';
-import { UploadService } from '../upload.service';
+import { UploadService } from '../services/upload.service';
 
 @Component({
   selector: 'app-checkitout',

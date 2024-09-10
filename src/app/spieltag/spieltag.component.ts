@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map, Observable, share, Subscription, timer } from "rxjs";
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { SpielstandUpdate } from '../spielstand-update';
+import { SpielstandUpdate } from '../models/spielstand-update';
 
 @Component({
   selector: 'app-spieltag',
