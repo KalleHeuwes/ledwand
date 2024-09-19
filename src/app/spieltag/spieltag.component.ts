@@ -3,6 +3,7 @@ import { map, Observable, share, Subscription, timer } from "rxjs";
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { SpielstandUpdate } from '../models/spielstand-update';
+import { ConfigurationService } from '../services/configuration.service';
 
 @Component({
   selector: 'app-spieltag',
@@ -16,7 +17,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   rxTime = new Date();
   intervalId: any;
   subscription!: Subscription;
-  url: string = 'http://heuweslap2:8080/spielstand';
+  url: string = ConfigurationService.URL + '/spielstand';
   public toreHeim: number = 0;
   public toreGast: number = 0;
   public spielstand: string = '';
