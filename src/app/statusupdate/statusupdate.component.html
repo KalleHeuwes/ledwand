@@ -1,5 +1,14 @@
-<div style="height: 400px;">
-    <mat-grid-list cols="2" rowHeight="2:1">
+<div style="height: 200px;">
+    <h3>Konfiguration</h3>
+    <table>
+        <thead>
+            <tr><th>Key</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Host</td><td>{{host}}</td></tr>
+        </tbody>
+    </table>
+    <mat-grid-list cols="2" rowHeight="6:1">
         <mat-grid-tile><div class="titel">HEIM</div></mat-grid-tile>
         <mat-grid-tile><div class="titel">GAST</div></mat-grid-tile>
         <mat-grid-tile><div class="titel">{{ toreHeim }}</div></mat-grid-tile>
@@ -16,8 +25,8 @@
             <div class="titel">TS</div>
             <input class="eingabefeld" [(ngModel)]="tsNummer" required />
         </mat-grid-tile>
-        <mat-grid-tile>></mat-grid-tile>
+        <mat-grid-tile><button class="updbutton" (click)="reset()">Reset Counter</button></mat-grid-tile>
     </mat-grid-list>
     
-    <button class="updbutton" (click)="reset()">Reset Counter</button>
+    
 </div>

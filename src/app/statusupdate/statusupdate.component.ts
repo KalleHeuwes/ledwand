@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
+import { ConfigurationService } from '../services/configuration.service';
 
 @Component({
   selector: 'app-statusupdate',
@@ -14,7 +15,9 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './statusupdate.component.css'
 })
 export class StatusupdateComponent implements OnInit {
-  url: string = 'http://heuweslap2:8080/spielstand';
+  
+  public url: string = ConfigurationService.URL + '/spielstand';
+  public host: string = ConfigurationService.HOST;
   public toreHeim: number = 0;
   public toreGast: number = 0;
 
