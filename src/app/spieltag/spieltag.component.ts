@@ -18,6 +18,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   intervalId: any;
   subscription!: Subscription;
   url: string = ConfigurationService.URL + '/spielstand';
+  urlLaufschrift: string = this.url + '/laufschrift';
   public toreHeim: number = 0;
   public toreGast: number = 0;
   public spielstand: string = '';
@@ -70,6 +71,11 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       var pos1 = response.indexOf(':', pos1 + 1);
       this.toreGast = parseInt(response.substring(pos1+1,pos1+2));
       this.spielstand = response;
+    })
+ 
+ 
+    this.http.get(this.urlLaufschrift, {responseType: 'text'}).subscribe((response) => {
+      this.laufschrift = response;
     })
   }
   
