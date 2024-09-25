@@ -23,7 +23,8 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public toreGast: number = 0;
   public spielstand: string = '';
   public spielstandUpdate: SpielstandUpdate | undefined;
-  public laufschrift: string = "(3.) 1:0 Marius Schomaker, (27.) 2:0 Asdren Haliti, (39.) 3:0 Niklaas Houghton";
+  public laufschrift: string = "<LAUFSCHRIFT>";
+  public laufschriftScrollAmount: number = 3;
 
   public constructor(private http: HttpClient) {
     

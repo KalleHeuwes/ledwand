@@ -32,7 +32,7 @@ export class AufstellungComponent implements OnInit {
         let rowStr = csvToRowArray[index];
         if(rowStr.startsWith('#Startelf')){       modus = 'S';      };
         if(rowStr.startsWith('#Bank'))    {       modus = 'B';      };
-        if(!rowStr.startsWith('#')){
+        if(!rowStr.startsWith('#') && (modus === 'S' || modus==='B')){
           let row = rowStr.split(";");
           console.log(modus + " * Spieler " + row[1]);
           let player1 = new Player( parseInt( row[0], 10), row[1], row[2].trim(), '');
