@@ -54,12 +54,6 @@ export class CheckitoutComponent implements OnInit {
   aufstellungAuslesen(){
     console.log("Aufstellung auslesen ...");
     
-    console.log("Dummy: " + this.spieltagsConfigService.dummy());
-    this.config = this.spieltagsConfigService.auslesen();
-    console.log("Anz: " + this.config.startelf.length);
-/*
-
-
     const url: string = '/assets/aufstellung.csv';
 
     this.http.get(url, {responseType: 'text'}).subscribe((response) => {
@@ -97,6 +91,13 @@ export class CheckitoutComponent implements OnInit {
 
     }
   )
-  */
+  
+  }  
+  aufstellungAuslesenService(){
+    console.log("Aufstellung auslesen ...");
+    
+    console.log("Dummy: " + this.spieltagsConfigService.dummy());
+    this.config = this.spieltagsConfigService.auslesen();
+    console.log("Anz: " + this.config.startelf.length);
   }
 }

@@ -24,7 +24,10 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public spielstand: string = '';
   public spielstandUpdate: SpielstandUpdate | undefined;
   public laufschrift: string = "<LAUFSCHRIFT>";
-  public laufschriftScrollAmount: number = 3;
+  public laufschriftScrollAmount: number = 33;
+  public datum: string = '';
+  public gegner: string = '';
+  public gegnerBild: string = '';
 
   public constructor(private http: HttpClient) {
     
@@ -36,6 +39,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     this.intervalId = setInterval(() => {
       this.time = new Date();
       this.spielstandAbfragen();
+      this.spieltagAuslesen();
     }, 1000);
 
     // Using RxJS Timer
@@ -89,5 +93,32 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       console.log(response);
     })
   }
+
+  spieltagAuslesen(){
+    //console.log("Spieltag auslesen ...");
+    
+    const url: string = '/assets/spieltag.csv';
+
+    this.http.get(url, {responseType: 'text'}).subscribe((response) => {
+
+      let csvToRowArray = response.split("\n");
+      //console.log("* Anzahl " +csvToRowArray.length);
+      for (let index = 0; index <= csvToRowArray.length - 1; index++) {
+        let rowStr = csvToRowArray[index];
+        if(!rowStr.startsWith('#')){
+          let row = rowStr.split(";");
+
+            if(row[1] === "Datum") this.datum = row[2];
+            if(row[1] === "Gegner") this.gegner = row[2];
+            if(row[1] === "Bild") this.gegnerBild = row[2];
+
+        }
+      }
+
+
+    }
+  )
+  
+  }  
 
 }

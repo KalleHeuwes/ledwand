@@ -1,6 +1,6 @@
 .laufschrift {
     position: absolute;
-    top: 80%;
+    top: 90%;
     left: 1%;
     color: whitesmoke;
     font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;
@@ -40,10 +40,20 @@
   }
   
   /* Top right text */
-.top-right {
+  .top-right {
     position: absolute;
     top: 8px;
     right: 16px;
+  }
+  
+  .spielzeit {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    color: #16bbb3;
+    font-family: Arial, sans-serif;
+    font-size: 80px;
+    font-weight: bold;
   }
 
   /* Bottom left text */
@@ -70,7 +80,25 @@
     right: 16px;
 
   }
-  
+
+  .toreHeim {
+    position: absolute;
+    bottom: 2%;
+    left: 55px;
+    font-family: Arial, sans-serif;
+    font-size: 325px;
+    font-weight: bold;
+  }
+
+  .toreGast {
+    position: absolute;
+    bottom: 2%;
+    right: 55px;
+    font-family: Arial, sans-serif;
+    font-size: 325px;
+    font-weight: bold;
+  }
+
   /* Bottom right text */
 .bottom-right {
     position: absolute;

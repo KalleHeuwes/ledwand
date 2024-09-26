@@ -23,7 +23,10 @@
         </mat-grid-tile>
         <mat-grid-tile>
             <div class="titel">TS</div>
+            <input class="eingabefeld" [(ngModel)]="spielMinute" required />
             <input class="eingabefeld" [(ngModel)]="tsNummer" required />
+            <input class="eingabefeld" [(ngModel)]="spielerName" required />
+            <button class="updbutton" (click)="torSetzen('H')">Tor 05</button>
         </mat-grid-tile>
         <mat-grid-tile><button class="updbutton" (click)="reset()">Reset Counter</button></mat-grid-tile>
     </mat-grid-list>

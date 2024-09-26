@@ -23,6 +23,13 @@ export class StatusupdateComponent implements OnInit {
 
   @Input() 
   public tsNummer: number = -1;
+
+  @Input() 
+  public spielMinute: number = -1;
+
+  @Input() 
+  public spielerName: string = '';
+  
   public spielstand: string = '';
   intervalId: any;
 
@@ -76,6 +83,21 @@ export class StatusupdateComponent implements OnInit {
       this.spielstand = response;
     })
   }
+
+  torSetzen(hg:string){
+    let pattern = '{"typ": "T", "spielminute": "' + this.spielMinute + '", "hg": "' + hg + '", '
+      + '"rueckennummer": "' + this.tsNummer + '", "spielername": "' + this.spielerName + '", "zusatz": ""}';
+    var data = JSON.parse(pattern);
+    console.log(data);
+    const url: string = ConfigurationService.URL + '/spielstand/torfueruns';
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    this.http.post(url, data, {headers: headers}).subscribe((response) => {
+      console.log(response);
+    })
+  }
+
   playSound(){
     let audio = new Audio();
     audio.src="../assets/sounds/punk.wav";
