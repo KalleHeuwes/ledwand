@@ -12,7 +12,7 @@ export class SpieltagsConfigService {
   constructor(  private http: HttpClient, ) { }
 
   
-  auslesen(){
+  auslesen():SpieltagsConfig{
     console.log("SpieltagsConfig auslesen ...");
     const url: string = '/assets/aufstellung.csv';
 
@@ -21,8 +21,10 @@ export class SpieltagsConfigService {
       let csvToRowArray = response.split("\n");
       console.log("* Anzahl " +csvToRowArray.length);
       let modus = '';
+      this.spieltagsConfig = new SpieltagsConfig();
       this.spieltagsConfig.startelf = [];
       this.spieltagsConfig.bank = [];
+      console.log("* Schritt 1");
       for (let index = 0; index <= csvToRowArray.length - 1; index++) {
         let rowStr = csvToRowArray[index];
         if(rowStr.startsWith('#Spiel'))   {       modus = 'G';      };
@@ -47,7 +49,13 @@ export class SpieltagsConfigService {
       console.log(this.spieltagsConfig.startelf);
       console.log('* Bank *');
       console.log(this.spieltagsConfig.bank);
+      
     }
   )
+  return this.spieltagsConfig;
+  }
+
+  dummy():string{
+    return "Hallo, Welt !";
   }
 }

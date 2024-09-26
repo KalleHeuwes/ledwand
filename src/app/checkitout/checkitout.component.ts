@@ -53,9 +53,10 @@ export class CheckitoutComponent implements OnInit {
   
   aufstellungAuslesen(){
     console.log("Aufstellung auslesen ...");
-    this.spieltagsConfigService.auslesen;
-    this.config = this.spieltagsConfigService.spieltagsConfig;
-    //console.log(this.config.startelf.length);
+    
+    console.log("Dummy: " + this.spieltagsConfigService.dummy());
+    this.config = this.spieltagsConfigService.auslesen();
+    console.log("Anz: " + this.config.startelf.length);
 /*
 
 
