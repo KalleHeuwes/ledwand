@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { map, Observable, share, Subscription, timer } from "rxjs";
+import { map, Observable, share, Subscription, timer, from } from "rxjs";
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { SpielstandUpdate } from '../models/spielstand-update';
 import { ConfigurationService } from '../services/configuration.service';
+import { KeyValuePair } from '../models/keyValuePair';
 
 @Component({
   selector: 'app-spieltag',
@@ -28,6 +29,8 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public datum: string = '';
   public gegner: string = '';
   public gegnerBild: string = '';
+  public anpfiff: string = '';
+  public spielMinute: number = 0;
 
   public constructor(private http: HttpClient) {
     
@@ -40,6 +43,8 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       this.time = new Date();
       this.spielstandAbfragen();
       this.spieltagAuslesen();
+      this.wertePaareAbfragen();
+      this.berechneSpielminute();
     }, 1000);
 
     // Using RxJS Timer
@@ -84,6 +89,39 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     })
   }
   
+  getWertePaare(): Observable<KeyValuePair[]>{
+    return this.http.get<KeyValuePair[]>(ConfigurationService.URL + '/status/keyValuePairs');
+  }
+
+  wertePaareAbfragen(){
+    let paare: Observable<KeyValuePair[]> = this.getWertePaare();
+    paare.pipe()
+    from(paare).subscribe(n => {
+      let k: KeyValuePair[] = n;
+      k.forEach(kv => {
+        if(this.anpfiff === '' && kv.keyName.startsWith('Anpfiff Hz 2')) {
+          this.anpfiff = kv.valueStr;
+          console.log('Anpfiff gesetzt auf ' + this.anpfiff );
+        }
+      })
+    });
+  }
+ 
+  berechneSpielminute(){
+    if(this.anpfiff !== '') {
+      let hour = this.rxTime.getHours();
+      let minuts = this.rxTime.getMinutes();
+      let seconds = this.rxTime.getSeconds();
+      let NewTime = hour + ":" + minuts + ":" + seconds
+      
+      let startDate = new Date("2018-11-29 " + this.anpfiff);
+      let aktDate = new Date("2018-11-29 " + NewTime);
+      let diffMs: number = (aktDate.getTime() - startDate.getTime()); // milliseconds
+      let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+      this.spielMinute = diffMins;
+    }
+  }
+
   spielstandSetzen(hg:string, tsNum: number){
     var data = JSON.parse('{"heim": ' + this.toreHeim + ', "gast": ' + this.toreGast + ', "hg": "' + hg + '", "tsNummer": ' + tsNum + '}');
     let headers = new HttpHeaders();

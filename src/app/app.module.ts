@@ -17,6 +17,7 @@ import { StatusupdateComponent } from './statusupdate/statusupdate.component';
 import { SpieltagComponent } from './spieltag/spieltag.component';
 
 import { CheckitoutComponent } from './checkitout/checkitout.component';
+import { StartseiteComponent } from './startseite/startseite.component';
 
 @NgModule({
   declarations: [
@@ -37,12 +38,13 @@ import { CheckitoutComponent } from './checkitout/checkitout.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
+      {path: 'startseite', component: StartseiteComponent},
       {path: 'players-list', component: SpielerListeComponent},
       {path: 'aufstellung', component: AufstellungComponent},
       {path: 'spieltag', component: SpieltagComponent},
       {path: 'statusupdatexxx', component: StatusupdateComponent},
       {path: 'checkitout', component: CheckitoutComponent},
-      {path: '', redirectTo: '/players-list', pathMatch: 'full'},
+      {path: '', redirectTo: '/startseite', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
     ]), 
   ],
