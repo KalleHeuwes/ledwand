@@ -1,120 +1,40 @@
 .laufschrift {
-    position: absolute;
-    top: 90%;
-    left: 1%;
+    position: absolute;    top: 90%;    left: 1%;
     color: whitesmoke;
-    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;
-    font-size: 55px;
-    font-weight: bold;
+    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 55px;    font-weight: bold;
   }
 
 .spielstand{
-    cursor: pointer;
+    position: absolute;    top: 11%;    left: 50%;
+    transform: translate( -50%, -50%);
     color: whitesmoke;
-    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;
-    font-size: 325px;
-    font-weight: bold;
+    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 325px;    font-weight: bold;
 }
+
+.container {    position: relative;    text-align: center;    color: white;  }
 
 .zeiten{
-    color: #16bbb3;
-    font-family: Arial, sans-serif;
-    font-size: 80px;
-    font-weight: bold;
+  color: #16bbb3;
+  font-family: Arial, sans-serif;    font-size: 80px;    font-weight: bold;
+}  
+.uhrzeit {    position: absolute;    top: 8px;    right: 16px;  }
+
+.spielzeit {  position: absolute;    top: 8px;    left : 16px;  }
+
+.logoHeim {
+  position: absolute;  bottom: 40%;
+  left: 16px; width:280px; height: 320px;
 }
 
-/* Container holding the image and the text */
-.container {
-    position: relative;
-    text-align: center;
-    color: white;
-  }
-  
-  
-  /* Top left text */
-.top-left {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate( -50%, -50%);
-  }
-  
-  /* Top right text */
-  .top-right {
-    position: absolute;
-    top: 8px;
-    right: 16px;
-  }
-  
-  .spielzeit {
-    position: absolute;
-    top: 8px;
-    left: 16px;
-    color: #16bbb3;
-    font-family: Arial, sans-serif;
-    font-size: 80px;
-    font-weight: bold;
-  }
+.logoGast {
+  position: absolute;  bottom: 40%;
+  right: 16px;
+}
 
-  /* Bottom left text */
-  .bottom-left {
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
-    font-family: Arial, sans-serif;
-    font-size: 75px;
-    font-weight: bold;
-  }
+.nameVerein {
+  position: absolute;  bottom: 80px;
+  font-family: Arial, sans-serif;    font-size: 75px;    font-weight: bold;
+}
+.nameHeim {    left: 16px;  }
 
-  .logoHeim {
-    position: absolute;
-    bottom: 40%;
-    left: 16px;
-    width:280px;
-    height: 320px;
-  }
-
-  .logoGast {
-    position: absolute;
-    bottom: 40%;
-    right: 16px;
-
-  }
-
-  .toreHeim {
-    position: absolute;
-    bottom: 2%;
-    left: 55px;
-    font-family: Arial, sans-serif;
-    font-size: 325px;
-    font-weight: bold;
-  }
-
-  .toreGast {
-    position: absolute;
-    bottom: 2%;
-    right: 55px;
-    font-family: Arial, sans-serif;
-    font-size: 325px;
-    font-weight: bold;
-  }
-
-  /* Bottom right text */
-.bottom-right {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
-    font-family: Arial, sans-serif;
-    font-size: 75px;
-    font-weight: bold;
-  }
-  
-  /* Centered text */
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: black;
-    font-size: large;
-  }
+.nameGast {   right: 16px;  }

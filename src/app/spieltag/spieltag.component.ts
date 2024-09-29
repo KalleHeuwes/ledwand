@@ -26,6 +26,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public spielstandUpdate: SpielstandUpdate | undefined;
   public laufschrift: string = "<LAUFSCHRIFT>";
   public laufschriftScrollAmount: number = 33;
+  public laufschriftVisibility: boolean = false;
   public datum: string = '';
   public gegner: string = '';
   public gegnerBild: string = '';
@@ -81,6 +82,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       var pos1 = response.indexOf(':', pos1 + 1);
       this.toreGast = parseInt(response.substring(pos1+1,pos1+2));
       this.spielstand = response;
+      this.laufschriftVisibility = this.toreGast > 0 || this.toreHeim > 0;
     })
  
  
@@ -108,7 +110,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
  
   berechneSpielminute(){
-    if(this.anpfiff !== '') {
+    //if(this.anpfiff !== '') {
       let hour = this.rxTime.getHours();
       let minuts = this.rxTime.getMinutes();
       let seconds = this.rxTime.getSeconds();
@@ -119,7 +121,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       let diffMs: number = (aktDate.getTime() - startDate.getTime()); // milliseconds
       let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
       this.spielMinute = diffMins;
-    }
+    //}
   }
 
   spielstandSetzen(hg:string, tsNum: number){
