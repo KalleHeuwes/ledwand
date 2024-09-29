@@ -1,3 +1,16 @@
+# User stories
+## Anpfiff
+Halbzeit (1 | 2)
+Uhrzeit (hh:mm | Now)
+
+## Nachspielzeit angezeigt
+Minuten
+
+## Auswechslung
+Rückennumer des Spielers, der den Platz verlässt
+Rückennumer des Spielers, der den Platz betritt
+
+
 # Tor
 ## für uns (TH)
 Minute
