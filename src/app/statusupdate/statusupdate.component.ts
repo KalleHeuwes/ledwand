@@ -105,4 +105,26 @@ export class StatusupdateComponent implements OnInit {
     audio.load();
     audio.play();
   }
+
+  
+  spieltagAuslesen(){
+    const url: string = '/assets/spieltag.csv';
+
+    this.http.get(url, {responseType: 'text'}).subscribe((response) => {
+
+      let csvToRowArray = response.split("\n");
+      for (let index = 0; index <= csvToRowArray.length - 1; index++) {
+        let rowStr = csvToRowArray[index];
+        if(!rowStr.startsWith('#')){
+          let row = rowStr.split(";");
+          /*
+          if(row[1] === "Datum") this.datum = row[2];
+          if(row[1] === "Gegner") this.gegner = row[2];
+          if(row[1] === "Bild") this.gegnerBild = row[2];
+          */
+        }
+      }
+    }
+    )
+  }  
 }

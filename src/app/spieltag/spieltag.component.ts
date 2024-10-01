@@ -48,6 +48,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       this.berechneSpielminute();
     }, 1000);
 
+    
     // Using RxJS Timer
     this.subscription = timer(0, 1000)
       .pipe(
@@ -61,6 +62,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
         //let a = time.toLocaleString('en-US', { hour: 'numeric', hour12: true });
         let NewTime = hour + ":" + minuts + ":" + seconds
       });
+      
   }
 
   ngOnDestroy() {
@@ -135,30 +137,22 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   spieltagAuslesen(){
-    //console.log("Spieltag auslesen ...");
-    
     const url: string = '/assets/spieltag.csv';
 
     this.http.get(url, {responseType: 'text'}).subscribe((response) => {
 
       let csvToRowArray = response.split("\n");
-      //console.log("* Anzahl " +csvToRowArray.length);
       for (let index = 0; index <= csvToRowArray.length - 1; index++) {
         let rowStr = csvToRowArray[index];
         if(!rowStr.startsWith('#')){
           let row = rowStr.split(";");
-
-            if(row[1] === "Datum") this.datum = row[2];
-            if(row[1] === "Gegner") this.gegner = row[2];
-            if(row[1] === "Bild") this.gegnerBild = row[2];
-
+          if(row[1] === "Datum") this.datum = row[2];
+          if(row[1] === "Gegner") this.gegner = row[2];
+          if(row[1] === "Bild") this.gegnerBild = row[2];
         }
       }
-
-
     }
-  )
-  
+    )
   }  
 
 }
