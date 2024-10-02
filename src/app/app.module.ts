@@ -9,7 +9,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import {MatGridListModule, MatGridTile} from '@angular/material/grid-list';
+import { MatGridListModule, MatGridTile} from '@angular/material/grid-list';
 import { SpielerListeComponent } from './spieler-liste/spieler-liste.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AufstellungComponent } from './aufstellung/aufstellung.component';
@@ -18,6 +18,7 @@ import { SpieltagComponent } from './spieltag/spieltag.component';
 
 import { CheckitoutComponent } from './checkitout/checkitout.component';
 import { StartseiteComponent } from './startseite/startseite.component';
+import { SmartupdateComponent } from './smartupdate/smartupdate.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { StartseiteComponent } from './startseite/startseite.component';
       {path: 'aufstellung', component: AufstellungComponent},
       {path: 'spieltag', component: SpieltagComponent},
       {path: 'statusupdatexxx', component: StatusupdateComponent},
+      {path: 'smartupdate', component: SmartupdateComponent},
       {path: 'checkitout', component: CheckitoutComponent},
       {path: '', redirectTo: '/startseite', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
