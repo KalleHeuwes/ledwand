@@ -4,10 +4,12 @@
     <br/>
     <button (click)="test1()">Button 1</button>
     <br/>
-    <button>Button 2</button>
-    <select ng-model="selectedCar" ng-options="x.model for x in cars"></select>
-    <select><option>a</option><option>a</option></select>
-    <select ng-model="opt"><option ng-repeat="x in opts"></option></select>
+    <button mat-button [matMenuTriggerFor]="menu">Torschütze</button>      
+    <mat-menu #menu="matMenu"> 
+        @for (spieler of startelf; track spieler) {
+            <button mat-menu-item class="menu-item">{{'' + spieler.id + ' ' + spieler.name1}}</button>
+        }
+    </mat-menu> 
 </div>
 <!--
 <select><option ng-repeat="x in cars">{{x}}</option></select>

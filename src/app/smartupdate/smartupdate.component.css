@@ -7,3 +7,9 @@ button{
     background-color: aqua;
     color: aliceblue;
 }
+
+.menu-item{
+    font-size: small;
+    background-color: brown;
+    height: 10px;
+}
