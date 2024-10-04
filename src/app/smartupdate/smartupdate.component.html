@@ -1,16 +1,18 @@
 <p>smartupdate works!</p>
 <div class="container">
-    Hallo, Welt
-    <br/>
-    <button (click)="test1()">Button 1</button>
     <br/>
     <button mat-button [matMenuTriggerFor]="menu">Torschütze</button>      
     <mat-menu #menu="matMenu"> 
-        @for (spieler of startelf; track spieler) {
-            <button mat-menu-item class="menu-item">{{'' + spieler.id + ' ' + spieler.name1}}</button>
+        @for (spieler of spielerliste; track spieler) {
+            <button (click)="onClickTorschuetze(spieler)" mat-menu-item class="menu-item">{{spieler.id}}: {{spieler.name1}} {{spieler.name2}}</button>
         }
     </mat-menu> 
+    <div>{{torschuetze.name2}}</div>
+    <br/>
+    <button (click)="torSpeichern()">Tor speichern</button>
 </div>
 <!--
 <select><option ng-repeat="x in cars">{{x}}</option></select>
+{{'' + spieler.id + ' ' + spieler.name1}}
+<div>{{torschuetze.name2}}</div>
 -->

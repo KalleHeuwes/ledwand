@@ -88,7 +88,7 @@ export class StatusupdateComponent implements OnInit {
     let pattern = '{"typ": "T", "spielminute": "' + this.spielMinute + '", "hg": "' + hg + '", '
       + '"rueckennummer": "' + this.tsNummer + '", "spielername": "' + this.spielerName + '", "zusatz": ""}';
     var data = JSON.parse(pattern);
-    console.log(data);
+    //console.log(data);
     const url: string = ConfigurationService.URL + '/spielstand/torfueruns';
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');

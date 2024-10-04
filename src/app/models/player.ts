@@ -10,5 +10,6 @@ export class Player{
       this.name2 = name2;
       this.pic = pic;
     }
+  
   }
   
