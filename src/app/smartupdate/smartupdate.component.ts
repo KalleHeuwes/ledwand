@@ -1,7 +1,7 @@
 import { Component, model, OnInit } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Player } from '../models/player';
 import { ConfigurationService } from '../services/configuration.service';
 
@@ -14,33 +14,30 @@ import { ConfigurationService } from '../services/configuration.service';
 })
 export class SmartupdateComponent implements OnInit {
   public spielerliste: Player[] = [];
-  //public bank: Player[] = [];
   public torschuetze: Player = new Player(0, '', '', '');
   public spielMinute: number = 33;
   
-  public constructor(private http: HttpClient) {
-    
-  }
+  public constructor(private http: HttpClient) {  }
+
   ngOnInit(): void {
     this.aufstellungAuslesen();
   }
 
-  public opt: string = '';
-  public opts = ["a", "b"];
-  public cars = [
-    {model: "Smart", color: "blue"}, 
-    {model: "Fiat 500", color: "green"}
-  ];
-  torSpeichern(){
-    let pattern = '{"typ": "T", "spielminute": "' + this.spielMinute + '", "hg": "H", '
-    + '"rueckennummer": "' + this.torschuetze.id + '", "spielername": "' + this.torschuetze.name1 + ' ' + this.torschuetze.name2 + '", "zusatz": ""}';
+  torSpeichern(hg: string){
+    var pattern ="";
+    var urlpart = "";
+    if(hg === "H"){
+      pattern = '{"typ": "T", "hg": "H", "spielminute": "' + this.spielMinute + '", '
+      + '"rueckennummer": "' + this.torschuetze.id + '", "spielername": "' + 
+      this.torschuetze.name1 + ' ' + this.torschuetze.name2 + '", "zusatz": ""}';
+      urlpart="torfueruns";
+      }else{
+        pattern = '{"typ": "T", "hg": "G", "spielminute": "' + this.spielMinute + '", "zusatz": ""}';
+        urlpart="torfuergast";
+        }
   var data = JSON.parse(pattern);
-  console.log(data);
-  const url: string = ConfigurationService.URL + '/spielstand/torfueruns';
-  let headers = new HttpHeaders();
-  headers.append('Content-Type', 'application/json');
-  headers.append('Accept', 'application/json');
-  this.http.post(url, data, {headers: headers}).subscribe((response) => {
+  const url: string = ConfigurationService.URL + '/spielstand/' + urlpart;
+  this.http.post(url, data, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
     console.log(response);
   })
   }
@@ -68,7 +65,6 @@ export class SmartupdateComponent implements OnInit {
         if(!rowStr.startsWith('#')){
           let row = rowStr.split(";");
           if(modus === 'S' || modus==='B'){
-            console.log(modus + " * Spieler " + row[1]);
             let player1 = new Player( parseInt( row[0], 10), row[1], row[2].trim(), '');
             if(modus==='S') { this.spielerliste.push(player1);}
             if(modus==='B') { this.spielerliste.push    (player1);}
