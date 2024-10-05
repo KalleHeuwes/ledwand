@@ -31,6 +31,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public gegner: string = '';
   public gegnerBild: string = '';
   public anpfiff: string = '';
+  public halbzeit: number = 0;
   public spielMinute: number = 0;
 
   public constructor(private http: HttpClient) {
@@ -59,7 +60,6 @@ export class SpieltagComponent implements OnInit, OnDestroy {
         let hour = this.rxTime.getHours();
         let minuts = this.rxTime.getMinutes();
         let seconds = this.rxTime.getSeconds();
-        //let a = time.toLocaleString('en-US', { hour: 'numeric', hour12: true });
         let NewTime = hour + ":" + minuts + ":" + seconds
       });
       
@@ -94,7 +94,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
   
   getWertePaare(): Observable<KeyValuePair[]>{
-    return this.http.get<KeyValuePair[]>(ConfigurationService.URL + '/status/keyValuePairs');
+    return this.http.get<KeyValuePair[]>(ConfigurationService.URL + '/keyValuePairs');
   }
 
   wertePaareAbfragen(){
@@ -103,9 +103,13 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     from(paare).subscribe(n => {
       let k: KeyValuePair[] = n;
       k.forEach(kv => {
-        if(this.anpfiff === '' && kv.keyName.startsWith('Anpfiff Hz 2')) {
+        if(kv.keyName.startsWith('Anpfiff Hz 1')) {
+          this.halbzeit = 1;
           this.anpfiff = kv.valueStr;
-          console.log('Anpfiff gesetzt auf ' + this.anpfiff );
+        }
+        if(kv.keyName.startsWith('Anpfiff Hz 2')) {
+          this.halbzeit = 2;
+          this.anpfiff = kv.valueStr;
         }
       })
     });
@@ -122,7 +126,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       let aktDate = new Date("2018-11-29 " + NewTime);
       let diffMs: number = (aktDate.getTime() - startDate.getTime()); // milliseconds
       let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-      this.spielMinute = diffMins;
+      this.spielMinute = 1 + diffMins + (this.halbzeit - 1) * 45;
     //}
   }
 

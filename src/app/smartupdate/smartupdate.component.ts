@@ -16,6 +16,7 @@ export class SmartupdateComponent implements OnInit {
   public spielerliste: Player[] = [];
   public torschuetze: Player = new Player(0, '', '', '');
   public spielMinute: number = 33;
+  rxTime = new Date();
   
   public constructor(private http: HttpClient) {  }
 
@@ -46,9 +47,17 @@ export class SmartupdateComponent implements OnInit {
     this.torschuetze = spieler;
   }
 
-  anpfiff(){
-    
-  }
+  anpfiff(hz: number){
+    let hour = this.rxTime.getHours();
+    let minuts = this.rxTime.getMinutes();
+    let seconds = this.rxTime.getSeconds();
+    let jetzt = hour + ":" + minuts + ":" + seconds
+
+    const url: string = ConfigurationService.URL + '/status/anpfiff/' + hz +'/' + jetzt;
+    this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
+      console.log(response);
+    })
+    }
     
   aufstellungAuslesen(){
     console.log("Aufstellung auslesen ...");
