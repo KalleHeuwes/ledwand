@@ -1,9 +1,10 @@
 <p>smartupdate works!</p>
 <div class="container">
-    <h2>Tor für uns</h2>
+    
         <table>
             <tbody>
                 <tr>
+                    <td><h2>Tor für uns</h2></td>
                     <td><button mat-button [matMenuTriggerFor]="menu">Torschütze</button> </td>
                     <td>        
                         <mat-menu #menu="matMenu"> 
@@ -15,10 +16,22 @@
                 <td><div>{{torschuetze.name2}}</div></td>
                 <td><button (click)="torSpeichern('H')">Tor speichern</button></td>
             </tr>
+            <tr>
+                <td><h2>Tor für Gegner</h2></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><button (click)="torSpeichern('G')">Tor speichern</button></td>
+            </tr>
+            <tr>
+                <td><h2>Anpfiff</h2></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><button (click)="anpfiff()">Anpfiff</button></td>
+            </tr>
             </tbody>
         </table>
-        <h2>Tor für Gegner</h2>
-        <td><button (click)="torSpeichern('G')">Tor speichern</button></td>
 </div>
 <!--
 <select><option ng-repeat="x in cars">{{x}}</option></select>

@@ -45,6 +45,10 @@ export class SmartupdateComponent implements OnInit {
   onClickTorschuetze(spieler: Player){
     this.torschuetze = spieler;
   }
+
+  anpfiff(){
+    
+  }
     
   aufstellungAuslesen(){
     console.log("Aufstellung auslesen ...");
