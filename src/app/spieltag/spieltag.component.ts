@@ -34,11 +34,8 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public halbzeit: number = 0;
   public spielMinute: number = 0;
 
-  public constructor(private http: HttpClient) {
-    
-  }
+  public constructor(private http: HttpClient) {  }  
 
-  
   ngOnInit() {
     // Using Basic Interval
     this.intervalId = setInterval(() => {
@@ -46,10 +43,11 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       this.spielstandAbfragen();
       this.spieltagAuslesen();
       this.wertePaareAbfragen();
-      this.berechneSpielminute();
+      this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
     }, 1000);
 
-    
+    /*
+
     // Using RxJS Timer
     this.subscription = timer(0, 1000)
       .pipe(
@@ -62,7 +60,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
         let seconds = this.rxTime.getSeconds();
         let NewTime = hour + ":" + minuts + ":" + seconds
       });
-      
+      */
   }
 
   ngOnDestroy() {
@@ -86,7 +84,6 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       this.spielstand = response;
       this.laufschriftVisibility = this.toreGast > 0 || this.toreHeim > 0;
     })
- 
  
     this.http.get(this.urlLaufschrift, {responseType: 'text'}).subscribe((response) => {
       this.laufschrift = response;
@@ -114,28 +111,11 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       })
     });
   }
- 
-  berechneSpielminute(){
-    //if(this.anpfiff !== '') {
-      let hour = this.rxTime.getHours();
-      let minuts = this.rxTime.getMinutes();
-      let seconds = this.rxTime.getSeconds();
-      let NewTime = hour + ":" + minuts + ":" + seconds
-      
-      let startDate = new Date("2018-11-29 " + this.anpfiff);
-      let aktDate = new Date("2018-11-29 " + NewTime);
-      let diffMs: number = (aktDate.getTime() - startDate.getTime()); // milliseconds
-      let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-      this.spielMinute = 1 + diffMins + (this.halbzeit - 1) * 45;
-    //}
-  }
 
   spielstandSetzen(hg:string, tsNum: number){
-    var data = JSON.parse('{"heim": ' + this.toreHeim + ', "gast": ' + this.toreGast + ', "hg": "' + hg + '", "tsNummer": ' + tsNum + '}');
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    this.http.patch(this.url, data, {headers: headers}).subscribe((response) => {
+    var data = JSON.parse('{"heim": ' + this.toreHeim + ', "gast": ' + this.toreGast 
+      + ', "hg": "' + hg + '", "tsNummer": ' + tsNum + '}');
+    this.http.patch(this.url, data, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
       console.log(response);
     })
   }

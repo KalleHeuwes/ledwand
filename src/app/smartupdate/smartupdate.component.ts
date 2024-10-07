@@ -20,9 +20,7 @@ export class SmartupdateComponent implements OnInit {
   
   public constructor(private http: HttpClient) {  }
 
-  ngOnInit(): void {
-    this.aufstellungAuslesen();
-  }
+  ngOnInit(): void {    this.aufstellungAuslesen();  }
 
   torSpeichern(hg: string){
     var pattern ="";
@@ -32,22 +30,22 @@ export class SmartupdateComponent implements OnInit {
       + '"rueckennummer": "' + this.torschuetze.id + '", "spielername": "' + 
       this.torschuetze.name1 + ' ' + this.torschuetze.name2 + '", "zusatz": ""}';
       urlpart="torfueruns";
-      }else{
-        pattern = '{"typ": "T", "hg": "G", "spielminute": "' + this.spielMinute + '", "zusatz": ""}';
-        urlpart="torfuergast";
-        }
-  var data = JSON.parse(pattern);
-  const url: string = ConfigurationService.URL + '/spielstand/' + urlpart;
-  this.http.post(url, data, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
-    console.log(response);
-  })
+    }else{
+      pattern = '{"typ": "T", "hg": "G", "spielminute": "' + this.spielMinute + '", "zusatz": ""}';
+      urlpart="torfuergast";
+    }
+    var data = JSON.parse(pattern);
+    const url: string = ConfigurationService.URL + '/spielstand/' + urlpart;
+    this.http.post(url, data, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
+      console.log(response);
+    })
   }
 
   onClickTorschuetze(spieler: Player){
     this.torschuetze = spieler;
   }
 
-  anpfiff(hz: number){
+  anpfiffSetzen(hz: number){
     let hour = this.rxTime.getHours();
     let minuts = this.rxTime.getMinutes();
     let seconds = this.rxTime.getSeconds();
