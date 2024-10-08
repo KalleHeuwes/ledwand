@@ -1,7 +1,7 @@
 .laufschrift {
-    position: absolute;    top: 90%;    left: 1%;
+    position: absolute;    top: 70%;    left: 1%;
     color: whitesmoke;
-    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 55px;    font-weight: bold;
+    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 200px;    font-weight: bold;
   }
 
 .spielstand{
@@ -34,8 +34,8 @@
 }
 
 .nameVerein {
-  position: absolute;  bottom: 80px;
-  font-family: Arial, sans-serif;    font-size: 75px;    font-weight: bold;
+  position: absolute;  bottom: 140px;
+  font-family: Arial, sans-serif;    font-size: 145px;    font-weight: bold;
 }
 .nameHeim {    left: 16px;  }
 
