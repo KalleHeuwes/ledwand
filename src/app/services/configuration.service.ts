@@ -18,8 +18,16 @@ export class ConfigurationService {
     headers.append('Accept', 'application/json');
     return headers;
   }
+
+  public static TextHeaders(){
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/text');
+    headers.append('Accept', 'application/text');
+    return headers;
+  }
    
   public static berechneSpielminute(anpfiff: string, halbzeit: number){
+    //console.log("configuration.service berechneSpielminute ...");
     let dt = "2018-11-29 ";
     let hour = this.rxTime.getHours();
     let minuts = this.rxTime.getMinutes();

@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { SpielstandUpdate } from '../models/spielstand-update';
 import { ConfigurationService } from '../services/configuration.service';
 import { KeyValuePair } from '../models/keyValuePair';
+import { Anpfiff } from '../models/anpfiff';
 
 @Component({
   selector: 'app-spieltag',
@@ -37,30 +38,15 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public constructor(private http: HttpClient) {  }  
 
   ngOnInit() {
-    // Using Basic Interval
+    //console.log("spieltag.component ngOnInit ...");
     this.intervalId = setInterval(() => {
       this.time = new Date();
       this.spielstandAbfragen();
       this.spieltagAuslesen();
-      this.wertePaareAbfragen();
+      this.anpfiffAuslesen();
+      //this.wertePaareAbfragen();
       this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
     }, 1000);
-
-    /*
-
-    // Using RxJS Timer
-    this.subscription = timer(0, 1000)
-      .pipe(
-        map(() => new Date()),
-        share()
-      )
-      .subscribe(time => {
-        let hour = this.rxTime.getHours();
-        let minuts = this.rxTime.getMinutes();
-        let seconds = this.rxTime.getSeconds();
-        let NewTime = hour + ":" + minuts + ":" + seconds
-      });
-      */
   }
 
   ngOnDestroy() {
@@ -71,6 +57,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   spielstandAbfragen(){
+    //console.log("spieltag.component spielstandAbfragen ...");
     this.http.get(this.url, {responseType: 'text'}).subscribe((response) => {
       if("[]" == response){
         this.toreHeim = 0;
@@ -89,7 +76,19 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       this.laufschrift = response;
     })
   }
-  
+
+  anpfiffAuslesen(){
+    //console.log("Anpfiff auslesen ...");
+    let ret: Observable<Anpfiff> = this.http.get<Anpfiff>(
+      ConfigurationService.URL + '/status/anpfiff');
+    ret.subscribe(r => {
+      this.halbzeit = r.hz;
+      this.anpfiff = r.uhrzeit;
+    })
+
+  }
+/*
+
   getWertePaare(): Observable<KeyValuePair[]>{
     return this.http.get<KeyValuePair[]>(ConfigurationService.URL + '/keyValuePairs');
   }
@@ -111,8 +110,9 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       })
     });
   }
-
+*/
   spielstandSetzen(hg:string, tsNum: number){
+    //console.log("spieltag.component spielstandSetzen ...");
     var data = JSON.parse('{"heim": ' + this.toreHeim + ', "gast": ' + this.toreGast 
       + ', "hg": "' + hg + '", "tsNummer": ' + tsNum + '}');
     this.http.patch(this.url, data, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
@@ -121,6 +121,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   spieltagAuslesen(){
+    console.log("spieltag.component spieltagAuslesen ...");
     const url: string = '/assets/spieltag.csv';
 
     this.http.get(url, {responseType: 'text'}).subscribe((response) => {
