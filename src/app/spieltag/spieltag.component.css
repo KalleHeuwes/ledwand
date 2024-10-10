@@ -1,7 +1,7 @@
 .laufschrift {
-    position: absolute;    top: 70%;    left: 1%;
+    position: absolute;    top: 80%;    left: 1%;
     color: whitesmoke;
-    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 200px;    font-weight: bold;
+    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 180px;    font-weight: bold;
   }
 
 .spielstand{
@@ -11,7 +11,7 @@
     font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 325px;    font-weight: bold;
 }
 
-.container {    position: relative;    text-align: center;    color: white;  }
+.container {    position: relative;    text-align: center;    color: black;  }
 
 .zeiten{
   color: #16bbb3;
