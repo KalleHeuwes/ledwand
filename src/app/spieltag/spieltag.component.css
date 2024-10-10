@@ -25,12 +25,12 @@
 
 .logoHeim {
   position: absolute;  bottom: 40%;
-  left: 16px; width:280px; height: 320px;
+  left: 16px; width:480px; height: 520px;
 }
 
 .logoGast {
   position: absolute;  bottom: 40%;
-  right: 16px;
+  right: 16px; width:480px; height: 520px;
 }
 
 .nameVerein {

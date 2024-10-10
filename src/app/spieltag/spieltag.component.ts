@@ -29,7 +29,8 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public laufschriftScrollAmount: number = 33;
   public laufschriftVisibility: boolean = false;
   public datum: string = '';
-  public gegner: string = '';
+  public teamheim: string = ''; // SpVg Emsdetten 05
+  public teamgast: string = '';
   public gegnerBild: string = '';
   public anpfiff: string = '';
   public halbzeit: number = 0;
@@ -132,7 +133,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
         if(!rowStr.startsWith('#')){
           let row = rowStr.split(";");
           if(row[1] === "Datum") this.datum = row[2];
-          if(row[1] === "Gegner") this.gegner = row[2];
+          if(row[1] === "Gegner") this.teamgast = ''; //row[2];
           if(row[1] === "Bild") this.gegnerBild = row[2];
         }
       }
