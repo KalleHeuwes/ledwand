@@ -4,23 +4,30 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
 import { Player } from '../models/player';
 import { ConfigurationService } from '../services/configuration.service';
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 
 @Component({
   selector: 'app-smartupdate',
   standalone: true,
-  imports: [MatMenuModule, MatButtonModule],
+  imports: [MatMenuModule, MatButtonModule, NgxMatTimepickerModule],
   templateUrl: './smartupdate.component.html',
   styleUrl: './smartupdate.component.css'
 })
 export class SmartupdateComponent implements OnInit {
   public spielerliste: Player[] = [];
   public torschuetze: Player = new Player(0, '', '', '');
+  public spielerRaus: Player = new Player(0, '', '', '');
+  public spielerRein: Player = new Player(0, '', '', '');
   public spielMinute: number = 33;
+  public nachspielzeit: number = 0;
+  public bvAuswahl: string = '';
   rxTime = new Date();
+  public bvListe: string[]  = ['Elfmeter verschossen', 'Rote Karte'];
   
   public constructor(private http: HttpClient) {  }
 
-  ngOnInit(): void {    this.aufstellungAuslesen();  }
+  ngOnInit(): void {    this.aufstellungAuslesen(); 
+   }
 
   torSpeichern(hg: string){
     var pattern ="";
@@ -55,8 +62,43 @@ export class SmartupdateComponent implements OnInit {
     this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
       console.log(response);
     })
-    }
+  }
+
+  nachspielzeitOffset(offset: number){
+    this.nachspielzeit+=offset;
+  }    
+
+  nachspielzeitSetzen(){
+    const url: string = ConfigurationService.URL + '/status/nachspielzeit/' + this.nachspielzeit;
+    this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
+      console.log(response);
+    })
+  }    
+
+  auswechseln(){
+    const url: string = ConfigurationService.URL + '/status/nachspielzeit/' + this.nachspielzeit;
+    this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
+      console.log(response);
+    })
+  }   
+
+  spielerwechsel(rausrein: string, spieler: Player){
+    if('Raus' === rausrein) this.spielerRaus = spieler;
+    if('Rein' === rausrein) this.spielerRein = spieler;
+  }   
+
+  bvSpeichern(){
+
+  }
+
+  spieltagEinlesen(){
     
+  }
+
+  onChangeObj(obj: any){
+    console.log(obj);
+  }
+
   aufstellungAuslesen(){
     console.log("Aufstellung auslesen ...");
     

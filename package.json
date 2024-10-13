@@ -23,6 +23,7 @@
     "@ngrx/store": "^18.0.2",
     "angular-router-sample": "file:",
     "luxon": "^3.5.0",
+    "ngx-mat-timepicker": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
