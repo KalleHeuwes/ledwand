@@ -35,6 +35,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public anpfiff: string = '';
   public halbzeit: number = 0;
   public spielMinute: number = 0;
+  public nachspielzeit: string = '';
 
   public constructor(private http: HttpClient) {  }  
 
@@ -45,7 +46,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       this.spielstandAbfragen();
       this.spieltagAuslesen();
       this.anpfiffAuslesen();
-      //this.wertePaareAbfragen();
+      this.wertePaareAbfragen();
       this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
     }, 1000);
   }
@@ -88,7 +89,6 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     })
 
   }
-/*
 
   getWertePaare(): Observable<KeyValuePair[]>{
     return this.http.get<KeyValuePair[]>(ConfigurationService.URL + '/keyValuePairs');
@@ -100,18 +100,21 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     from(paare).subscribe(n => {
       let k: KeyValuePair[] = n;
       k.forEach(kv => {
-        if(kv.keyName.startsWith('Anpfiff Hz 1')) {
+        if(kv.keyName.startsWith('XXXAnpfiff Hz 1')) {
           this.halbzeit = 1;
           this.anpfiff = kv.valueStr;
         }
-        if(kv.keyName.startsWith('Anpfiff Hz 2')) {
+        if(kv.keyName.startsWith('XXXAnpfiff Hz 2')) {
           this.halbzeit = 2;
           this.anpfiff = kv.valueStr;
+        }
+        if(kv.keyName.startsWith('Nachspielzeit')) {
+          this.nachspielzeit = (kv.valueStr === "0" ? "" : "+" + kv.valueStr);
         }
       })
     });
   }
-*/
+
   spielstandSetzen(hg:string, tsNum: number){
     //console.log("spieltag.component spielstandSetzen ...");
     var data = JSON.parse('{"heim": ' + this.toreHeim + ', "gast": ' + this.toreGast 

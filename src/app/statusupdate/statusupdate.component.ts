@@ -6,6 +6,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import { ConfigurationService } from '../services/configuration.service';
+import { Anpfiff } from '../models/anpfiff';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-statusupdate',
@@ -32,6 +34,8 @@ export class StatusupdateComponent implements OnInit {
   
   public spielstand: string = '';
   intervalId: any;
+  public anpfiff: string = '';
+  public halbzeit: number = 0;
 
   public constructor(private http: HttpClient) {
     
@@ -126,5 +130,16 @@ export class StatusupdateComponent implements OnInit {
       }
     }
     )
+  }  
+
+  anpfiffAuslesen(){
+    //console.log("Anpfiff auslesen ...");
+    let ret: Observable<Anpfiff> = this.http.get<Anpfiff>(
+      ConfigurationService.URL + '/status/anpfiff');
+    ret.subscribe(r => {
+      this.halbzeit = r.hz;
+      this.anpfiff = r.uhrzeit;
+    })
+
   }  
 }

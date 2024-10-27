@@ -29,13 +29,16 @@
                 </tr>
                 <tr>
                     <td><h2>Spielzeit</h2></td>
-                    <td></td>
+                    <td>{{spielMinute}}</td>
                     <td>
                         <input [ngxMatTimepicker]="picker">
                         <ngx-mat-timepicker #picker ></ngx-mat-timepicker> 
                     </td>
-                    <td><button (click)="anpfiffSetzen(1)">Anpfiff HZ 1</button></td>
-                    <td><button (click)="anpfiffSetzen(2)">Anpfiff HZ 2</button></td>
+                    <td>
+                        <button (click)="anpfiffSetzen(1)">Anpfiff HZ 1</button>
+                        <button (click)="anpfiffSetzen(1)">Halbzeit</button>
+                        <button (click)="anpfiffSetzen(2)">Anpfiff HZ 2</button>
+                    </td>
                 </tr>
                 <tr>
                     <td><h3>Nachspielzeit</h3></td>

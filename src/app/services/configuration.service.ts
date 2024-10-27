@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigurationService {
-  public static readonly HOST = 'sve05-02';
+  public static readonly HOST = 'heuweslap3';
   public static readonly URL = 'http://' + ConfigurationService.HOST + ':8080';
   public static readonly URLUPLOAD = 'http://' + ConfigurationService.HOST + ':3000';
   public static rxTime = new Date();
@@ -27,7 +27,8 @@ export class ConfigurationService {
   }
    
   public static berechneSpielminute(anpfiff: string, halbzeit: number){
-    //console.log("configuration.service berechneSpielminute ...");
+    //console.log("configuration.service berechneSpielminute ..." + anpfiff);
+    this.rxTime = new Date();
     let dt = "2018-11-29 ";
     let hour = this.rxTime.getHours();
     let minuts = this.rxTime.getMinutes();
@@ -36,8 +37,11 @@ export class ConfigurationService {
     
     let startDate = new Date(dt + anpfiff);
     let aktDate = new Date(dt + NewTime);
+    
     let diffMs: number = (aktDate.getTime() - startDate.getTime()); // milliseconds
     let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-    return 1 + diffMins + (halbzeit - 1) * 45;
+    let minutes = Math.floor(diffMs / 1000 / 60);
+    //console.log(anpfiff + "|" + NewTime + "|" + minutes);
+    return 1 + minutes + (halbzeit - 1) * 45;
   }
 }

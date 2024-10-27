@@ -21,6 +21,8 @@
 
 .spielzeit {  position: absolute;    top: 8px;    left : 16px;  }
 
+.nachspielzeit {  position: absolute;    top: 78px;    left : 16px;  }
+
 .anpfiff   {  position: absolute;    top: 78px;    left : 16px;  font-size: 22px;}
 
 .logoHeim {

@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Player } from '../models/player';
 import { ConfigurationService } from '../services/configuration.service';
 import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+import { Observable } from 'rxjs';
+import { Anpfiff } from '../models/anpfiff';
 
 @Component({
   selector: 'app-smartupdate',
@@ -22,11 +24,22 @@ export class SmartupdateComponent implements OnInit {
   public nachspielzeit: number = 0;
   public bvAuswahl: string = '';
   rxTime = new Date();
+  intervalId: any;
   public bvListe: string[]  = ['Elfmeter verschossen', 'Rote Karte'];
-  
+  public anpfiff: string = '';
+  public halbzeit: number = 0;
+
   public constructor(private http: HttpClient) {  }
 
-  ngOnInit(): void {    this.aufstellungAuslesen(); 
+  ngOnInit(): void {    
+    this.aufstellungAuslesen(); 
+    this.intervalId = setInterval(() => {
+      //this.time = new Date();
+      //this.spielstandAbfragen();
+      //this.spieltagAuslesen();
+      //this.wertePaareAbfragen();
+      this.anpfiffAuslesen();
+    }, 5000);
    }
 
   torSpeichern(hg: string){
@@ -41,6 +54,7 @@ export class SmartupdateComponent implements OnInit {
       pattern = '{"typ": "T", "hg": "G", "spielminute": "' + this.spielMinute + '", "zusatz": ""}';
       urlpart="torfuergast";
     }
+    if (!confirm('Tor speichern für ' + (hg === "H" ? "uns" : "den Gast") + ' ?'))     return;
     var data = JSON.parse(pattern);
     const url: string = ConfigurationService.URL + '/spielstand/' + urlpart;
     this.http.post(url, data, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
@@ -57,6 +71,7 @@ export class SmartupdateComponent implements OnInit {
     let minuts = this.rxTime.getMinutes();
     let seconds = this.rxTime.getSeconds();
     let jetzt = hour + ":" + minuts + ":" + seconds
+    if (!confirm('Anpfiff auf ' + jetzt + ' setzen ?'))     return;
 
     const url: string = ConfigurationService.URL + '/status/anpfiff/' + hz +'/' + jetzt;
     this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
@@ -69,6 +84,7 @@ export class SmartupdateComponent implements OnInit {
   }    
 
   nachspielzeitSetzen(){
+    if (!confirm('Nachspielzeit auf ' + this.nachspielzeit + ' Minuten setzen ?'))     return;
     const url: string = ConfigurationService.URL + '/status/nachspielzeit/' + this.nachspielzeit;
     this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
       console.log(response);
@@ -76,6 +92,7 @@ export class SmartupdateComponent implements OnInit {
   }    
 
   auswechseln(){
+    if (!confirm('Wirklich auswechseln ?'))     return;
     const url: string = ConfigurationService.URL + '/status/nachspielzeit/' + this.nachspielzeit;
     this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
       console.log(response);
@@ -88,11 +105,11 @@ export class SmartupdateComponent implements OnInit {
   }   
 
   bvSpeichern(){
-
+    if (!confirm('Besonderes Vorkommnis speichern ?'))     return;
   }
 
   spieltagEinlesen(){
-    
+
   }
 
   onChangeObj(obj: any){
@@ -128,4 +145,16 @@ export class SmartupdateComponent implements OnInit {
   )
   
   }  
+
+  anpfiffAuslesen(){
+    //console.log("Anpfiff auslesen ...");
+    let ret: Observable<Anpfiff> = this.http.get<Anpfiff>(
+      ConfigurationService.URL + '/status/anpfiff');
+    ret.subscribe(r => {
+      this.halbzeit = r.hz;
+      this.anpfiff = r.uhrzeit;
+    })
+    this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
+
+  }    
 }

@@ -93,6 +93,7 @@ export class CheckitoutComponent implements OnInit {
   )
   
   }  
+  
   aufstellungAuslesenService(){
     console.log("Aufstellung auslesen ...");
     
