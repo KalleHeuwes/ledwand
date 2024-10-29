@@ -21,6 +21,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   url: string = ConfigurationService.URL + '/spielstand';
   urlLaufschrift: string = this.url + '/laufschrift';
+  urlStatus: string = ConfigurationService.URL + '/status/status';
   public toreHeim: number = 0;
   public toreGast: number = 0;
   public spielstand: string = '';
@@ -36,6 +37,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public halbzeit: number = 0;
   public spielMinute: number = 0;
   public nachspielzeit: string = '';
+  public statusKz: string = '';
 
   public constructor(private http: HttpClient) {  }  
 
@@ -43,6 +45,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     //console.log("spieltag.component ngOnInit ...");
     this.intervalId = setInterval(() => {
       this.time = new Date();
+      this.statusAuslesen();
       this.spielstandAbfragen();
       this.spieltagAuslesen();
       this.anpfiffAuslesen();
@@ -58,8 +61,25 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     }
   }
 
+  statusAuslesen(){
+    this.http.get(this.urlStatus, {responseType: 'text'}).subscribe((response) => {
+      this.statusKz = response;
+    })
+  }
+
+  statusZurücksetzen(){
+    return; 
+
+    this.http.post(ConfigurationService.URL + '/status/resetstatus'
+      , {responseType: 'text'}).subscribe((response) => {
+      this.statusKz = response.toString();
+    })
+  }
+
   spielstandAbfragen(){
-    //console.log("spieltag.component spielstandAbfragen ...");
+    //if(this.statusKz !== "T") return;
+    console.log("spieltag.component spielstandAbfragen ..." + this.statusKz);
+
     this.http.get(this.url, {responseType: 'text'}).subscribe((response) => {
       if("[]" == response){
         this.toreHeim = 0;
@@ -77,17 +97,21 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     this.http.get(this.urlLaufschrift, {responseType: 'text'}).subscribe((response) => {
       this.laufschrift = response;
     })
+    this.statusZurücksetzen();
   }
 
   anpfiffAuslesen(){
-    //console.log("Anpfiff auslesen ...");
+    //if(this.statusKz !== "A") return;
+    console.log("Anpfiff auslesen ...");
     let ret: Observable<Anpfiff> = this.http.get<Anpfiff>(
       ConfigurationService.URL + '/status/anpfiff');
     ret.subscribe(r => {
-      this.halbzeit = r.hz;
-      this.anpfiff = r.uhrzeit;
+      if(r!== null){
+        this.halbzeit = r.hz;
+        this.anpfiff = r.uhrzeit;
+        }
     })
-
+    this.statusZurücksetzen();
   }
 
   getWertePaare(): Observable<KeyValuePair[]>{
@@ -125,7 +149,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   spieltagAuslesen(){
-    console.log("spieltag.component spieltagAuslesen ...");
+    //console.log("spieltag.component spieltagAuslesen ...");
     const url: string = '/assets/spieltag.csv';
 
     this.http.get(url, {responseType: 'text'}).subscribe((response) => {
