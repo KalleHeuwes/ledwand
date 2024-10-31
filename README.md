@@ -36,4 +36,6 @@ git commit -m "20240828 a"
 git push -f origin master
 git pull -f origin master
 
+PushToGit "20241031 a"
+
 ng serve --host 0.0.0.0

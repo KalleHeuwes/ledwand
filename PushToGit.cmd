@@ -1,4 +1,4 @@
 git add .
-git commit -m "commit 2"
+git commit -m %1
 git push -f origin master
 pause
