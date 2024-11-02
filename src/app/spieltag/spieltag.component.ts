@@ -68,11 +68,11 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   statusZurücksetzen(){
-    return; 
+    //return; 
 
     this.http.post(ConfigurationService.URL + '/status/resetstatus'
       , {responseType: 'text'}).subscribe((response) => {
-      this.statusKz = response.toString();
+      this.statusKz =(response == null ? '' :  response.toString());
     })
   }
 
@@ -97,11 +97,11 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     this.http.get(this.urlLaufschrift, {responseType: 'text'}).subscribe((response) => {
       this.laufschrift = response;
     })
-    this.statusZurücksetzen();
+    //this.statusZurücksetzen();
   }
 
   anpfiffAuslesen(){
-    //if(this.statusKz !== "A") return;
+    if(this.statusKz !== "A") return;
     console.log("Anpfiff auslesen ...");
     let ret: Observable<Anpfiff> = this.http.get<Anpfiff>(
       ConfigurationService.URL + '/status/anpfiff');
@@ -149,7 +149,8 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   spieltagAuslesen(){
-    //console.log("spieltag.component spieltagAuslesen ...");
+    if(this.statusKz !== "S") return;
+    console.log("spieltag.component spieltagAuslesen ...");
     const url: string = '/assets/spieltag.csv';
 
     this.http.get(url, {responseType: 'text'}).subscribe((response) => {

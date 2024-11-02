@@ -37,5 +37,6 @@ git push -f origin master
 git pull -f origin master
 
 GitPush "20241031 a"
+GitPull
 
 ng serve --host 0.0.0.0
