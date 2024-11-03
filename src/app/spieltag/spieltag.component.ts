@@ -6,11 +6,21 @@ import { SpielstandUpdate } from '../models/spielstand-update';
 import { ConfigurationService } from '../services/configuration.service';
 import { KeyValuePair } from '../models/keyValuePair';
 import { Anpfiff } from '../models/anpfiff';
+import { SpielerwechselComponent } from './spielerwechsel/spielerwechsel.component';
+//import {StatusKennzeichen} from '../enums/status-kennzeichen';
+
+enum StatusKennzeichen {
+  Tor = 'T',
+  Anpfiff = 'A',
+  Spieltag = 'S',
+  KeyValuePairs = 'K',
+  Spielerwechsel = 'W'
+}
 
 @Component({
   selector: 'app-spieltag',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SpielerwechselComponent],
   templateUrl: './spieltag.component.html',
   styleUrl: './spieltag.component.css'
 })
@@ -38,6 +48,8 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public spielMinute: number = 0;
   public nachspielzeit: string = '';
   public statusKz: string = '';
+  public hideDivFlg: boolean = true;
+  public spielerwechsel: String = '';
 
   public constructor(private http: HttpClient) {  }  
 
@@ -50,8 +62,28 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       this.spieltagAuslesen();
       this.anpfiffAuslesen();
       this.wertePaareAbfragen();
+      this.spielerwechselAnzeigen();
       this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
     }, 1000);
+  }
+
+  spielerwechselAnzeigen() {
+    if(this.statusKz !== StatusKennzeichen.Spielerwechsel) return;
+
+    this.http.get(ConfigurationService.URL + '/teams/spielerwechsel', {responseType: 'text'}).subscribe((response) => {
+      this.spielerwechsel = response;
+      console.log(response);
+    })
+    this.hideDivFlg = false;
+    setTimeout(() => {
+      this.hideDivFlg = true;
+    }, 4000);
+
+    this.statusZurücksetzen();
+  }
+
+  isWechselHidden(){
+    return this.statusKz !== StatusKennzeichen.Spielerwechsel
   }
 
   ngOnDestroy() {
@@ -61,7 +93,10 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     }
   }
 
+  //Liest das aktuelle Statuskennzeichen aus
+  //Damit wird entschieden, welche weiteren Abfragen ausgeführt werden.
   statusAuslesen(){
+    //return; 
     this.http.get(this.urlStatus, {responseType: 'text'}).subscribe((response) => {
       this.statusKz = response;
     })
@@ -69,7 +104,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
 
   statusZurücksetzen(){
     //return; 
-
+    console.log("spieltag.component statusZurücksetzen ..." + this.statusKz);
     this.http.post(ConfigurationService.URL + '/status/resetstatus'
       , {responseType: 'text'}).subscribe((response) => {
       this.statusKz =(response == null ? '' :  response.toString());
@@ -77,7 +112,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   spielstandAbfragen(){
-    //if(this.statusKz !== "T") return;
+    if(this.statusKz !== StatusKennzeichen.Tor) return;
     console.log("spieltag.component spielstandAbfragen ..." + this.statusKz);
 
     this.http.get(this.url, {responseType: 'text'}).subscribe((response) => {
@@ -97,11 +132,11 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     this.http.get(this.urlLaufschrift, {responseType: 'text'}).subscribe((response) => {
       this.laufschrift = response;
     })
-    //this.statusZurücksetzen();
+    this.statusZurücksetzen();
   }
 
   anpfiffAuslesen(){
-    if(this.statusKz !== "A") return;
+    if(this.statusKz !== StatusKennzeichen.Anpfiff) return;
     console.log("Anpfiff auslesen ...");
     let ret: Observable<Anpfiff> = this.http.get<Anpfiff>(
       ConfigurationService.URL + '/status/anpfiff');
@@ -119,6 +154,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   wertePaareAbfragen(){
+    if(this.statusKz !== StatusKennzeichen.KeyValuePairs) return;
     let paare: Observable<KeyValuePair[]> = this.getWertePaare();
     paare.pipe()
     from(paare).subscribe(n => {
@@ -149,7 +185,9 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   spieltagAuslesen(){
-    if(this.statusKz !== "S") return;
+    //if(this.statusKz !== StatusKennzeichen.Spieltag) return;
+    if(this.datum !== "") return;
+
     console.log("spieltag.component spieltagAuslesen ...");
     const url: string = '/assets/spieltag.csv';
 

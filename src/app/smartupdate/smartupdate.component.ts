@@ -93,7 +93,7 @@ export class SmartupdateComponent implements OnInit {
 
   auswechseln(){
     if (!confirm('Wirklich auswechseln ?'))     return;
-    const url: string = ConfigurationService.URL + '/status/nachspielzeit/' + this.nachspielzeit;
+    const url: string = ConfigurationService.URL + '/teams/spielerwechsel/' + 'H' + '/' + this.spielerRaus.id + '/' + this.spielerRein.id;
     this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
       console.log(response);
     })
