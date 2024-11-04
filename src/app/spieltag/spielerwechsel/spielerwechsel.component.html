@@ -1,4 +1,30 @@
 <div class="container">
     <h1>{{txtHeader}}</h1>
     {{wechsel}}
+    <table>
+        <tr>
+            <td *ngIf="spielerraus">
+                <h2>Danke, {{spielerraus.name1}}</h2>
+                <app-spielerkarte
+                    nr=     {{spielerraus.id}} 
+                    pic=    {{spielerraus.pic}} 
+                    name1=  {{spielerraus.name1}} 
+                    name2=  {{spielerraus.name2}}>
+                </app-spielerkarte>                  
+            </td>
+            <td><div style="width: 100px;"></div></td>
+            <td *ngIf="spielerrein">
+                <h2>Willkommen, {{spielerrein.name1}}</h2>
+                <app-spielerkarte 
+                    nr=     {{spielerrein.id}} 
+                    pic=    {{spielerrein.pic}} 
+                    name1=  {{spielerrein.name1}} 
+                    name2=  {{spielerrein.name2}}>
+                </app-spielerkarte>                
+            </td>
+        </tr>
+  
+
+    </table>
+
 </div>

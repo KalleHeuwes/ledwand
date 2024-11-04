@@ -77,7 +77,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     this.hideDivFlg = false;
     setTimeout(() => {
       this.hideDivFlg = true;
-    }, 4000);
+    }, 8000);
 
     this.statusZurücksetzen();
   }
