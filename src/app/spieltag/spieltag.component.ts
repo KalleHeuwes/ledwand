@@ -72,12 +72,10 @@ export class SpieltagComponent implements OnInit, OnDestroy {
 
     this.http.get(ConfigurationService.URL + '/teams/spielerwechsel', {responseType: 'text'}).subscribe((response) => {
       this.spielerwechsel = response;
-      console.log(response);
+      console.log('* this.spielerwechsel = ' + response);
     })
     this.hideDivFlg = false;
-    setTimeout(() => {
-      this.hideDivFlg = true;
-    }, 8000);
+    setTimeout(() => {      this.hideDivFlg = true;    }, 8000);
 
     this.statusZurücksetzen();
   }
