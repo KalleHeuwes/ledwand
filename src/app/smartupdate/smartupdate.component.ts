@@ -1,21 +1,25 @@
-import { Component, model, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, OnInit } from '@angular/core';
+
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule} from '@angular/material/expansion';
 import { HttpClient } from '@angular/common/http';
 import { Player } from '../models/player';
 import { ConfigurationService } from '../services/configuration.service';
-import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+import { NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 import { Observable } from 'rxjs';
 import { Anpfiff } from '../models/anpfiff';
 
 @Component({
   selector: 'app-smartupdate',
   standalone: true,
-  imports: [MatMenuModule, MatButtonModule, NgxMatTimepickerModule],
+  imports: [MatMenuModule, MatButtonModule, NgxMatTimepickerModule, MatExpansionModule],
   templateUrl: './smartupdate.component.html',
-  styleUrl: './smartupdate.component.css'
+  styleUrl: './smartupdate.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SmartupdateComponent implements OnInit {
+  readonly panelOpenState = signal(false);
   public spielerliste: Player[] = [];
   public torschuetze: Player = new Player(0, '', '', '');
   public spielerRaus: Player = new Player(0, '', '', '');
@@ -66,6 +70,9 @@ export class SmartupdateComponent implements OnInit {
     this.torschuetze = spieler;
   }
 
+  onClickBesonderesVorkommnis(bv: String){
+    this.bvAuswahl = bv.toString();
+  }
   anpfiffSetzen(hz: number){
     let hour = this.rxTime.getHours();
     let minuts = this.rxTime.getMinutes();
@@ -104,16 +111,23 @@ export class SmartupdateComponent implements OnInit {
     if('Rein' === rausrein) this.spielerRein = spieler;
   }   
 
-  bvSpeichern(){
-    if (!confirm('Besonderes Vorkommnis speichern ?'))     return;
+  bvSpeichern(hg: String){
+    if (!confirm('Besonderes Vorkommnis für ' + hg + ' speichern ?'))     return;
   }
 
   spieltagEinlesen(){
-
+    //http://localhost:8080/matches/read/static-assets-spieltag.csv
+    if (!confirm('Wirklich den Spieltag neu laden ?'))     return;
+    const url: string = ConfigurationService.URL + '/matches/read/static-assets-spieltag.csv';
+    this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
+      console.log(response);
+    })
   }
 
   onChangeObj(obj: any){
+    this.bvAuswahl = obj
     console.log(obj);
+    alert(this.bvAuswahl);
   }
 
   aufstellungAuslesen(){

@@ -10,7 +10,12 @@
     <div class="spielstand"         >{{toreHeim}} : {{toreGast}}</div> 
     <div class="zeiten nachspielzeit"      >{{nachspielzeit}}</div>
     <div class="anpfiff"            >x{{anpfiff}}|Hz {{halbzeit}}|Flag {{statusKz}}</div>
-    <div class="spielerwechsel" *ngIf="!hideDivFlg"  ><app-spielerwechsel wechsel="{{spielerwechsel}}"></app-spielerwechsel></div>
+    <div class="spielerwechsel" *ngIf="!hideDivFlg"  >
+      <app-spielerwechsel wechsel="{{spielerwechsel}}"></app-spielerwechsel>
+    </div>
+    <div class="spielerwechsel" *ngIf="!hideTorschuetzeFlg"  >
+      <app-torfueruns torString="{{torschuetze}}"></app-torfueruns>
+    </div>
     <marquee class="laufschrift" scrollAmount="{{laufschriftScrollAmount}}">{{laufschrift}}</marquee>
   </div>
  

@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>{{txtHeader}}</h1>
+    {{torString}}
+    <table>
+        <tr>
+            <td *ngIf="torschuetze">
+                <h2>Danke, {{torschuetze.name1}}</h2>
+                <app-spielerkarte
+                    nr=     {{torschuetze.id}} 
+                    pic=    {{torschuetze.pic}} 
+                    name1=  {{torschuetze.name1}} 
+                    name2=  {{torschuetze.name2}}>
+                </app-spielerkarte>                  
+            </td>
+        </tr>
+    </table>
+
+</div>

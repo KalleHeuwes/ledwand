@@ -1,4 +1,121 @@
-<div class="container">
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Konfiguration</mat-panel-title>
+          <mat-panel-description>Spieltag laden, sonst. Konfiguration</mat-panel-description>
+        </mat-expansion-panel-header>
+        <br/><button class="button1" (click)="spieltagEinlesen()">Spieltag laden</button>
+        <span style="font-style: italic;">aus static/assets/spieltag.csv</span>
+
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Spielzeit</mat-panel-title>
+        <mat-panel-description>Min. {{spielMinute}} Anstoß, Halbzeit, Nachspielzeit</mat-panel-description>
+      </mat-expansion-panel-header>
+        <tr>
+            <td>
+                <h3>Spielzeit</h3>
+                <input [ngxMatTimepicker]="picker">
+                <ngx-mat-timepicker #picker ></ngx-mat-timepicker> 
+                <br/><button class="button1" (click)="anpfiffSetzen(1)">Anpfiff HZ 1</button>
+                <br/><button class="button1" (click)="anpfiffSetzen(1)">Halbzeit</button>
+                <br/><button class="button1" (click)="anpfiffSetzen(2)">Anpfiff HZ 2</button>
+            </td>
+            <td><div style="width: 100px;"></div></td>
+            <td>
+                <h3>Nachspielzeit</h3>
+                <br/><button class="button1" (click)="nachspielzeitOffset(-1)">-</button>
+                <br/><button class="button1" (click)="nachspielzeitSetzen()">{{nachspielzeit}} Minuten</button>
+                <br/><button class="button1" (click)="nachspielzeitOffset(+1)">+</button>
+            </td>
+        </tr>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tore</mat-panel-title>
+        <mat-panel-description>Für uns, den Gegner, manuell eingestellt</mat-panel-description>
+      </mat-expansion-panel-header>
+        <tr>
+            <td><h2>Tor für uns</h2></td>
+            <td><button mat-button [matMenuTriggerFor]="menu">Torschütze</button> </td>
+            <td>        
+                <mat-menu #menu="matMenu"> 
+                @for (spieler of spielerliste; track spieler) {
+                    <button (click)="onClickTorschuetze(spieler)" mat-menu-item 
+                        class="menu-item">{{spieler.id}}: {{spieler.name1}} {{spieler.name2}}</button>
+                }
+                </mat-menu> 
+            </td>
+            <td><div>{{torschuetze.name1}} {{torschuetze.name2}}</div></td>
+            <td><button class="button1" (click)="torSpeichern('H')">Tor speichern</button></td>
+        </tr>
+        <tr>
+            <td><h2>Tor für Gegner</h2></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button class="button1" (click)="torSpeichern('G')">Tor speichern</button></td>
+        </tr>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Spielerwechsel</mat-panel-title>
+          <mat-panel-description>Auswechslungen, rote Karten</mat-panel-description>
+        </mat-expansion-panel-header>
+        <tr>
+            <td><h2>Auswechslung</h2></td>
+            <td><button mat-button [matMenuTriggerFor]="menuRaus" style="background-color: red;">Raus</button> </td>
+            <td>        
+                <mat-menu #menuRaus="matMenu"> 
+                @for (spieler of spielerliste; track spieler) {
+                    <button (click)="spielerwechsel('Raus', spieler)" mat-menu-item 
+                        class="menu-item">{{spieler.id}}: {{spieler.name1}} {{spieler.name2}}</button>
+                }
+                </mat-menu> 
+            <div>{{spielerRaus.name1}} {{spielerRaus.name2}}</div></td>
+            <td><button mat-button [matMenuTriggerFor]="menuRein" style="background-color: green;">Rein</button> </td>
+            <td>        
+                <mat-menu #menuRein="matMenu"> 
+                @for (spieler of spielerliste; track spieler) {
+                    <button (click)="spielerwechsel('Rein', spieler)" mat-menu-item 
+                        class="menu-item">{{spieler.id}}: {{spieler.name1}} {{spieler.name2}}</button>
+                }
+                </mat-menu> 
+            <div>{{spielerRein.name1}} {{spielerRein.name2}}</div></td>
+            <td><button class="button1" (click)="auswechseln()">Auswechseln</button></td>
+        </tr>
+
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Besondere Vorkommnisse</mat-panel-title>
+          <mat-panel-description>Rote Karten, Elfmeter verschossen, ...</mat-panel-description>
+        </mat-expansion-panel-header>
+        <!--
+            <select (ngModelChange)="onChangeObj($event)">
+                @for (bv of bvListe; track bv) {
+                    <option>{{bv}}</option>
+                }
+            </select>        -->
+            HIER
+            <mat-menu #menu="matMenu"> 
+                @for (bv of bvListe; track bv) {
+                    <button (click)="onClickBesonderesVorkommnis(bv)" mat-menu-item 
+                        class="menu-item">{{bv}}</button>
+                }
+            </mat-menu> 
+            <div>x{{bvAuswahl}}x</div>
+            <td>
+                <button class="button1" (click)="bvSpeichern('H')">Wir</button>
+                <div style="width: 100px;"></div>
+                <button class="button1" (click)="bvSpeichern('G')">Gast</button>
+            </td>
+
+      </mat-expansion-panel>
+  </mat-accordion>
+  <!--
+  <div class="container">
     
         <table>
             <tbody>
@@ -6,85 +123,12 @@
                     <td><h2>Spieltag einlesen</h2></td>
                     <td><button (click)="spieltagEinlesen()">Los !</button></td>
                 </tr>                 
-                <tr>
-                    <td><h2>Tor für uns</h2></td>
-                    <td><button mat-button [matMenuTriggerFor]="menu">Torschütze</button> </td>
-                    <td>        
-                        <mat-menu #menu="matMenu"> 
-                        @for (spieler of spielerliste; track spieler) {
-                            <button (click)="onClickTorschuetze(spieler)" mat-menu-item 
-                                class="menu-item">{{spieler.id}}: {{spieler.name1}} {{spieler.name2}}</button>
-                        }
-                    </mat-menu> 
-                    </td>
-                    <td><div>{{torschuetze.name1}} {{torschuetze.name2}}</div></td>
-                    <td><button (click)="torSpeichern('H')">Tor speichern</button></td>
-                </tr>
-                <tr>
-                    <td><h2>Tor für Gegner</h2></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button (click)="torSpeichern('G')">Tor speichern</button></td>
-                </tr>
-                <tr>
-                    <td><h2>Spielzeit</h2></td>
-                    <td>{{spielMinute}}</td>
-                    <td>
-                        <input [ngxMatTimepicker]="picker">
-                        <ngx-mat-timepicker #picker ></ngx-mat-timepicker> 
-                    </td>
-                    <td>
-                        <button (click)="anpfiffSetzen(1)">Anpfiff HZ 1</button>
-                        <button (click)="anpfiffSetzen(1)">Halbzeit</button>
-                        <button (click)="anpfiffSetzen(2)">Anpfiff HZ 2</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><h3>Nachspielzeit</h3></td>
-                    <td>
-                        <button (click)="nachspielzeitOffset(-1)">-</button>
-                        <button (click)="nachspielzeitSetzen()">{{nachspielzeit}} Minuten</button>
-                        <button (click)="nachspielzeitOffset(+1)">+</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><h2>Auswechslung</h2></td>
-                    <td><button mat-button [matMenuTriggerFor]="menuRaus" style="background-color: red;">Raus</button> </td>
-                    <td>        
-                        <mat-menu #menuRaus="matMenu"> 
-                        @for (spieler of spielerliste; track spieler) {
-                            <button (click)="spielerwechsel('Raus', spieler)" mat-menu-item 
-                                class="menu-item">{{spieler.id}}: {{spieler.name1}} {{spieler.name2}}</button>
-                        }
-                        </mat-menu> 
-                    <div>{{spielerRaus.name1}} {{spielerRaus.name2}}</div></td>
-                    <td><button mat-button [matMenuTriggerFor]="menuRein" style="background-color: green;">Rein</button> </td>
-                    <td>        
-                        <mat-menu #menuRein="matMenu"> 
-                        @for (spieler of spielerliste; track spieler) {
-                            <button (click)="spielerwechsel('Rein', spieler)" mat-menu-item 
-                                class="menu-item">{{spieler.id}}: {{spieler.name1}} {{spieler.name2}}</button>
-                        }
-                        </mat-menu> 
-                    <div>{{spielerRein.name1}} {{spielerRein.name2}}</div></td>
-                    <td><button (click)="auswechseln()">Auswechseln</button></td>
-                </tr>
-                <tr>
-                    <td><h2>Besonderes Vorkommnis</h2></td>
-                    <td></td>
-                    <td>
-                        <select (ngModelChange)="onChangeObj($event)">
-                            @for (bv of bvListe; track bv) {
-                                <option>{{bv}}</option>
-                            }
-                        </select></td>
-                    <td>{{bvAuswahl}}</td>
-                    <td><button (click)="bvSpeichern()">Speichern</button></td>
-                </tr>                
+
+                             
             </tbody>
         </table>
 </div>
+-->
 <!--
 <select><option ng-repeat="x in cars">{{x}}</option></select>
 {{'' + spieler.id + ' ' + spieler.name1}}

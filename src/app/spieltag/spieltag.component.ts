@@ -7,6 +7,7 @@ import { ConfigurationService } from '../services/configuration.service';
 import { KeyValuePair } from '../models/keyValuePair';
 import { Anpfiff } from '../models/anpfiff';
 import { SpielerwechselComponent } from './spielerwechsel/spielerwechsel.component';
+import { TorfuerunsComponent } from './torfueruns/torfueruns.component';
 //import {StatusKennzeichen} from '../enums/status-kennzeichen';
 
 enum StatusKennzeichen {
@@ -20,7 +21,7 @@ enum StatusKennzeichen {
 @Component({
   selector: 'app-spieltag',
   standalone: true,
-  imports: [CommonModule, SpielerwechselComponent],
+  imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent],
   templateUrl: './spieltag.component.html',
   styleUrl: './spieltag.component.css'
 })
@@ -49,7 +50,9 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public nachspielzeit: string = '';
   public statusKz: string = '';
   public hideDivFlg: boolean = true;
+  public hideTorschuetzeFlg: boolean = true;
   public spielerwechsel: String = '';
+  public torschuetze: String = '';
 
   public constructor(private http: HttpClient) {  }  
 

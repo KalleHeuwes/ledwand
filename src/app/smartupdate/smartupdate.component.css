@@ -9,8 +9,24 @@ button{
     font-size: large;
 }
 
+.button1{
+    width: 150px; 
+    height: 40px;
+    background-color: antiquewhite;
+    color: cornflowerblue;
+    font-size: larger;
+}
+
 .menu-item{
     font-size: small;
     background-color: brown;
     height: 10px;
+}
+
+mat-panel-title{
+    font-size: xx-large;
+}
+
+mat-panel-description{
+    font-size: larger;
 }
