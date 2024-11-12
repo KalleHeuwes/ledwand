@@ -186,24 +186,17 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   spieltagAuslesen(){
-    //if(this.statusKz !== StatusKennzeichen.Spieltag) return;
-    if(this.datum !== "") return;
+    if(this.statusKz !== StatusKennzeichen.Spieltag) return;
 
     console.log("spieltag.component spieltagAuslesen ...");
-    const url: string = '/assets/spieltag.csv';
+    const url: string = ConfigurationService.URL + '/matches/matchday/short';
 
     this.http.get(url, {responseType: 'text'}).subscribe((response) => {
 
-      let csvToRowArray = response.split("\n");
-      for (let index = 0; index <= csvToRowArray.length - 1; index++) {
-        let rowStr = csvToRowArray[index];
-        if(!rowStr.startsWith('#')){
-          let row = rowStr.split(";");
-          if(row[1] === "Datum") this.datum = row[2];
-          if(row[1] === "Gegner") this.teamgast = ''; //row[2];
-          if(row[1] === "Bild") this.gegnerBild = row[2];
-        }
-      }
+      let items = response.split("|");
+      this.teamgast = items[0];
+      this.datum = items[1];
+      this.gegnerBild = items[2];
     }
     )
   }  
