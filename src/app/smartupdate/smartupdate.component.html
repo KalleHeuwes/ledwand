@@ -2,7 +2,7 @@
     <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>Konfiguration</mat-panel-title>
-          <mat-panel-description>Spieltag laden, sonst. Konfiguration</mat-panel-description>
+          <mat-panel-description>{{datum}} {{teamgast}} Spieltag laden, sonst. Konfiguration</mat-panel-description>
         </mat-expansion-panel-header>
         <br/><button class="button1" (click)="spieltagEinlesen()">Spieltag laden</button>
         <span style="font-style: italic;">aus static/assets/spieltag.csv</span>

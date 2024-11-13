@@ -32,6 +32,8 @@ export class SmartupdateComponent implements OnInit {
   public bvListe: string[]  = ['Elfmeter verschossen', 'Rote Karte'];
   public anpfiff: string = '';
   public halbzeit: number = 0;
+  teamgast: string = '';
+  datum: string = '';
 
   public constructor(private http: HttpClient) {  }
 
@@ -118,10 +120,19 @@ export class SmartupdateComponent implements OnInit {
   spieltagEinlesen(){
     //http://localhost:8080/matches/read/static-assets-spieltag.csv
     if (!confirm('Wirklich den Spieltag neu laden ?'))     return;
-    const url: string = ConfigurationService.URL + '/matches/read/static-assets-spieltag.csv';
+    let url: string = ConfigurationService.URL + '/matches/read/static-assets-spieltag.csv';
     this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
       console.log(response);
     })
+
+    url = ConfigurationService.URL + '/matches/matchday/short';
+    this.http.get(url, {responseType: 'text'}).subscribe((response) => {
+
+      let items = response.split("|");
+      this.teamgast = items[0];
+      this.datum = items[1];
+    }
+    )
   }
 
   onChangeObj(obj: any){

@@ -116,6 +116,8 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     if(this.statusKz !== StatusKennzeichen.Tor) return;
     console.log("spieltag.component spielstandAbfragen ..." + this.statusKz);
 
+    let toreHeimAlt = this.toreHeim;
+    // Spielstand vom Server abfragen
     this.http.get(this.url, {responseType: 'text'}).subscribe((response) => {
       if("[]" == response){
         this.toreHeim = 0;
@@ -128,11 +130,23 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       this.toreGast = parseInt(response.substring(pos1+1,pos1+2));
       this.spielstand = response;
       this.laufschriftVisibility = this.toreGast > 0 || this.toreHeim > 0;
+       
+      // Torschütze als Bild anzeigen
+      console.log(' * Tore heim alt: ' + toreHeimAlt + ', neu: ' + this.toreHeim);
+      if(toreHeimAlt < this.toreHeim){
+        
+        this.hideTorschuetzeFlg = false;
+        setTimeout(() => {      this.hideTorschuetzeFlg = true;    }, 8000);
+      }
     })
- 
+
+
+    // Laufschrift vom Server abfragen
     this.http.get(this.urlLaufschrift, {responseType: 'text'}).subscribe((response) => {
       this.laufschrift = response;
     })
+
+    
     this.statusZurücksetzen();
   }
 
