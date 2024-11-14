@@ -24,13 +24,13 @@ export class SmartupdateComponent implements OnInit {
   public torschuetze: Player = new Player(0, '', '', '');
   public spielerRaus: Player = new Player(0, '', '', '');
   public spielerRein: Player = new Player(0, '', '', '');
-  public spielMinute: number = 33;
-  public nachspielzeit: number = 0;
+  public spielMinute: number = -1;
   public bvAuswahl: string = '';
   rxTime = new Date();
   intervalId: any;
   public bvListe: string[]  = ['Elfmeter verschossen', 'Rote Karte'];
   public anpfiff: string = '';
+  public nachspielzeit: string = '';
   public halbzeit: number = 0;
   teamgast: string = '';
   datum: string = '';
@@ -45,6 +45,7 @@ export class SmartupdateComponent implements OnInit {
       //this.spieltagAuslesen();
       //this.wertePaareAbfragen();
       this.anpfiffAuslesen();
+      this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
     }, 5000);
    }
 
@@ -83,7 +84,7 @@ export class SmartupdateComponent implements OnInit {
     if (!confirm('Anpfiff auf ' + jetzt + ' setzen ?'))     return;
 
     const url: string = ConfigurationService.URL + '/status/anpfiff/' + hz +'/' + jetzt;
-    this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
+    this.http.post(url, {responseType: 'text'}).subscribe((response) => {
       console.log(response);
     })
   }
@@ -95,7 +96,7 @@ export class SmartupdateComponent implements OnInit {
   nachspielzeitSetzen(){
     if (!confirm('Nachspielzeit auf ' + this.nachspielzeit + ' Minuten setzen ?'))     return;
     const url: string = ConfigurationService.URL + '/status/nachspielzeit/' + this.nachspielzeit;
-    this.http.post(url, null, {headers: ConfigurationService.JSONHeaders()}).subscribe((response) => {
+    this.http.post(url, {responseType: 'text'}).subscribe((response) => {
       console.log(response);
     })
   }    
@@ -173,12 +174,17 @@ export class SmartupdateComponent implements OnInit {
 
   anpfiffAuslesen(){
     //console.log("Anpfiff auslesen ...");
-    let ret: Observable<Anpfiff> = this.http.get<Anpfiff>(
-      ConfigurationService.URL + '/status/anpfiff');
-    ret.subscribe(r => {
-      this.halbzeit = r.hz;
-      this.anpfiff = r.uhrzeit;
-    })
+
+    this.http.get(ConfigurationService.URL + '/status/anpfiff', {responseType: 'text'}).subscribe((r) => {
+      if(r!== null){
+        console.log("Anpfiff auslesen ... " + r);
+        let items = r.split('|');
+        this.halbzeit = parseInt(items[0]);
+        this.anpfiff = items[1];
+        this.nachspielzeit = (parseInt(items[2]) > 0 ? '+' + items[2] : '');
+        }
+    });
+
     this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
 
   }    

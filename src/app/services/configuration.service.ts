@@ -28,6 +28,8 @@ export class ConfigurationService {
    
   public static berechneSpielminute(anpfiff: string, halbzeit: number){
     //console.log("configuration.service berechneSpielminute ..." + anpfiff);
+    if(anpfiff=='') return -1;
+    
     this.rxTime = new Date();
     let dt = "2018-11-29 ";
     let hour = this.rxTime.getHours();

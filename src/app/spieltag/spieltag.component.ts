@@ -46,7 +46,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public gegnerBild: string = '';
   public anpfiff: string = '';
   public halbzeit: number = 0;
-  public spielMinute: number = 0;
+  public spielMinute: number = -1;
   public nachspielzeit: string = '';
   public statusKz: string = '';
   public hideDivFlg: boolean = true;
@@ -57,14 +57,13 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public constructor(private http: HttpClient) {  }  
 
   ngOnInit() {
-    //console.log("spieltag.component ngOnInit ...");
+    console.log("spieltag.component ngOnInit ...");
     this.intervalId = setInterval(() => {
       this.time = new Date();
       this.statusAuslesen();
       this.spielstandAbfragen();
       this.spieltagAuslesen();
       this.anpfiffAuslesen();
-      this.wertePaareAbfragen();
       this.spielerwechselAnzeigen();
       this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
     }, 1000);
@@ -152,42 +151,27 @@ export class SpieltagComponent implements OnInit, OnDestroy {
 
   anpfiffAuslesen(){
     if(this.statusKz !== StatusKennzeichen.Anpfiff) return;
-    console.log("Anpfiff auslesen ...");
-    let ret: Observable<Anpfiff> = this.http.get<Anpfiff>(
-      ConfigurationService.URL + '/status/anpfiff');
+    
+    this.http.get(ConfigurationService.URL + '/status/anpfiff', {responseType: 'text'}).subscribe((r) => {
+      if(r!== null){
+        console.log("Anpfiff auslesen ... " + r);
+        let items = r.split('|');
+        this.halbzeit = parseInt(items[0]);
+        this.anpfiff = items[1];
+        this.nachspielzeit = (parseInt(items[2]) > 0 ? '+' + items[2] : '');
+        }
+    });
+    /*
+    let ret: Observable<String> = this.http.get<String>(ConfigurationService.URL + '/status/anpfiff');
     ret.subscribe(r => {
       if(r!== null){
-        this.halbzeit = r.hz;
-        this.anpfiff = r.uhrzeit;
+        let items = r.split('|');
+        this.halbzeit = parseInt(items[0]);
+        this.anpfiff = items[1];
         }
     })
+        */
     this.statusZurücksetzen();
-  }
-
-  getWertePaare(): Observable<KeyValuePair[]>{
-    return this.http.get<KeyValuePair[]>(ConfigurationService.URL + '/keyValuePairs');
-  }
-
-  wertePaareAbfragen(){
-    if(this.statusKz !== StatusKennzeichen.KeyValuePairs) return;
-    let paare: Observable<KeyValuePair[]> = this.getWertePaare();
-    paare.pipe()
-    from(paare).subscribe(n => {
-      let k: KeyValuePair[] = n;
-      k.forEach(kv => {
-        if(kv.keyName.startsWith('XXXAnpfiff Hz 1')) {
-          this.halbzeit = 1;
-          this.anpfiff = kv.valueStr;
-        }
-        if(kv.keyName.startsWith('XXXAnpfiff Hz 2')) {
-          this.halbzeit = 2;
-          this.anpfiff = kv.valueStr;
-        }
-        if(kv.keyName.startsWith('Nachspielzeit')) {
-          this.nachspielzeit = (kv.valueStr === "0" ? "" : "+" + kv.valueStr);
-        }
-      })
-    });
   }
 
   spielstandSetzen(hg:string, tsNum: number){
@@ -211,8 +195,12 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       this.teamgast = items[0];
       this.datum = items[1];
       this.gegnerBild = items[2];
+      this.spielMinute = -1;
     }
     )
+    this.statusKz = StatusKennzeichen.Tor;
+    this.spielstandAbfragen();
+    this.statusZurücksetzen();
   }  
 
 }
