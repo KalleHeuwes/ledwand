@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigurationService {
-  public static readonly HOST = 'heuweslap2';
+  public static readonly HOST = 'heuweslap3';
   public static readonly URL = 'http://' + ConfigurationService.HOST + ':8080';
   public static readonly URLUPLOAD = 'http://' + ConfigurationService.HOST + ':3000';
   public static rxTime = new Date();
@@ -29,7 +29,7 @@ export class ConfigurationService {
   public static berechneSpielminute(anpfiff: string, halbzeit: number){
     //console.log("configuration.service berechneSpielminute ..." + anpfiff);
     if(anpfiff=='') return -1;
-    
+
     this.rxTime = new Date();
     let dt = "2018-11-29 ";
     let hour = this.rxTime.getHours();

@@ -15,5 +15,8 @@ export class SpielerkarteComponent {
   @Input() name1!: string;
   @Input() name2!: string;
   @Input() pic!: string;
+  @Input() tore!: string;
+  @Input() spiele!: string;
+  @Input() minuten!: string;
 }
 

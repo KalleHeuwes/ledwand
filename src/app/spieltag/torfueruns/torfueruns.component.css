@@ -1,5 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Birthstone&display=swap");
+
+.text-3d {
+	font-family: "Birthstone", cursive;
+	font-size: 15rem;
+	font-weight: 900;
+	color: #e63946;
+	position: absolute;
+	display: block;
+	text-align: center;
+	margin: 10% 0;
+	letter-spacing: 10px;
+	text-shadow: 1px 1px 0px #fad5a5, 3px 3px 0px #fad5a5, 5px 5px 0px #fad5a5,
+		6px 6px 0px #8b8000, 7px 7px 0px #8b8000, 8px 8px 0px #8b8000,
+		9px 9px 0px #7f0b14, 10px 10px 0px #7f0b14;
+	transform: rotateX(-20deg) rotateY(10deg) rotate(0deg);
+	perspective: 100px;
+}
+
+h1 {
+	font-size: 20em;
+	font-weight: bold;
+	font-family: "Birthstone", cursive;
+	text-align: center;
+	background-image: url("https://www.onlygfx.com/wp-content/uploads/2021/03/geometric-triangle-retro-pattern-cover.jpg");
+	background-size: cover;
+	background-position: center;
+	color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: 5px 10px 1px rgba(142, 48, 47, 0.1),
+		5px 3px 1px rgba(142, 48, 47, 0.1), 6px 3px 1px rgba(122, 90, 0, 0.1),
+		7px 3px 10px rgba(122, 90, 0, 0.1), 8px 5px 10px rgba(122, 90, 0, 0.1),
+		5px 5px 10px rgba(0, 0, 0, 0.1);
+	transform: rotateX(0deg) rotateY(-22deg) rotateZ(-3deg);
+	perspective: 100px;
+}
+
+
+
+
+
 .container{
-    width: 500px;
-    height: 600px;
+    width: 800px;
+    height: 800px;
     background-color: blanchedalmond;
 }

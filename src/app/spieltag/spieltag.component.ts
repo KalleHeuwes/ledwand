@@ -117,22 +117,24 @@ export class SpieltagComponent implements OnInit, OnDestroy {
 
     let toreHeimAlt = this.toreHeim;
     // Spielstand vom Server abfragen
+    console.log("URL: " + this.url);
     this.http.get(this.url, {responseType: 'text'}).subscribe((response) => {
       if("[]" == response){
         this.toreHeim = 0;
         this.toreGast = 0;
         this.spielstandSetzen('', -99);
       }
-      var pos1 = response.indexOf(':');
-      this.toreHeim = parseInt(response.substring(pos1+1,pos1+2));
-      var pos1 = response.indexOf(':', pos1 + 1);
-      this.toreGast = parseInt(response.substring(pos1+1,pos1+2));
+      var data = JSON.parse(response);
+      console.log(data[0].spielername + ' ' + data[0].heim + ' ' + data[0].gast + ' ' + data[0].tsNummer);
+      this.toreHeim = data[0].heim;
+      this.toreGast = data[0].gast;
       this.spielstand = response;
       this.laufschriftVisibility = this.toreGast > 0 || this.toreHeim > 0;
        
       // Torschütze als Bild anzeigen
       console.log(' * Tore heim alt: ' + toreHeimAlt + ', neu: ' + this.toreHeim);
       if(toreHeimAlt < this.toreHeim){
+        this.torschuetze = 'H|' + data[0].tsNummer + '|' + data[0].spielername.replace(' ', '|');
         
         this.hideTorschuetzeFlg = false;
         setTimeout(() => {      this.hideTorschuetzeFlg = true;    }, 8000);

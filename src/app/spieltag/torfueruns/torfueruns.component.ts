@@ -21,12 +21,17 @@ export class TorfuerunsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const picPattern: string = 'assets/pictures/players/<VN>_<NN>.jpg';
     let torArray = this.torString.split("|");
+    let vn = torArray[2];
+    let nn = torArray[3];
+    let nr = parseInt(torArray[1]);
+    this.torschuetze = new Player(nr, vn, nn, picPattern.replace('<VN>', vn).replace('<NN>', nn));
+
     setTimeout(() => {      console.log('Warte...');    }, 2000);
     console.log('* TorfuerunsComponent.ngOnInit ' + torArray[0]);
     this.txtHeader = (torArray[0].toUpperCase() !== 'G' 
     ? 'Tor für unsere Mannschaft'
     : 'Tor für den Gast');
-    //this.liesSpielerliste(parseInt( wechselArray[1], 10), parseInt( wechselArray[2], 10));
   }
 }
