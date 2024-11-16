@@ -1,3 +1,4 @@
+<div>Min. {{spielMinute}} </div>
 <mat-accordion>
     <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
@@ -11,7 +12,7 @@
     <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>Spielzeit</mat-panel-title>
-        <mat-panel-description>Min. {{spielMinute}} Anstoß, Halbzeit, Nachspielzeit</mat-panel-description>
+        <mat-panel-description>Anstoß, Halbzeit, Nachspielzeit</mat-panel-description>
       </mat-expansion-panel-header>
         <tr>
             <td>
@@ -31,7 +32,7 @@
             </td>
         </tr>
     </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+    <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>Tore</mat-panel-title>
         <mat-panel-description>Für uns, den Gegner, manuell eingestellt</mat-panel-description>

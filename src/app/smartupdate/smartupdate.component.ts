@@ -19,7 +19,7 @@ import { Anpfiff } from '../models/anpfiff';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SmartupdateComponent implements OnInit {
-  readonly panelOpenState = signal(false);
+  //readonly panelOpenState = signal(false);
   public spielerliste: Player[] = [];
   public torschuetze: Player = new Player(0, '', '', '');
   public spielerRaus: Player = new Player(0, '', '', '');
@@ -46,7 +46,8 @@ export class SmartupdateComponent implements OnInit {
       //this.wertePaareAbfragen();
       this.anpfiffAuslesen();
       this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
-    }, 5000);
+      //console.log("smartupdate.ngOnInit.spielMinute: " + this.spielMinute);
+    }, 1000);
    }
 
   torSpeichern(hg: string){
@@ -177,7 +178,7 @@ export class SmartupdateComponent implements OnInit {
 
     this.http.get(ConfigurationService.URL + '/status/anpfiff', {responseType: 'text'}).subscribe((r) => {
       if(r!== null){
-        console.log("Anpfiff auslesen ... " + r);
+        //console.log("Anpfiff auslesen ... " + r);
         let items = r.split('|');
         this.halbzeit = parseInt(items[0]);
         this.anpfiff = items[1];
@@ -186,6 +187,6 @@ export class SmartupdateComponent implements OnInit {
     });
 
     this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
-
+    //console.log("smartupdate.anpfiffAuslesen.spielMinute: " + this.spielMinute);
   }    
 }

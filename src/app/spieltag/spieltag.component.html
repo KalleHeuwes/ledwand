@@ -9,16 +9,12 @@
     -->
 
     <div class="zeiten uhrzeit"     >{{time | date: 'HH:mm' }}</div>
-    <div class="zeiten spielzeit" *ngIf="spielMinute>-1">{{spielMinute}}''</div>
+    <div class="zeiten spielzeit"     *ngIf="spielMinute>-1">{{spielMinute}}''</div>
     <div class="spielstand"         >{{toreHeim}} : {{toreGast}}</div> 
     <div class="zeiten nachspielzeit" *ngIf="nachspielzeit !=='-1'"      >{{nachspielzeit}}</div>
-    <div class="anpfiff" *ngIf="1 > 2">x{{anpfiff}}|Hz {{halbzeit}}|Flag {{statusKz}}</div>
-    <div class="spielerwechsel" *ngIf="!hideDivFlg"  >
-      <app-spielerwechsel wechsel="{{spielerwechsel}}"></app-spielerwechsel>
-    </div>
-    <div class="spielerwechsel" *ngIf="!hideTorschuetzeFlg"  >
-      <app-torfueruns torString="{{torschuetze}}"></app-torfueruns>
-    </div>
-    <marquee class="laufschrift" *ngIf="laufschrift!=='<LAUFSCHRIFT>'" scrollAmount="{{laufschriftScrollAmount}}">{{laufschrift}}</marquee>
+    <div class="anpfiff"              *ngIf="1 > 2">x{{anpfiff}}|Hz {{halbzeit}}|Flag {{statusKz}}</div>
+    <div class="spielerwechsel"       *ngIf="!hideDivFlg"  ><app-spielerwechsel wechsel="{{spielerwechsel}}"></app-spielerwechsel></div>
+    <div class="spielerwechsel"       *ngIf="!hideTorschuetzeFlg"  ><app-torfueruns torString="{{torschuetze}}"></app-torfueruns></div>
+    <marquee class="laufschrift"      *ngIf="laufschrift!=='<LAUFSCHRIFT>'" scrollAmount="{{laufschriftScrollAmount}}">{{laufschrift}}</marquee>
   </div>
  

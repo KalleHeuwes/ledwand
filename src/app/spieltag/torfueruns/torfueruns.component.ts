@@ -14,7 +14,6 @@ import { HttpClient } from "@angular/common/http";
 export class TorfuerunsComponent implements OnInit {
   @Input() torString!: String;
   public torschuetze!: Player;
-  public txtHeader!: string;
 
   public constructor(private http: HttpClient) {
     
@@ -30,8 +29,5 @@ export class TorfuerunsComponent implements OnInit {
 
     setTimeout(() => {      console.log('Warte...');    }, 2000);
     console.log('* TorfuerunsComponent.ngOnInit ' + torArray[0]);
-    this.txtHeader = (torArray[0].toUpperCase() !== 'G' 
-    ? 'Tor für unsere Mannschaft'
-    : 'Tor für den Gast');
   }
 }

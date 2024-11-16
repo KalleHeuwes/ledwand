@@ -137,7 +137,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
         this.torschuetze = 'H|' + data[0].tsNummer + '|' + data[0].spielername.replace(' ', '|');
         
         this.hideTorschuetzeFlg = false;
-        setTimeout(() => {      this.hideTorschuetzeFlg = true;    }, 8000);
+        setTimeout(() => {      this.hideTorschuetzeFlg = true;    }, 12000);
       }
     })
 

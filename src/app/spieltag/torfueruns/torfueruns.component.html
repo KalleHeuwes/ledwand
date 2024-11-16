@@ -1,9 +1,9 @@
-<div class="container">
-    <h3>{{txtHeader}}</h3>
-    {{torString}}
+<div class="container" *ngIf="torschuetze">
+    <div class="text-3d">Tor für 05</div>
+    
     <table>
         <tr>
-            <td *ngIf="torschuetze">
+            <td>
                 <app-spielerkarte
                     nr=     {{torschuetze.id}} 
                     pic=    {{torschuetze.pic}} 
@@ -13,9 +13,12 @@
                     spiele= 14
                     minuten= 1094
                     ></app-spielerkarte>
-                
+                <!--
+                    {{torString}}
                 <div class="text-3d" style="left: 200px; top: 50px;">{{torschuetze.name1}}</div>
-                <div class="text-3d" style="left: 200px; top: 250px;">{{torschuetze.name2}}</div>          
+                <div class="text-3d" style="left: 200px; top: 250px;">{{torschuetze.name2}}</div>     
+                -->
+     
             </td>
         </tr>
     </table>
