@@ -7,7 +7,13 @@
     Spiele: {{spiele}}<br/>
     Tore: {{tore}}<br/>
     Minuten: {{minuten}}<br/>
-    <img mat-card-image src ={{pic}} alt="Photo" width="150px" height="210px">
+    <div *ngIf="modus !== 'tor'">
+      <img mat-card-image src ={{pic}} alt="Photo"  width="150px" height="210px">
+    </div>    
+    <div *ngIf="modus === 'tor'">
+      <img mat-card-image src ={{pic}} alt="Photo"  width="300px" height="420px">
+    </div>
+    
     <!--
         <mat-card-actions>
       <button mat-button>Learn More</button>

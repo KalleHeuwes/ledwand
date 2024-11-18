@@ -8,6 +8,8 @@ import { KeyValuePair } from '../models/keyValuePair';
 import { Anpfiff } from '../models/anpfiff';
 import { SpielerwechselComponent } from './spielerwechsel/spielerwechsel.component';
 import { TorfuerunsComponent } from './torfueruns/torfueruns.component';
+import { SpielstandComponent } from './spielstand/spielstand.component';
+import { ZeitenComponent } from './zeiten/zeiten.component';
 //import {StatusKennzeichen} from '../enums/status-kennzeichen';
 
 enum StatusKennzeichen {
@@ -21,7 +23,7 @@ enum StatusKennzeichen {
 @Component({
   selector: 'app-spieltag',
   standalone: true,
-  imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent],
+  imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent],
   templateUrl: './spieltag.component.html',
   styleUrl: './spieltag.component.css'
 })
@@ -40,7 +42,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public laufschrift: string = "<LAUFSCHRIFT>";
   public laufschriftScrollAmount: number = 33;
   public laufschriftVisibility: boolean = false;
-  public datum: string = '';
+  public datum: string = '18.11.2024';
   public teamheim: string = ''; // SpVg Emsdetten 05
   public teamgast: string = '';
   public gegnerBild: string = '';
@@ -71,6 +73,8 @@ export class SpieltagComponent implements OnInit, OnDestroy {
 
   spielerwechselAnzeigen() {
     if(this.statusKz !== StatusKennzeichen.Spielerwechsel) return;
+
+    console.log("spieltag.component spielerwechselAnzeigen ...");
 
     this.http.get(ConfigurationService.URL + '/teams/spielerwechsel', {responseType: 'text'}).subscribe((response) => {
       this.spielerwechsel = response;
