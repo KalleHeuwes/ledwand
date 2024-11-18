@@ -1,9 +1,8 @@
 <div class="container">
-    <h1>{{txtHeader}}</h1>
-    {{wechsel}}
-    <table>
+    <div class="text-3d">SCHICHT- WECHSEL</div>
+    <table style="top:300px; position: absolute;">
         <tr>
-            <td *ngIf="spielerraus">
+            <td *ngIf="spielerraus" style="width: 300px;">
                 <h2>Danke, {{spielerraus.name1}}</h2>
                 <app-spielerkarte
                     nr=     {{spielerraus.id}} 
@@ -12,8 +11,8 @@
                     name2=  {{spielerraus.name2}}>
                 </app-spielerkarte>                  
             </td>
-            <td><div style="width: 100px;"></div></td>
-            <td *ngIf="spielerrein">
+            <td><div style="width: 20px;"></div></td>
+            <td *ngIf="spielerrein" style="width: 300px;">
                 <h2>Willkommen, {{spielerrein.name1}}</h2>
                 <app-spielerkarte 
                     nr=     {{spielerrein.id}} 
@@ -23,8 +22,5 @@
                 </app-spielerkarte>                
             </td>
         </tr>
-  
-
     </table>
-
 </div>

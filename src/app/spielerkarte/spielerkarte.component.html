@@ -1,18 +1,26 @@
 <mat-card appearance="outlined">
     <mat-card-header>
-      <mat-card-title>{{nr}} | {{name1}}</mat-card-title>
-      <mat-card-subtitle>{{name2}}</mat-card-subtitle>
+      <mat-card-title>{{nr}} | {{name1}} {{name2}}</mat-card-title>
     </mat-card-header>
+    <mat-card-content>
+      <table>
+        <tbody>
+          <tr>
+            <td class="InfoCaption">Spiele</td>   <td class="InfoContent">{{spiele}}</td>
+            <td class="InfoCaption">Minuten</td>  <td class="InfoContent">{{minuten}}</td>
+            <td class="InfoCaption">Tore</td>     <td class="InfoContent">{{tore}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="modus !== 'tor'">
+        <img mat-card-image src ={{pic}} alt="Photo"  width="150px" height="210px">
+      </div>    
+      <div *ngIf="modus === 'tor'">
+        <img mat-card-image src ={{pic}} alt="Photo"  width="300px" height="420px">
+      </div>
+    </mat-card-content>
     
-    Spiele: {{spiele}}<br/>
-    Tore: {{tore}}<br/>
-    Minuten: {{minuten}}<br/>
-    <div *ngIf="modus !== 'tor'">
-      <img mat-card-image src ={{pic}} alt="Photo"  width="150px" height="210px">
-    </div>    
-    <div *ngIf="modus === 'tor'">
-      <img mat-card-image src ={{pic}} alt="Photo"  width="300px" height="420px">
-    </div>
+
     
     <!--
         <mat-card-actions>

@@ -2,10 +2,10 @@
 
 
 .container{
-    top: -200px;
-    left: 600px;
+    top: -170px;
+    left: 670px;
     position: absolute;
-    font-family: Arial, "Birthstone", cursive;
+    font-family: 'Courier New', Arial, "Birthstone", cursive;
 	font-size: 18rem;
 	font-weight: 900;
 	color: #e63946;
