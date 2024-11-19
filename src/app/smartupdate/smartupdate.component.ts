@@ -50,6 +50,16 @@ export class SmartupdateComponent implements OnInit {
     }, 1000);
    }
 
+   aufstellungAnzeigen(){
+    if (!confirm('Aufstellung anzeigen ?'))     return;
+
+    const url: string = ConfigurationService.URL + '/status/setstatus/Y';
+    this.http.post(url, {responseType: 'text'}).subscribe((response) => {
+      console.log(response);
+    })
+
+   }
+
   torSpeichern(hg: string){
     var pattern ="";
     var urlpart = "";

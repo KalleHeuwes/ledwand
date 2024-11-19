@@ -10,6 +10,8 @@ import { SpielerwechselComponent } from './spielerwechsel/spielerwechsel.compone
 import { TorfuerunsComponent } from './torfueruns/torfueruns.component';
 import { SpielstandComponent } from './spielstand/spielstand.component';
 import { ZeitenComponent } from './zeiten/zeiten.component';
+import { Player } from '../models/player';
+import { AufstellungComponent } from './aufstellung/aufstellung.component';
 //import {StatusKennzeichen} from '../enums/status-kennzeichen';
 
 enum StatusKennzeichen {
@@ -17,13 +19,14 @@ enum StatusKennzeichen {
   Anpfiff = 'A',
   Spieltag = 'S',
   KeyValuePairs = 'K',
-  Spielerwechsel = 'W'
+  Spielerwechsel = 'W',
+  Aufstellung = 'Y'
 }
 
 @Component({
   selector: 'app-spieltag',
   standalone: true,
-  imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent],
+  imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent, AufstellungComponent],
   templateUrl: './spieltag.component.html',
   styleUrl: './spieltag.component.css'
 })
@@ -52,9 +55,13 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public nachspielzeit: string = '';
   public statusKz: string = '';
   public hideDivFlg: boolean = true;
+  public hideAufstellung: boolean = true;
   public hideTorschuetzeFlg: boolean = true;
   public spielerwechsel: String = '';
   public torschuetze: String = '';
+
+  public startelf: Player[] = [];
+  public bank: Player[] = [];
 
   public constructor(private http: HttpClient) {  }  
 
@@ -65,6 +72,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       this.statusAuslesen();
       this.spielstandAbfragen();
       this.spieltagAuslesen();
+      this.aufstellungAuslesen();
       this.anpfiffAuslesen();
       this.spielerwechselAnzeigen();
       this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
@@ -194,8 +202,29 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     if(this.statusKz !== StatusKennzeichen.Spieltag) return;
 
     console.log("spieltag.component spieltagAuslesen ...");
-    const url: string = ConfigurationService.URL + '/matches/matchday/short';
 
+    let url: string = ConfigurationService.URL + '/matches/matchday/long';
+    this.http.get(url, {responseType: 'text'}).subscribe((response) => {
+
+      var data = JSON.parse(response);
+      console.log(data.datum);
+      console.log('STARTELF');
+      let i: number = 0;
+      while (i < data.startelf.length) {
+        this.logPlayer('S', data.startelf[i]);
+        i++;
+      }
+
+      console.log('BANK');
+      i = 0;
+      while (i < data.bank.length) {
+        this.logPlayer('B', data.bank[i]);
+        i++;
+      }    
+    }
+    )
+
+    url = ConfigurationService.URL + '/matches/matchday/short';
     this.http.get(url, {responseType: 'text'}).subscribe((response) => {
 
       let items = response.split("|");
@@ -209,5 +238,31 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     this.spielstandAbfragen();
     this.statusZurücksetzen();
   }  
+
+  logPlayer(sb: string, player: any){
+    let playerObj: Player;
+    console.log(player.firstName + ' ' + player.name + ' ' + player.imageUrl);
+    playerObj = new Player(-1, player.firstName, player.name, player.imageUrl);
+    var stat = player.playerStatistics;
+    if(stat) {
+      playerObj.setStatistik(stat.spiele, stat.minuten, stat.tore);
+    }
+    
+    if(sb == 'S'){
+      this.startelf.push(playerObj);
+    }else{
+      this.bank.push(playerObj);
+    }
+  }
+
+  aufstellungAuslesen(){
+    if(this.statusKz !== StatusKennzeichen.Aufstellung) return;
+
+    console.log('Aufstellung auslesen ...');
+    this.hideAufstellung = false;
+      setTimeout(() => {      this.hideAufstellung = true;    }, 2000);
+
+    this.statusZurücksetzen();
+  }
 
 }

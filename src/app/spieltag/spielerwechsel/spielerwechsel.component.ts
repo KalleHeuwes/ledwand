@@ -25,9 +25,6 @@ export class SpielerwechselComponent implements OnInit {
     let wechselArray = this.wechsel.split("|");
     setTimeout(() => {      console.log('Warte...');    }, 2000);
     console.log('* SpielerwechselComponent.ngOnInit ' + wechselArray[0]);
-    this.txtHeader = (wechselArray[0].toUpperCase() !== 'G' 
-    ? 'Spielerwechsel bei unserer Mannschaft'
-    : 'Spielerwechsel beim Gast');
     this.liesSpielerliste(parseInt( wechselArray[1], 10), parseInt( wechselArray[2], 10));
   }
 

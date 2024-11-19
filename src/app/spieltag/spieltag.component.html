@@ -19,6 +19,7 @@
     <app-zeiten spielMinute="{{spielMinute}}" uhrzeit="{{time | date: 'HH:mm' }}" nachspielzeit="{{nachspielzeit}}" datum="{{datum}}"/>
     <div class="anpfiff"              *ngIf="1 > 2">x{{anpfiff}}|Hz {{halbzeit}}|Flag {{statusKz}}</div>
     <div class="spielerwechsel"       *ngIf="!hideDivFlg"  ><app-spielerwechsel wechsel="{{spielerwechsel}}"></app-spielerwechsel></div>
+    <div class="spielerwechsel"       *ngIf="!hideAufstellung"  ><app-aufstellung [startelf]="startelf"></app-aufstellung></div>
     <div class="spielerwechsel"       *ngIf="!hideTorschuetzeFlg"  ><app-torfueruns torString="{{torschuetze}}"></app-torfueruns></div>
     <marquee class="laufschrift"      *ngIf="laufschrift!=='<LAUFSCHRIFT>'" scrollAmount="{{laufschriftScrollAmount}}">{{laufschrift}}</marquee>
   </div>
