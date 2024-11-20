@@ -1,7 +1,57 @@
 <div class="container">
-    <p>Aufstellung</p>
-    @for (spieler of startelf; track spieler) {
-        <div>{{spieler.name1}} {{spieler.name2}}</div>
-    }
+    {{letzteNr}} {{testOut}}
+    <table>
+        <tbody>
+            <tr>
+                <td style="vertical-align: top; width: 300px; background-color: aquamarine;">
+                    <h1>Startelf</h1>
+                    <!-- Tabelle der Startelf-->
+                    <table style="width: 280px;">
+                        <tbody>
+                            @for (spieler of startelf; track spieler) {
+                                <tr><td><app-spielerkarte-klein nr={{spieler.id}} name1={{spieler.name1}} name2={{spieler.name2}}/></td></tr>
+                            }      
+                        </tbody>
+                    </table>                
+                </td>
+                <td style="vertical-align: top; width: 300px; background-color: lightcoral;">
+                    <h1>Bank</h1>
+                    <!-- Tabelle der Bank-->
+                    <table style="width: 280px;">
+                        <tbody>
+                            @for (spieler of bank; track spieler) {
+                                <tr><td><app-spielerkarte-klein nr={{spieler.id}} name1={{spieler.name1}} name2={{spieler.name2}}/></td></tr>
+                            }      
+                        </tbody>
+                    </table>   
+                    <br/>
+                    <h1>Trainer</h1>    
+                    <app-spielerkarte-klein nr="99" name1="Daniel" name2="Apke"/>
+                </td>
+                <td style="vertical-align: top; width: 400px; background-color: greenyellow;">
+                    {{aktImg}}
+                    <img src="{{aktImg}}">
+                </td>
+                <td style="vertical-align: top; width: 600px; background-color: blueviolet;">
+                    <img src="assets/pictures/sponsors/Salvus02.png">
+                </td>
+            </tr>        
+        </tbody>
+    </table>
+    <!--
+                
+        @for (spieler of startelf; track spieler) {
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <app-spielerkarte-klein nr={{spieler.id}} name1={{spieler.name1}} name2={{spieler.name2}}/>
+            </mat-grid-tile>
+        }        
+        @for (spieler of bank; track spieler) {
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <app-spielerkarte-klein nr={{spieler.id}} name1={{spieler.name1}} name2={{spieler.name2}}/>
+            </mat-grid-tile>
+        }      
+    -->
+   
+
 </div>
 

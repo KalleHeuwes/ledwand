@@ -1,0 +1,21 @@
+.nr{
+    background-color: black;
+    color: whitesmoke;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: large;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    border-radius: 6px;
+    text-align: center;
+}
+.name{
+    background-color: whitesmoke;
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: x-large;
+    width: 260px;
+    height: 35px;
+    border-radius: 3px;
+    text-align: left;
+}

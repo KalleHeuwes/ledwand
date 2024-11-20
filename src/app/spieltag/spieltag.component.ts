@@ -20,7 +20,8 @@ enum StatusKennzeichen {
   Spieltag = 'S',
   KeyValuePairs = 'K',
   Spielerwechsel = 'W',
-  Aufstellung = 'Y'
+  AufstellungAn = 'Y1',
+  AufstellungAus = 'Y0'
 }
 
 @Component({
@@ -207,7 +208,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     this.http.get(url, {responseType: 'text'}).subscribe((response) => {
 
       var data = JSON.parse(response);
-      console.log(data.datum);
+      console.log(data);
       console.log('STARTELF');
       let i: number = 0;
       while (i < data.startelf.length) {
@@ -242,7 +243,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   logPlayer(sb: string, player: any){
     let playerObj: Player;
     console.log(player.firstName + ' ' + player.name + ' ' + player.imageUrl);
-    playerObj = new Player(-1, player.firstName, player.name, player.imageUrl);
+    playerObj = new Player(player.number, player.firstName, player.name, player.imageUrl);
     var stat = player.playerStatistics;
     if(stat) {
       playerObj.setStatistik(stat.spiele, stat.minuten, stat.tore);
@@ -256,13 +257,18 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   }
 
   aufstellungAuslesen(){
-    if(this.statusKz !== StatusKennzeichen.Aufstellung) return;
+    if(this.statusKz !== StatusKennzeichen.AufstellungAn && this.statusKz !== StatusKennzeichen.AufstellungAus) return;
 
-    console.log('Aufstellung auslesen ...');
-    this.hideAufstellung = false;
-      setTimeout(() => {      this.hideAufstellung = true;    }, 2000);
+    if(this.statusKz == StatusKennzeichen.AufstellungAn && this.hideAufstellung == true){
+      console.log('Aufstellung auslesen ...');
+      this.hideAufstellung = false;
+    }
 
-    this.statusZurücksetzen();
+    if(this.statusKz == StatusKennzeichen.AufstellungAus){
+      console.log('Aufstellung ausblenden ...');
+      this.hideAufstellung = true;
+      this.statusZurücksetzen();
+      }
   }
 
 }

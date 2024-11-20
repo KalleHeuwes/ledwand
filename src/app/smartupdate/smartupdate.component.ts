@@ -50,10 +50,11 @@ export class SmartupdateComponent implements OnInit {
     }, 1000);
    }
 
-   aufstellungAnzeigen(){
-    if (!confirm('Aufstellung anzeigen ?'))     return;
+   aufstellungAnzeigen(onoff: number){
+    let frage: string = (onoff == 1 ? 'Aufstellung anzeigen ?' : 'Aufstellung ausblenden ?');
+    if (!confirm(frage))     return;
 
-    const url: string = ConfigurationService.URL + '/status/setstatus/Y';
+    const url: string = ConfigurationService.URL + '/status/setstatus/Y' + onoff;
     this.http.post(url, {responseType: 'text'}).subscribe((response) => {
       console.log(response);
     })
