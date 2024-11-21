@@ -21,7 +21,8 @@ enum StatusKennzeichen {
   KeyValuePairs = 'K',
   Spielerwechsel = 'W',
   AufstellungAn = 'Y1',
-  AufstellungAus = 'Y0'
+  AufstellungAus = 'Y0',
+  AufstellungNaechster = 'YN'
 }
 
 @Component({
@@ -131,7 +132,6 @@ export class SpieltagComponent implements OnInit, OnDestroy {
 
     let toreHeimAlt = this.toreHeim;
     // Spielstand vom Server abfragen
-    console.log("URL: " + this.url);
     this.http.get(this.url, {responseType: 'text'}).subscribe((response) => {
       if("[]" == response){
         this.toreHeim = 0;
@@ -139,14 +139,12 @@ export class SpieltagComponent implements OnInit, OnDestroy {
         this.spielstandSetzen('', -99);
       }
       var data = JSON.parse(response);
-      console.log(data[0].spielername + ' ' + data[0].heim + ' ' + data[0].gast + ' ' + data[0].tsNummer);
       this.toreHeim = data[0].heim;
       this.toreGast = data[0].gast;
       this.spielstand = response;
       this.laufschriftVisibility = this.toreGast > 0 || this.toreHeim > 0;
        
       // Torschütze als Bild anzeigen
-      console.log(' * Tore heim alt: ' + toreHeimAlt + ', neu: ' + this.toreHeim);
       if(toreHeimAlt < this.toreHeim){
         this.torschuetze = 'H|' + data[0].tsNummer + '|' + data[0].spielername.replace(' ', '|');
         
@@ -208,15 +206,12 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     this.http.get(url, {responseType: 'text'}).subscribe((response) => {
 
       var data = JSON.parse(response);
-      console.log(data);
-      console.log('STARTELF');
       let i: number = 0;
       while (i < data.startelf.length) {
         this.logPlayer('S', data.startelf[i]);
         i++;
       }
 
-      console.log('BANK');
       i = 0;
       while (i < data.bank.length) {
         this.logPlayer('B', data.bank[i]);
@@ -242,7 +237,6 @@ export class SpieltagComponent implements OnInit, OnDestroy {
 
   logPlayer(sb: string, player: any){
     let playerObj: Player;
-    console.log(player.firstName + ' ' + player.name + ' ' + player.imageUrl);
     playerObj = new Player(player.number, player.firstName, player.name, player.imageUrl);
     var stat = player.playerStatistics;
     if(stat) {

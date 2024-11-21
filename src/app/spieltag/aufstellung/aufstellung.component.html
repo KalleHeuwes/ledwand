@@ -1,5 +1,4 @@
 <div class="container">
-    {{letzteNr}} {{testOut}}
     <table>
         <tbody>
             <tr>
@@ -28,11 +27,20 @@
                     <h1>Trainer</h1>    
                     <app-spielerkarte-klein nr="99" name1="Daniel" name2="Apke"/>
                 </td>
-                <td style="vertical-align: top; width: 400px; background-color: greenyellow;">
-                    {{aktImg}}
-                    <img src="{{aktImg}}">
+                <td style="vertical-align: top; width: 400px">
+                    {{letzteNr}}
+                    <app-spielerkarte *ngIf="player"
+                        nr=         {{player.id}} 
+                        pic=        {{player.pic}} 
+                        name1=      {{player.name1}} 
+                        name2=      {{player.name2}}
+                        spiele=     {{player.spiele}}
+                        minuten=    {{player.minuten}}
+                        tore=       {{player.tore}}
+                        modus=      "tor">
+                    </app-spielerkarte>  
                 </td>
-                <td style="vertical-align: top; width: 600px; background-color: blueviolet;">
+                <td style="vertical-align: top; width: 500px; background-color: goldenrod;">
                     <img src="assets/pictures/sponsors/Salvus02.png">
                 </td>
             </tr>        

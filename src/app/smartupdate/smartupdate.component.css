@@ -10,11 +10,12 @@ button{
 }
 
 .button1{
-    width: 150px; 
-    height: 40px;
+    width: 250px; 
+    height: 60px;
     background-color: antiquewhite;
     color: cornflowerblue;
     font-size: larger;
+    border-radius: 12px;
 }
 
 .menu-item{

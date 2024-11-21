@@ -14,8 +14,15 @@
           <mat-panel-title>Aufstellung</mat-panel-title>
           <mat-panel-description>Aufstellung anzeigen und die einzelnen Spieler vorstellen</mat-panel-description>
         </mat-expansion-panel-header>
-        <br/><button class="button1" (click)="aufstellungAnzeigen(1)">Aufstellung an</button>
-        <br/><button class="button1" (click)="aufstellungAnzeigen(0)">Aufstellung aus</button>
+        <table>
+            <tbody>
+                <tr>
+                    <td><button class="button1" (click)="aufstellungAnzeigen('1')">Aufstellung an</button></td>
+                    <td><button class="button1" (click)="aufstellungAnzeigen('N')">>>> Nächster >>></button></td>
+                    <td><button class="button1" (click)="aufstellungAnzeigen('0')">Aufstellung aus</button></td>
+                </tr>
+            </tbody>
+        </table>
 
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle>
