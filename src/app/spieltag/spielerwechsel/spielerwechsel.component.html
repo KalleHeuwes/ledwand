@@ -1,13 +1,13 @@
 <div class="container">
-    <div class="text-3d">SCHICHT- WECHSEL</div>
-    <table style="top:300px; position: absolute;">
+    <div class="text-3d">SCHICHTWECHSEL</div>
+    <table style="top:200px; left: 300px; position: absolute;">
         <tr>
-            <td *ngIf="spielerraus" style="width: 300px;">
+            <td *ngIf="spielerraus" style="width: 600px;">
                 <h2>Danke, {{spielerraus.name1}}</h2>
                 <app-spielerkarte [spieler]=  "spielerraus"  modus="gross1"/>
             </td>
             <td><div style="width: 20px;"></div></td>
-            <td *ngIf="spielerrein" style="width: 300px;">
+            <td *ngIf="spielerrein" style="width: 600px;">
                 <h2>Willkommen, {{spielerrein.name1}}</h2>
                 <app-spielerkarte [spieler]=  "spielerrein"  modus="gross1"/>
             </td>

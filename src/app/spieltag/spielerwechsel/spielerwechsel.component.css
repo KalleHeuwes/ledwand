@@ -1,17 +1,17 @@
 .container{
-    width: 700px;
+    width: 1400px;
     height: 900px;
     background-color: blanchedalmond;    
     border: 25px groove darkslategrey;    
 	position: absolute;    
 	top: 5px;    
-	left : 600px;
+	left : 100px;
 }
 
 .text-3d {
     top: -80px;
     left: 100px;
-	width: 200px;
+	width: 1300px;
     height: 700px;
 	font-family: Arial, "Birthstone", cursive;
 	font-size: 6rem;
@@ -28,3 +28,12 @@
 	transform: rotateX(-20deg) rotateY(0deg) rotate(0deg);
 	perspective: 100px;
 }
+
+
+h2 {
+
+	text-shadow: 1px 1px 0px #fad5a5, 3px 3px 0px #8b8000, 5px 5px 0px #7f0b14;
+    font-size: 4rem;
+	font-weight: 500;
+}
+

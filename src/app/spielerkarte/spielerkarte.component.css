@@ -7,6 +7,28 @@
     border-radius: 5px;
 }
 
+.spielernr{
+    font-size: 30px;
+    width: 35px;
+    height: 35px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.spielername{
+    font-size: 30px;
+    width: 350px;
+    height: 35px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
 .InfoContent{
     font-size: x-large;
     font-weight: normal;
