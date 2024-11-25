@@ -1,7 +1,7 @@
 <div>Min. {{spielMinute}} </div>
 <mat-accordion>
     <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header style="background-color: aqua;">
           <mat-panel-title>Konfiguration</mat-panel-title>
           <mat-panel-description>{{datum}} {{teamgast}} Spieltag laden, sonst. Konfiguration</mat-panel-description>
         </mat-expansion-panel-header>
@@ -26,7 +26,7 @@
 
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header style="background-color: aqua;">
         <mat-panel-title>Spielzeit</mat-panel-title>
         <mat-panel-description>Anstoß, Halbzeit, Nachspielzeit</mat-panel-description>
       </mat-expansion-panel-header>
@@ -76,7 +76,7 @@
         </tr>
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header style="background-color: aqua;">
           <mat-panel-title>Spielerwechsel</mat-panel-title>
           <mat-panel-description>Auswechslungen, rote Karten</mat-panel-description>
         </mat-expansion-panel-header>
@@ -106,7 +106,7 @@
       </mat-expansion-panel>
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
-          <mat-panel-title>Besondere Vorkommnisse</mat-panel-title>
+          <mat-panel-title>Bes. Vorkommnisse</mat-panel-title>
           <mat-panel-description>Rote Karten, Elfmeter verschossen, ...</mat-panel-description>
         </mat-expansion-panel-header>
         <!--
@@ -130,24 +130,12 @@
             </td>
 
       </mat-expansion-panel>
-  </mat-accordion>
-  <!--
-  <div class="container">
-    
-        <table>
-            <tbody>
-                <tr>
-                    <td><h2>Spieltag einlesen</h2></td>
-                    <td><button (click)="spieltagEinlesen()">Los !</button></td>
-                </tr>                 
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header style="background-color: aqua;">
+          <mat-panel-title>Debug</mat-panel-title>
+          <mat-panel-description>Debug-Informationen</mat-panel-description>
+        </mat-expansion-panel-header>
+        {{screensize}}
 
-                             
-            </tbody>
-        </table>
-</div>
--->
-<!--
-<select><option ng-repeat="x in cars">{{x}}</option></select>
-{{'' + spieler.id + ' ' + spieler.name1}}
-<div>{{torschuetze.name2}}</div>
--->
+    </mat-expansion-panel>
+</mat-accordion>

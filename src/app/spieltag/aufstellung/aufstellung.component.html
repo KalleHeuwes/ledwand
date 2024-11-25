@@ -28,19 +28,10 @@
                     <app-spielerkarte-klein nr="99" name1="Daniel" name2="Apke"/>
                 </td>
                 <td style="vertical-align: top; width: 400px">
+                    <app-spielerkarte *ngIf="player"  [spieler]=  "player"  modus="gross2"/>
                     {{letzteNr}}
-                    <app-spielerkarte *ngIf="player"
-                        nr=         {{player.id}} 
-                        pic=        {{player.pic}} 
-                        name1=      {{player.name1}} 
-                        name2=      {{player.name2}}
-                        spiele=     {{player.spiele}}
-                        minuten=    {{player.minuten}}
-                        tore=       {{player.tore}}
-                        modus=      "tor">
-                    </app-spielerkarte>  
                 </td>
-                <td style="vertical-align: top; width: 500px; background-color: goldenrod;">
+                <td style="vertical-align: top; width: 500px;">
                     <img src="assets/pictures/sponsors/Salvus02.png">
                 </td>
             </tr>        

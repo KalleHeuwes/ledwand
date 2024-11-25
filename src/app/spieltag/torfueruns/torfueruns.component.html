@@ -4,22 +4,7 @@
     <table>
         <tr>
             <td>
-                <app-spielerkarte
-                    nr=     {{torschuetze.id}} 
-                    pic=    {{torschuetze.pic}} 
-                    name1=  {{torschuetze.name1}} 
-                    name2=  {{torschuetze.name2}}
-                    tore= 3
-                    spiele= 14
-                    minuten= 1094
-                    modus = 'tor'
-                    ></app-spielerkarte>
-                <!--
-                    {{torString}}
-                <div class="text-3d" style="left: 200px; top: 50px;">{{torschuetze.name1}}</div>
-                <div class="text-3d" style="left: 200px; top: 250px;">{{torschuetze.name2}}</div>     
-                -->
-     
+                <app-spielerkarte *ngIf="torschuetze"  [spieler]=  "torschuetze"  modus="gross2"/>
             </td>
         </tr>
     </table>

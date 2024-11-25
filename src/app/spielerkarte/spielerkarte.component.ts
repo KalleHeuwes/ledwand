@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { Player } from '../models/player';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './spielerkarte.component.css',
 })
 export class SpielerkarteComponent {
+  @Input() spieler!: Player;
   @Input() nr!: string;
   @Input() name1!: string;
   @Input() name2!: string;

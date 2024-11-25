@@ -4,6 +4,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: whitesmoke;
     background-color: black;
+    border-radius: 5px;
 }
 
 .InfoContent{
@@ -12,4 +13,5 @@
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     background-color: whitesmoke;
+    border-radius: 5px;
 }

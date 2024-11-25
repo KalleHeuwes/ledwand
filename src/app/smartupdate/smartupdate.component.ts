@@ -32,12 +32,14 @@ export class SmartupdateComponent implements OnInit {
   public anpfiff: string = '';
   public nachspielzeit: string = '';
   public halbzeit: number = 0;
+  public screensize: string = '';
   teamgast: string = '';
   datum: string = '';
 
   public constructor(private http: HttpClient) {  }
 
   ngOnInit(): void {    
+    this.screensize = 'Breite: ' + window.innerWidth + '/ Höhe: ' + window.innerHeight;
     this.aufstellungAuslesen(); 
     this.intervalId = setInterval(() => {
       //this.time = new Date();

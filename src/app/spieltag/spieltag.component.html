@@ -1,26 +1,20 @@
 <div class="container">
-    <img src="assets/pictures/others/Fabulous05.JPG" style="width:100%">
+    <img src="assets/pictures/others/Fabulous05.JPG" style="width:100%;height: 100%;">
     <img class="logoHeim" src="assets/pictures/teams/logo_sve.png"/>
     <img class="logoGast" *ngIf="gegnerBild !=''" src="{{gegnerBild}}" width="255px;" height="255px;"/>
 
     <!--
         <div class="nameVerein nameHeim">{{teamheim}}</div>
         <div class="nameVerein nameGast">{{teamgast}}</div>
-        <div class="spielstand"         >{{toreHeim}} - {{toreGast}}</div> 
-
-    <div class="zeiten uhrzeit"     >{{time | date: 'HH:mm' }}</div>
-    
-    <div class="zeiten nachspielzeit" *ngIf="nachspielzeit !=='-1'"      >{{nachspielzeit}}</div>
-        <div class="zeiten spielzeit"     *ngIf="spielMinute>-1">{{spielMinute}}''</div>
-    -->
-
-    
-    <app-spielstand toreHeim="{{toreHeim}}" toreGast="{{toreGast}}"/>
-    <app-zeiten spielMinute="{{spielMinute}}" uhrzeit="{{time | date: 'HH:mm' }}" nachspielzeit="{{nachspielzeit}}" datum="{{datum}}"/>
-    <div class="anpfiff"              *ngIf="1 > 2">x{{anpfiff}}|Hz {{halbzeit}}|Flag {{statusKz}}</div>
-    <div class="spielerwechsel"       *ngIf="!hideDivFlg"  ><app-spielerwechsel wechsel="{{spielerwechsel}}"></app-spielerwechsel></div>
+            <div class="spielerwechsel"       *ngIf="!hideDivFlg"  ><app-spielerwechsel wechsel="{{spielerwechsel}}"></app-spielerwechsel></div>
     <div                              *ngIf="!hideAufstellung"  ><app-aufstellung [startelf]="startelf" [bank]="bank"></app-aufstellung></div>
     <div class="spielerwechsel"       *ngIf="!hideTorschuetzeFlg"  ><app-torfueruns torString="{{torschuetze}}"></app-torfueruns></div>
+    -->    
+    <app-spielstand toreHeim="{{toreHeim}}" toreGast="{{toreGast}}"/>
+    <app-zeiten spielMinute="{{spielMinute}}" uhrzeit="{{time | date: 'HH:mm' }}" nachspielzeit="{{nachspielzeit}}" datum="{{datum}}"/>
+    <app-spielerwechsel *ngIf="!hideDivFlg" wechsel="{{spielerwechsel}}"></app-spielerwechsel>
+    <app-aufstellung *ngIf="!hideAufstellung" [startelf]="startelf" [bank]="bank"></app-aufstellung>
+    <app-torfueruns *ngIf="!hideTorschuetzeFlg" torString="{{torschuetze}}"></app-torfueruns>
     <marquee class="laufschrift"      *ngIf="laufschrift!=='<LAUFSCHRIFT>'" scrollAmount="{{laufschriftScrollAmount}}">{{laufschrift}}</marquee>
-  </div>
+</div>
  

@@ -2,7 +2,7 @@
 
 .text-3d {
     top: -100px;
-    left: 320px;
+    left: 720px;
 	width: 400px;
     height: 700px;
 	font-family: Arial, "Birthstone", cursive;
@@ -23,8 +23,11 @@
 
 
 .container{
-    width: 800px;
-    height: 700px;
+    width: 1200px;
+    height: 900px;
     background-color: blanchedalmond;
-    border: 25px groove blue;
+    border: 25px groove darkslategray;
+	position: absolute;    
+	top: 18px;    
+	left : 200px;
 }

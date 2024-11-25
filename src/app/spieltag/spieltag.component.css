@@ -1,31 +1,10 @@
+.container {    position: relative;    text-align: center;    color: black;  }
+
 .laufschrift {
     position: absolute;    top: 80%;    left: 1%;
     color: whitesmoke;
     font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 180px;    font-weight: bold;
   }
-
-.spielstand{
-    position: absolute;    top: 11%;    left: 50%;
-    transform: translate( -50%, -50%);
-    color: whitesmoke;
-    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 325px;    font-weight: bold;
-}
-
-.container {    position: relative;    text-align: center;    color: black;  }
-
-.zeiten{
-  color: #16bbb3;
-  font-family: Arial, sans-serif;    font-size: 80px;    font-weight: bold;
-}  
-.uhrzeit {    position: absolute;    top: 8px;    right: 16px;  }
-
-.spielzeit {  position: absolute;    top: 8px;    left : 16px;  }
-
-.nachspielzeit {  position: absolute;    top: 78px;    left : 16px;  }
-
-.spielerwechsel {  position: absolute;    top: 18px;    left : 416px;  }
-
-.anpfiff   {  position: absolute;    top: 78px;    left : 16px;  font-size: 22px;}
 
 .logoHeim {
   position: absolute;  bottom: 40%;
