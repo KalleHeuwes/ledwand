@@ -10,5 +10,6 @@ import { Component, Input } from '@angular/core';
 export class SpielstandComponent {
   @Input() toreHeim!: string;
   @Input() toreGast!: string;
+  @Input() design!: string;
 
 }

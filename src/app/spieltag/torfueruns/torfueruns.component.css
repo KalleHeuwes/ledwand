@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Birthstone&display=swap");
 
 .text-3d {
-    top: -100px;
-    left: 720px;
+	position: absolute;
+    top: 10px;
+    left: 220px;
+	display: inline-block;
 	width: 400px;
     height: 700px;
 	font-family: Arial, "Birthstone", cursive;
 	font-size: 10rem;
 	font-weight: 900;
 	color: #e63946;
-	position: absolute;
-	display: block;
 	text-align: center;
 	margin: 10% 0;
 	letter-spacing: 10px;
@@ -21,13 +21,14 @@
 	perspective: 100px;
 }
 
-
 .container{
-    width: 1200px;
-    height: 900px;
-    background-color: blanchedalmond;
-    border: 25px groove darkslategray;
-	position: absolute;    
-	top: 18px;    
-	left : 200px;
+    width: 1850px;
+    height: 1000px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    background-color: blanchedalmond;    
+    border: 2px solid;
+    padding: 10px;
+    box-shadow: 6px 4px 8px;
 }

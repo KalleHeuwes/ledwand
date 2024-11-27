@@ -13,7 +13,6 @@ import { MatGridListModule, MatGridTile} from '@angular/material/grid-list';
 import { SpielerListeComponent } from './spieler-liste/spieler-liste.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AufstellungComponent } from './aufstellung/aufstellung.component';
-import { StatusupdateComponent } from './statusupdate/statusupdate.component';
 import { SpieltagComponent } from './spieltag/spieltag.component';
 
 import { CheckitoutComponent } from './checkitout/checkitout.component';
@@ -33,7 +32,6 @@ import { SmartupdateComponent } from './smartupdate/smartupdate.component';
     MatGridTile,
     SpielerListeComponent,
     AufstellungComponent,
-    StatusupdateComponent,
     SpieltagComponent,
     BrowserModule,
     FormsModule,
@@ -43,7 +41,6 @@ import { SmartupdateComponent } from './smartupdate/smartupdate.component';
       {path: 'players-list', component: SpielerListeComponent},
       {path: 'aufstellung', component: AufstellungComponent},
       {path: 'spieltag', component: SpieltagComponent},
-      {path: 'statusupdatexxx', component: StatusupdateComponent},
       {path: 'smartupdate', component: SmartupdateComponent},
       {path: 'checkitout', component: CheckitoutComponent},
       {path: '', redirectTo: '/startseite', pathMatch: 'full'},

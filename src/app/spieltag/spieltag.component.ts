@@ -44,7 +44,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public toreGast: number = 0;
   public spielstand: string = '';
   public spielstandUpdate: SpielstandUpdate | undefined;
-  public laufschrift: string = "<LAUFSCHRIFT>";
+  public laufschrift: string = '';
   public laufschriftScrollAmount: number = 33;
   public laufschriftVisibility: boolean = false;
   public datum: string = '18.11.2024';
@@ -59,8 +59,10 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public hideDivFlg: boolean = true;
   public hideAufstellung: boolean = true;
   public hideTorschuetzeFlg: boolean = true;
+  public hideLaufschrift: boolean = false;
   public spielerwechsel: String = '';
   public torschuetze: String = '';
+  public design: String = 'default';
 
   public startelf: Player[] = [];
   public bank: Player[] = [];
@@ -114,6 +116,11 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     //return; 
     this.http.get(this.urlStatus, {responseType: 'text'}).subscribe((response) => {
       this.statusKz = response;
+    })
+
+    
+    this.http.get( ConfigurationService.URL + '/matches/matchday/design', {responseType: 'text'}).subscribe((response) => {
+      this.design = response;
     })
   }
 

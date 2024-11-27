@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Birthstone&display=swap");
 
 
-.container{
+.default{
     top: -170px;
     left: 670px;
     position: absolute;
@@ -18,4 +18,18 @@
 		9px 9px 0px #7f0b14, 10px 10px 0px #7f0b14;
 	transform: rotateX(-20deg) rotateY(0deg) rotate(0deg);
 	perspective: 100px;
+}
+
+.other{
+    top: 170px;
+    left: 670px;
+    position: absolute;
+    font-family: 'Courier New', Arial, "Birthstone", cursive;
+	font-size: 18rem;
+	font-weight: 900;
+	color: #e63946;
+	display: block;
+	text-align: center;
+	margin: 10% 0;
+	letter-spacing: 10px;
 }

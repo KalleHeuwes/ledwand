@@ -1,11 +1,4 @@
 <div class="container" *ngIf="torschuetze">
     <div class="text-3d">Tor für 05</div>
-    
-    <table>
-        <tr>
-            <td>
-                <app-spielerkarte *ngIf="torschuetze"  [spieler]=  "torschuetze"  modus="gross2"/>
-            </td>
-        </tr>
-    </table>
+    <app-spielerkarte style="display: inline-block; position: absolute; top: 120px;" [spieler]=  "torschuetze"  modus="gross2"/>
 </div>
