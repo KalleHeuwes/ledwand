@@ -203,5 +203,13 @@ export class SmartupdateComponent implements OnInit {
 
     this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
     //console.log("smartupdate.anpfiffAuslesen.spielMinute: " + this.spielMinute);
-  }    
+  }
+
+  setDesign(design: String){
+    const url: string = ConfigurationService.URL + '/matches/matchday/design/' + design;
+
+    this.http.post(url, {responseType: 'text'}).subscribe((response) => {
+      console.log(response);
+    })
+  }
 }

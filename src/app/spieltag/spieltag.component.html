@@ -3,6 +3,9 @@
         <img src="assets/pictures/others/Fabulous05.JPG" style="width:100%;height: 100%;">
         <marquee class="laufschrift"      *ngIf="3 > 2" scrollAmount="{{laufschriftScrollAmount}}">{{laufschrift}}</marquee>
     </div>
+    <div *ngIf="design ==='other'">
+        <img src="assets/pictures/others/green-grass-background.jpg" style="width:100%;height: 100%;">
+    </div>
     <img class="logoHeim" src="assets/pictures/teams/logo_sve.png"/>
     <img class="logoGast" *ngIf="gegnerBild !=''" src="{{gegnerBild}}" width="255px;" height="255px;"/>
     <app-spielstand     toreHeim="{{toreHeim}}" toreGast="{{toreGast}}" design="{{design}}"/>

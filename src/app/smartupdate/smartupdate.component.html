@@ -7,7 +7,10 @@
         </mat-expansion-panel-header>
         <br/><button class="button1" (click)="spieltagEinlesen()">Spieltag laden</button>
         <span style="font-style: italic;">aus C:\temp\spieltag.csv</span>
-
+        <div>
+            <button class="button1" (click)="setDesign('default')">Design Standard</button>
+            <button class="button1" (click)="setDesign('other')">Design Anders</button>
+        </div>
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
