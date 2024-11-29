@@ -93,16 +93,25 @@ export class SmartupdateComponent implements OnInit {
     this.bvAuswahl = bv.toString();
   }
   anpfiffSetzen(hz: number){
-    let hour = this.rxTime.getHours();
-    let minuts = this.rxTime.getMinutes();
-    let seconds = this.rxTime.getSeconds();
-    let jetzt = hour + ":" + minuts + ":" + seconds
-    if (!confirm('Anpfiff auf ' + jetzt + ' setzen ?'))     return;
+    if(hz === 0){
+      if (!confirm('Halbzeitmodus einschalten ?'))     return;
+      const url: string = ConfigurationService.URL + '/status/halbzeit';
+      this.http.post(url, {responseType: 'text'}).subscribe((response) => {
+        console.log(response);
+      })
+    }else{
+      let hour = this.rxTime.getHours();
+      let minuts = this.rxTime.getMinutes();
+      let seconds = this.rxTime.getSeconds();
+      let jetzt = hour + ":" + minuts + ":" + seconds
+      if (!confirm('Anpfiff auf ' + jetzt + ' setzen ?'))     return;
+  
+      const url: string = ConfigurationService.URL + '/status/anpfiff/' + hz +'/' + jetzt;
+      this.http.post(url, {responseType: 'text'}).subscribe((response) => {
+        console.log(response);
+      })
+    }
 
-    const url: string = ConfigurationService.URL + '/status/anpfiff/' + hz +'/' + jetzt;
-    this.http.post(url, {responseType: 'text'}).subscribe((response) => {
-      console.log(response);
-    })
   }
 
   nachspielzeitOffset(offset: number){

@@ -1,0 +1,11 @@
+.container{
+    width: 1850px;
+    height: 1000px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    background-color: blanchedalmond;    
+    border: 2px solid;
+    padding: 10px;
+    box-shadow: 6px 4px 8px;
+}

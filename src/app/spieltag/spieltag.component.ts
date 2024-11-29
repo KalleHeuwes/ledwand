@@ -12,11 +12,13 @@ import { SpielstandComponent } from './spielstand/spielstand.component';
 import { ZeitenComponent } from './zeiten/zeiten.component';
 import { Player } from '../models/player';
 import { AufstellungComponent } from './aufstellung/aufstellung.component';
+import { HalbzeitComponent } from './halbzeit/halbzeit.component';
 //import {StatusKennzeichen} from '../enums/status-kennzeichen';
 
 enum StatusKennzeichen {
   Tor = 'T',
   Anpfiff = 'A',
+  Halbzeit = 'H',
   Spieltag = 'S',
   KeyValuePairs = 'K',
   Spielerwechsel = 'W',
@@ -28,7 +30,7 @@ enum StatusKennzeichen {
 @Component({
   selector: 'app-spieltag',
   standalone: true,
-  imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent, AufstellungComponent],
+  imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent, AufstellungComponent, HalbzeitComponent],
   templateUrl: './spieltag.component.html',
   styleUrl: './spieltag.component.css'
 })
@@ -57,6 +59,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public nachspielzeit: string = '';
   public statusKz: string = '';
   public hideDivFlg: boolean = true;
+  public hideHalbzeit: boolean = true;
   public hideAufstellung: boolean = true;
   public hideTorschuetzeFlg: boolean = true;
   public hideLaufschrift: boolean = false;
@@ -116,6 +119,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     //return; 
     this.http.get(this.urlStatus, {responseType: 'text'}).subscribe((response) => {
       this.statusKz = response;
+      this.hideHalbzeit = ("H" === response ? false : true);
     })
 
     

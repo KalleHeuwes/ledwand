@@ -11,6 +11,7 @@
     <app-spielstand     toreHeim="{{toreHeim}}" toreGast="{{toreGast}}" design="{{design}}"/>
     <app-zeiten         spielMinute="{{spielMinute}}" uhrzeit="{{time | date: 'HH:mm' }}" nachspielzeit="{{nachspielzeit}}" datum="{{datum}}"/>
     <app-spielerwechsel *ngIf="!hideDivFlg"         wechsel="{{spielerwechsel}}"></app-spielerwechsel>
+    <app-halbzeit       *ngIf="!hideHalbzeit"/>
     <app-aufstellung    *ngIf="!hideAufstellung"    [startelf]="startelf" [bank]="bank"></app-aufstellung>
     <app-torfueruns     *ngIf="!hideTorschuetzeFlg" torString="{{torschuetze}}"></app-torfueruns>
 </div>

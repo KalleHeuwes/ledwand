@@ -18,11 +18,19 @@ import { SpieltagComponent } from './spieltag/spieltag.component';
 import { CheckitoutComponent } from './checkitout/checkitout.component';
 import { StartseiteComponent } from './startseite/startseite.component';
 import { SmartupdateComponent } from './smartupdate/smartupdate.component';
+import { DragDropComponent } from './temp/drag-drop/drag-drop.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DragDropComponent
   ],
   imports: [
     MatCardModule, 
@@ -43,9 +51,16 @@ import { SmartupdateComponent } from './smartupdate/smartupdate.component';
       {path: 'spieltag', component: SpieltagComponent},
       {path: 'smartupdate', component: SmartupdateComponent},
       {path: 'checkitout', component: CheckitoutComponent},
+      {path: 'temp', component: DragDropComponent},
       {path: '', redirectTo: '/startseite', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
-    ]), 
+    ]),
+    DragDropModule,
+    MatMenuModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule, 
   ],
   providers: [
     provideAnimationsAsync()
