@@ -7,8 +7,6 @@ import { HttpClient } from '@angular/common/http';
 import { Player } from '../models/player';
 import { ConfigurationService } from '../services/configuration.service';
 import { NgxMatTimepickerModule} from 'ngx-mat-timepicker';
-import { Observable } from 'rxjs';
-import { Anpfiff } from '../models/anpfiff';
 
 @Component({
   selector: 'app-smartupdate',

@@ -1,5 +1,20 @@
 <div class="container" *ngIf="medien">
-    <h1>Halbzeit-Show</h1>
-    {{medien[0]}}
-    <img mat-card-image src ="{{medien[zaehler]}}" alt="Photo"  width="150px" height="210px">
+    <div class="debug" *ngIf="2>1">{{medien[zaehler]}}</div>
+    <div *ngIf="typen[zaehler] === 'Bild'">
+        <img  mat-card-image src ="{{medien[zaehler]}}" alt="Photo"  width="1800px" height="1000px">
+    </div>
+    <div *ngIf="typen[zaehler] === 'Video'">
+        Zeig Video {{medien[zaehler]}}
+        <video  width="320" height="270" volume=0 loop>
+            <source src="{{medien[zaehler]}}" type="video/avi">
+            
+        </video>
+    </div>    
+
 </div>
+
+<!--
+<source src="{{medien[zaehler]}}" type="video/mp4“>
+*ngIf="medien[zaehler] === 'Bild'"
+*ngIf="medien[zaehler] === 'Video'"
+-->

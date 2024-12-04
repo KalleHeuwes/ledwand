@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'app-drag-drop',
   templateUrl: './drag-drop.component.html',
   styleUrl: './drag-drop.component.css'
 })
-export class DragDropComponent {
+export class DragDropComponent implements OnInit {
+
   todo = [
     'Get to work',
     'Pick up groceries',
@@ -31,5 +33,9 @@ export class DragDropComponent {
           event.previousIndex,
           event.currentIndex);
     }
+  }
+
+  ngOnInit(): void {
+    console.log('...');
   }
 }

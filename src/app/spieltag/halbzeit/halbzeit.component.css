@@ -9,3 +9,14 @@
     padding: 10px;
     box-shadow: 6px 4px 8px;
 }
+
+.debug{
+    width: 350px;
+    height: 100px;
+    position: absolute;
+    left: 5px;
+    top: 5px; 
+    border: 2px solid;
+    padding: 10px;
+    box-shadow: 6px 4px 8px;
+}
