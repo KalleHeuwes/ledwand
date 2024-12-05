@@ -13,6 +13,7 @@ import { ZeitenComponent } from './zeiten/zeiten.component';
 import { Player } from '../models/player';
 import { AufstellungComponent } from './aufstellung/aufstellung.component';
 import { HalbzeitComponent } from './halbzeit/halbzeit.component';
+import { SubdesignComponent } from './subdesign/subdesign.component';
 //import {StatusKennzeichen} from '../enums/status-kennzeichen';
 
 enum StatusKennzeichen {
@@ -30,7 +31,9 @@ enum StatusKennzeichen {
 @Component({
   selector: 'app-spieltag',
   standalone: true,
-  imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent, AufstellungComponent, HalbzeitComponent],
+  imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent, AufstellungComponent, HalbzeitComponent
+            , SubdesignComponent
+  ],
   templateUrl: './spieltag.component.html',
   styleUrl: './spieltag.component.css'
 })
@@ -148,19 +151,22 @@ export class SpieltagComponent implements OnInit, OnDestroy {
         this.toreHeim = 0;
         this.toreGast = 0;
         this.spielstandSetzen('', -99);
+      }else{
+        var data = JSON.parse(response);
+        this.toreHeim = data.heim;
+        this.toreGast = data.gast;
+        this.spielstand = response;
       }
-      var data = JSON.parse(response);
-      this.toreHeim = data[0].heim;
-      this.toreGast = data[0].gast;
-      this.spielstand = response;
+
       this.laufschriftVisibility = this.toreGast > 0 || this.toreHeim > 0;
        
       // Torschütze als Bild anzeigen
       if(toreHeimAlt < this.toreHeim){
-        this.torschuetze = 'H|' + data[0].tsNummer + '|' + data[0].spielername.replace(' ', '|');
+        this.torschuetze = 'H|' + data.tsNummer + '|' + data.spielername.replace(' ', '|');
         
         this.hideTorschuetzeFlg = false;
-        setTimeout(() => {      this.hideTorschuetzeFlg = true;    }, 12000);
+        setTimeout(() => {      this.hideTorschuetzeFlg = true;    }, ConfigurationService.ANZEIGE_TS
+        );
       }
     })
 
@@ -186,16 +192,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
         this.nachspielzeit = (parseInt(items[2]) > 0 ? '+' + items[2] : '');
         }
     });
-    /*
-    let ret: Observable<String> = this.http.get<String>(ConfigurationService.URL + '/status/anpfiff');
-    ret.subscribe(r => {
-      if(r!== null){
-        let items = r.split('|');
-        this.halbzeit = parseInt(items[0]);
-        this.anpfiff = items[1];
-        }
-    })
-        */
+
     this.statusZurücksetzen();
   }
 

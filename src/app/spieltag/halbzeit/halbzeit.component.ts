@@ -14,8 +14,12 @@ export class HalbzeitComponent implements OnInit {
   intervalId: any;
   public medien: String[] = [];
   public typen: String[] = [];
+  public dauer: number[] = [];
+  public breite: number[] = [];
+  public hoehe: number[] = [];
   anzahl: number = 0;
-  zaehler: number = 0;
+  medienIndex: number = 0;
+  counter: number = 0;
 
   public constructor(private http: HttpClient) {  }
 
@@ -23,15 +27,19 @@ export class HalbzeitComponent implements OnInit {
     console.log('* HalbzeitComponent.ngOnInit ');
     this.configAuslesen();
     this.intervalId = setInterval(() => {
+      this.counter++;
       if(this.medien.length > 0){
-        this.zaehler++;
-        if(this.zaehler >= this.medien.length){
-          this.zaehler = 0;
+        if(this.counter >= this.dauer[this.medienIndex]){
+          this.medienIndex++;
+          if(this.medienIndex >= this.medien.length){
+            this.medienIndex = 0;
+          }
+          this.counter = 0;
         }
       }else{
-        this.zaehler = -1;
+        this.medienIndex = -1;
       }
-    }, 2000);
+    }, 1000);
   }
 
   configAuslesen(){
@@ -46,11 +54,18 @@ export class HalbzeitComponent implements OnInit {
             let items = el.split(';');
             this.typen.push(items[0]);
             this.medien.push(items[1]);
+            this.dauer.push(items[2]);
+            this.breite.push(items[3]);
+            this.hoehe.push(items[4]);
           }
         }
         
       }
     });
 
+  }
+
+  restlaufzeit(){
+    return this.dauer[this.medienIndex] - this.counter;
   }
 }

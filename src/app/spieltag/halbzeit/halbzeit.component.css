@@ -12,11 +12,9 @@
 
 .debug{
     width: 350px;
-    height: 100px;
+    height: 50px;
     position: absolute;
     left: 5px;
-    top: 5px; 
-    border: 2px solid;
-    padding: 10px;
-    box-shadow: 6px 4px 8px;
+    top: 1035px; 
+    text-align: left;
 }

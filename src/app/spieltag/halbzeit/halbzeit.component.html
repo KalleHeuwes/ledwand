@@ -1,20 +1,15 @@
 <div class="container" *ngIf="medien">
-    <div class="debug" *ngIf="2>1">{{medien[zaehler]}}</div>
-    <div *ngIf="typen[zaehler] === 'Bild'">
-        <img  mat-card-image src ="{{medien[zaehler]}}" alt="Photo"  width="1800px" height="1000px">
+    <div class="debug" *ngIf="2>1">{{medien[medienIndex]}}: {{restlaufzeit()}} s</div>
+    <div *ngIf="typen[medienIndex] === 'Bild'">
+        <img  mat-card-image src ="{{medien[medienIndex]}}" alt="Photo"  width="1800px" height="1000px">
     </div>
-    <div *ngIf="typen[zaehler] === 'Video'">
-        Zeig Video {{medien[zaehler]}}
-        <video  width="320" height="270" volume=0 loop>
-            <source src="{{medien[zaehler]}}" type="video/avi">
-            
+    <div *ngIf="typen[medienIndex] === 'Video'">
+        <video  width="auto" height="auto" volume=20 controls autoplay>
+            <source src="{{medien[medienIndex]}}" type="video/mp4">
         </video>
-    </div>    
-
+    </div>
 </div>
 
 <!--
-<source src="{{medien[zaehler]}}" type="video/mp4“>
-*ngIf="medien[zaehler] === 'Bild'"
-*ngIf="medien[zaehler] === 'Video'"
+
 -->

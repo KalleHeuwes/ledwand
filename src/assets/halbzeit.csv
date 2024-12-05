@@ -1,5 +1,6 @@
-#Name;Medium;Dauer in s
-Salvus;assets\pictures\sponsors\Salvus01.jpg;10
-Senger;assets\pictures\sponsors\Senger Bus.jpg;10
-Bitburger;assets\pictures\sponsors\bitburger-lang.jpg;10
-BOS;assets\pictures\sponsors\BOS.JPG;5
+#Typ;Medium;Dauer;Breite;Höhe
+Bild;assets\pictures\sponsors\Salvus01.jpg;2;1800px;1000px
+Bild;assets\pictures\sponsors\Senger Bus.jpg;2;1800px;1000px
+Bild;assets\pictures\sponsors\bitburger-lang.jpg;2;1800px;1000px
+Bild;assets\pictures\sponsors\BOS.JPG;2;1800px;1000px
+Video;assets\pictures\sponsors\LItalianoMitMarco.mp4;10;478px;720px

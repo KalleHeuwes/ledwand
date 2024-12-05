@@ -8,6 +8,7 @@
     </div>
     <img class="logoHeim" src="assets/pictures/teams/logo_sve.png"/>
     <img class="logoGast" *ngIf="gegnerBild !=''" src="{{gegnerBild}}" width="255px;" height="255px;"/>
+    <app-subdesign designName="{{design}}"/>
     <app-spielstand     toreHeim="{{toreHeim}}" toreGast="{{toreGast}}" design="{{design}}"/>
     <app-zeiten         spielMinute="{{spielMinute}}" uhrzeit="{{time | date: 'HH:mm' }}" nachspielzeit="{{nachspielzeit}}" datum="{{datum}}"/>
     <app-spielerwechsel *ngIf="!hideDivFlg"         wechsel="{{spielerwechsel}}"></app-spielerwechsel>
