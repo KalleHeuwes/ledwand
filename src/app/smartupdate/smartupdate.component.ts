@@ -28,7 +28,7 @@ export class SmartupdateComponent implements OnInit {
   intervalId: any;
   public bvListe: string[]  = ['Elfmeter verschossen', 'Rote Karte'];
   public anpfiff: string = '';
-  public nachspielzeit: string = '';
+  public nachspielzeit: number = 0;
   public halbzeit: number = 0;
   public screensize: string = '';
   teamgast: string = '';
@@ -40,10 +40,7 @@ export class SmartupdateComponent implements OnInit {
     this.screensize = 'Breite: ' + window.innerWidth + '/ Höhe: ' + window.innerHeight;
     this.aufstellungAuslesen(); 
     this.intervalId = setInterval(() => {
-      //this.time = new Date();
-      //this.spielstandAbfragen();
-      //this.spieltagAuslesen();
-      //this.wertePaareAbfragen();
+      this.rxTime = new Date();
       this.anpfiffAuslesen();
       this.spielMinute = ConfigurationService.berechneSpielminute(this.anpfiff, this.halbzeit);
       //console.log("smartupdate.ngOnInit.spielMinute: " + this.spielMinute);
@@ -113,7 +110,11 @@ export class SmartupdateComponent implements OnInit {
   }
 
   nachspielzeitOffset(offset: number){
-    this.nachspielzeit+=offset;
+    console.log('NZ alt: ' + this.nachspielzeit + '/ Offset: ' + offset);
+    let newVal = this.nachspielzeit + offset;
+    this.nachspielzeit = newVal;
+    
+    console.log('NZ neu: ' + this.nachspielzeit);
   }    
 
   nachspielzeitSetzen(){
@@ -204,7 +205,7 @@ export class SmartupdateComponent implements OnInit {
         let items = r.split('|');
         this.halbzeit = parseInt(items[0]);
         this.anpfiff = items[1];
-        this.nachspielzeit = (parseInt(items[2]) > 0 ? '+' + items[2] : '');
+        this.nachspielzeit = parseInt(items[2]);
         }
     });
 

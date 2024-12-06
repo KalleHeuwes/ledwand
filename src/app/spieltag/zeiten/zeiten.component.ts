@@ -13,4 +13,5 @@ export class ZeitenComponent {
   @Input() uhrzeit!: string;
   @Input() nachspielzeit!: string;
   @Input() datum!: string;
+  @Input() design!: string;
 }

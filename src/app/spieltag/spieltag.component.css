@@ -1,19 +1,14 @@
-.container {    position: relative;    text-align: center;    color: black;  }
+.container {    position: absolute;    text-align: center;    color: black;  }
 
-.laufschrift {
-    position: absolute;    top: 80%;    left: 1%;
-    color: whitesmoke;
-    font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 180px;    font-weight: bold;
-  }
 
 .logoHeim {
-  position: absolute;  bottom: 40%;
-  left: 16px; width:480px; height: 520px;
+  position: absolute;  top: 200px;
+  left: 16px; width:240px; height: 260px;
 }
 
 .logoGast {
-  position: absolute;  bottom: 40%;
-  right: 16px; width:480px; height: 520px;
+  position: absolute;  top: 200px;
+  left: 1600px; width:240px; height: 260px;
 }
 
 .nameVerein {
@@ -23,3 +18,9 @@
 .nameHeim {    left: 16px;  }
 
 .nameGast {   right: 16px;  }
+
+.laufschrift {
+  position: absolute;    top: 80%;    left: 1%;
+  color: whitesmoke;
+  font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 180px;    font-weight: bold;
+}

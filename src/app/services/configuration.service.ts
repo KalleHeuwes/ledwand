@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ConfigurationService {
   public static readonly HOST = 'heuweslap3';
-  public static readonly ANZEIGE_TS: number = 10000;
+  public static readonly ANZEIGE_TS: number = 2000;
   public static readonly URL = 'http://' + ConfigurationService.HOST + ':8080';
   public static readonly URLUPLOAD = 'http://' + ConfigurationService.HOST + ':3000';
   public static rxTime = new Date();

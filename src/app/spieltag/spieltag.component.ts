@@ -1,11 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { map, Observable, share, Subscription, timer, from } from "rxjs";
+import { Subscription } from "rxjs";
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { SpielstandUpdate } from '../models/spielstand-update';
 import { ConfigurationService } from '../services/configuration.service';
-import { KeyValuePair } from '../models/keyValuePair';
-import { Anpfiff } from '../models/anpfiff';
 import { SpielerwechselComponent } from './spielerwechsel/spielerwechsel.component';
 import { TorfuerunsComponent } from './torfueruns/torfueruns.component';
 import { SpielstandComponent } from './spielstand/spielstand.component';
@@ -43,15 +41,13 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   intervalId: any;
   subscription!: Subscription;
   url: string = ConfigurationService.URL + '/spielstand';
-  urlLaufschrift: string = this.url + '/laufschrift';
   urlStatus: string = ConfigurationService.URL + '/status/status';
+  urlLaufschrift: string = this.url + '/laufschrift';
+
   public toreHeim: number = 0;
   public toreGast: number = 0;
   public spielstand: string = '';
   public spielstandUpdate: SpielstandUpdate | undefined;
-  public laufschrift: string = '';
-  public laufschriftScrollAmount: number = 33;
-  public laufschriftVisibility: boolean = false;
   public datum: string = '18.11.2024';
   public teamheim: string = ''; // SpVg Emsdetten 05
   public teamgast: string = '';
@@ -65,11 +61,14 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public hideHalbzeit: boolean = true;
   public hideAufstellung: boolean = true;
   public hideTorschuetzeFlg: boolean = true;
-  public hideLaufschrift: boolean = false;
+  public hideLaufschrift: boolean = false;  
   public spielerwechsel: String = '';
   public torschuetze: String = '';
   public design: String = 'default';
-
+  public laufschrift: string = '';
+  public laufschriftScrollAmount: number = 33;
+  public laufschriftVisibility: boolean = false;  
+  
   public startelf: Player[] = [];
   public bank: Player[] = [];
 
@@ -159,6 +158,11 @@ export class SpieltagComponent implements OnInit, OnDestroy {
       }
 
       this.laufschriftVisibility = this.toreGast > 0 || this.toreHeim > 0;
+    
+      // Laufschrift vom Server abfragen
+      this.http.get(this.urlLaufschrift, {responseType: 'text'}).subscribe((response) => {
+        this.laufschrift = response;
+      })
        
       // Torschütze als Bild anzeigen
       if(toreHeimAlt < this.toreHeim){
@@ -171,10 +175,6 @@ export class SpieltagComponent implements OnInit, OnDestroy {
     })
 
 
-    // Laufschrift vom Server abfragen
-    this.http.get(this.urlLaufschrift, {responseType: 'text'}).subscribe((response) => {
-      this.laufschrift = response;
-    })
 
     
     this.statusZurücksetzen();

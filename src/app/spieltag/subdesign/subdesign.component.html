@@ -1,3 +1,9 @@
-<div class="container">
-    <p>{{designName}}</p>
+<div class="containerSD">
+    <div *ngIf="designName ==='default'">
+        <img src="assets/pictures/others/Fabulous05.JPG" style="width:100%;height: 100%;">
+        <marquee class="laufschrift"      *ngIf="3 > 2" scrollAmount="{{laufschriftScrollAmount}}">{{laufschrift}}</marquee>
+    </div>
+    <div *ngIf="designName ==='other'">
+        <img src="assets/pictures/others/green-grass-background.jpg" style="width:100%;height: 100%;">
+    </div>
 </div>

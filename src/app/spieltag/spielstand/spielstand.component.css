@@ -3,7 +3,8 @@
 
 .default{
     top: -170px;
-    left: 670px;
+    left: 640px;
+	width: 600px;
     position: absolute;
     font-family: 'Courier New', Arial, "Birthstone", cursive;
 	font-size: 18rem;
@@ -22,7 +23,8 @@
 
 .other{
     top: 170px;
-    left: 670px;
+    left: 470px;
+	width: 800px;
     position: absolute;
     font-family: 'Courier New', Arial, "Birthstone", cursive;
 	font-size: 24rem;
