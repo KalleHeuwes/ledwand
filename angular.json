@@ -59,6 +59,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "allowedHosts": ["localhost","heuweslap3"]
+          },
           "configurations": {
             "production": {
               "buildTarget": "angular-router-sample:build:production"
