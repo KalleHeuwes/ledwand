@@ -25,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { HistorieComponent } from './historie/historie.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MatSortModule } from '@angular/material/sort';
       {path: 'spieltag', component: SpieltagComponent},
       {path: 'smartupdate', component: SmartupdateComponent},
       {path: 'checkitout', component: CheckitoutComponent},
+      {path: 'historie', component: HistorieComponent},
       {path: 'temp', component: DragDropComponent},
       {path: '', redirectTo: '/startseite', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
