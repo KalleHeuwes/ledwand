@@ -6,11 +6,10 @@ import {MatGridListModule, MatGridTile} from '@angular/material/grid-list';
 import { Player } from '../models/player';
 
 @Component({
-  standalone: true,
-  imports: [SpielerkarteKleinComponent, CommonModule, MatGridListModule, MatGridTile],
-  selector: 'app-aufstellung',
-  templateUrl: './aufstellung.component.html',
-  styleUrl: './aufstellung.component.css'
+    imports: [SpielerkarteKleinComponent, CommonModule, MatGridListModule, MatGridTile],
+    selector: 'app-aufstellung',
+    templateUrl: './aufstellung.component.html',
+    styleUrl: './aufstellung.component.css'
 })
 export class AufstellungComponent implements OnInit {
   public startelf: Player[] = [];

@@ -4,11 +4,10 @@ import { ConfigurationService } from '../../services/configuration.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-halbzeit',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './halbzeit.component.html',
-  styleUrl: './halbzeit.component.css'
+    selector: 'app-halbzeit',
+    imports: [CommonModule],
+    templateUrl: './halbzeit.component.html',
+    styleUrl: './halbzeit.component.css'
 })
 export class HalbzeitComponent implements OnInit {
   intervalId: any;

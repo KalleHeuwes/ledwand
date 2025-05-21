@@ -27,13 +27,12 @@ enum StatusKennzeichen {
 }
 
 @Component({
-  selector: 'app-spieltag',
-  standalone: true,
-  imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent, AufstellungComponent, HalbzeitComponent
-            , SubdesignComponent
-  ],
-  templateUrl: './spieltag.component.html',
-  styleUrl: './spieltag.component.css'
+    selector: 'app-spieltag',
+    imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent, AufstellungComponent, HalbzeitComponent,
+        SubdesignComponent
+    ],
+    templateUrl: './spieltag.component.html',
+    styleUrl: './spieltag.component.css'
 })
 export class SpieltagComponent implements OnInit, OnDestroy {
   time = new Date();

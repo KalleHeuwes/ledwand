@@ -6,11 +6,10 @@ import {MatGridListModule, MatGridTile} from '@angular/material/grid-list';
 import { Player } from '../models/player';
 
 @Component({
-  standalone: true,
-  imports: [SpielerkarteComponent, CommonModule, MatGridListModule, MatGridTile],
-  selector: 'app-spieler-liste',
-  templateUrl: './spieler-liste.component.html',
-  styleUrl: './spieler-liste.component.css'
+    imports: [SpielerkarteComponent, CommonModule, MatGridListModule, MatGridTile],
+    selector: 'app-spieler-liste',
+    templateUrl: './spieler-liste.component.html',
+    styleUrl: './spieler-liste.component.css'
 })
 export class SpielerListeComponent implements OnInit {
   fehler!: string;

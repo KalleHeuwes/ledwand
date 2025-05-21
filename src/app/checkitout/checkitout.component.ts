@@ -6,11 +6,10 @@ import { SpieltagsConfig } from '../models/spieltags-config';
 import { SpieltagsConfigService } from '../services/spieltags-config.service';
 
 @Component({
-  selector: 'app-checkitout',
-  standalone: true,
-  imports: [],
-  templateUrl: './checkitout.component.html',
-  styleUrl: './checkitout.component.css'
+    selector: 'app-checkitout',
+    imports: [],
+    templateUrl: './checkitout.component.html',
+    styleUrl: './checkitout.component.css'
 })
 export class CheckitoutComponent implements OnInit {
 

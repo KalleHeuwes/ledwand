@@ -9,12 +9,11 @@ import { ConfigurationService } from '../services/configuration.service';
 import { NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 
 @Component({
-  selector: 'app-smartupdate',
-  standalone: true,
-  imports: [MatMenuModule, MatButtonModule, NgxMatTimepickerModule, MatExpansionModule],
-  templateUrl: './smartupdate.component.html',
-  styleUrl: './smartupdate.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-smartupdate',
+    imports: [MatMenuModule, MatButtonModule, NgxMatTimepickerModule, MatExpansionModule],
+    templateUrl: './smartupdate.component.html',
+    styleUrl: './smartupdate.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SmartupdateComponent implements OnInit {
   //readonly panelOpenState = signal(false);

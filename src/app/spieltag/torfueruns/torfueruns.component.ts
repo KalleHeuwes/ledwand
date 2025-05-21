@@ -5,11 +5,10 @@ import { Player } from '../../models/player';
 import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-torfueruns',
-  standalone: true,
-  imports: [SpielerkarteComponent, CommonModule],
-  templateUrl: './torfueruns.component.html',
-  styleUrl: './torfueruns.component.css'
+    selector: 'app-torfueruns',
+    imports: [SpielerkarteComponent, CommonModule],
+    templateUrl: './torfueruns.component.html',
+    styleUrl: './torfueruns.component.css'
 })
 export class TorfuerunsComponent implements OnInit {
   @Input() torString!: String;

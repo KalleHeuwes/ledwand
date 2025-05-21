@@ -5,12 +5,11 @@ import { CommonModule } from '@angular/common';
 import { Player } from '../models/player';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule],
-  selector: 'app-spielerkarte',
-  templateUrl: './spielerkarte.component.html',
-  styleUrl: './spielerkarte.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatCardModule, MatButtonModule, CommonModule],
+    selector: 'app-spielerkarte',
+    templateUrl: './spielerkarte.component.html',
+    styleUrl: './spielerkarte.component.css'
 })
 export class SpielerkarteComponent {
   @Input() spieler!: Player;

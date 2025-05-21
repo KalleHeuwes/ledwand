@@ -4,11 +4,10 @@ import { ConfigurationService } from 'src/app/services/configuration.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-subdesign',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './subdesign.component.html',
-  styleUrl: './subdesign.component.css'
+    selector: 'app-subdesign',
+    imports: [CommonModule],
+    templateUrl: './subdesign.component.html',
+    styleUrl: './subdesign.component.css'
 })
 export class SubdesignComponent implements OnInit {
   

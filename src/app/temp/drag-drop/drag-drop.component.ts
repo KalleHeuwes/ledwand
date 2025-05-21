@@ -3,9 +3,10 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 
 
 @Component({
-  selector: 'app-drag-drop',
-  templateUrl: './drag-drop.component.html',
-  styleUrl: './drag-drop.component.css'
+    selector: 'app-drag-drop',
+    templateUrl: './drag-drop.component.html',
+    styleUrl: './drag-drop.component.css',
+    standalone: false
 })
 export class DragDropComponent implements OnInit {
 
