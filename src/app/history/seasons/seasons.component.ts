@@ -25,8 +25,12 @@ interface Season {
 export class SeasonsComponent implements OnInit {
   tableData: Season[] = [];
   columns: string[] = [];
-  selectedCsv: string = 'assets/abschluss.csv'; // Default-Datei
+  //selectedCsv: string = 'assets/abschluss.csv'; // Default-Datei
+  selectedIndex = 0;
 
+  get selectedCsv(): string {
+    return this.tableData[this.selectedIndex].Import_Tabelle;
+  }
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -38,14 +42,38 @@ export class SeasonsComponent implements OnInit {
           skipEmptyLines: true,
           complete: (result) => {
             this.tableData = result.data as Season[];
-            this.columns = result.meta.fields || [];
+            const allColumns = result.meta.fields || [];
+            this.columns = allColumns.slice(0, -3); // entfernt die letzten zwei Spalten
+
+            //this.columns = result.meta.fields || [];
           }
         });
       });
   }
 
+  /*
     onFileChange(event: Event) {
     const select = event.target as HTMLSelectElement;
     this.selectedCsv = select.value;
+  }
+    */
+  
+  onSelectChange(event: Event) {
+    const value = (event.target as HTMLSelectElement).value;
+    const index = this.tableData.findIndex(file => file.Import_Tabelle === value);
+    if (index !== -1) {
+      this.selectedIndex = index;
+    }
+  }
+    previous() {
+    if (this.selectedIndex > 0) {
+      this.selectedIndex--;
+    }
+  }
+
+  next() {
+    if (this.selectedIndex < this.tableData.length - 1) {
+      this.selectedIndex++;
+    }
   }
 }

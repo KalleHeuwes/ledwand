@@ -15,15 +15,21 @@
         <td>{{ season.Platz }}</td>
         <td>{{ season.Punkte }}</td>
         <td>{{ season.Bemerkungen }}</td>
-        <td>{{ season.Import_Tabelle }}</td>
-        <td>{{ season.Import_Spiele }}</td>
       </tr>
     </tbody>
   </table>
   <h3>Wähle eine Liga:</h3>
-  <select class="form-select mb-4" (change)="onFileChange($event)">
-    <option *ngFor="let season of tableData" [value]="season.Import_Tabelle">{{ season.Saison }}</option>
-  </select>
-  {{selectedCsv}}
+
+  <div class="d-flex align-items-center gap-2 mb-3">
+
+    <select class="form-select mb-4" (change)="onSelectChange($event)">
+      <option *ngFor="let season of tableData" [value]="season.Import_Tabelle">{{ season.Saison }}</option>
+    </select>
+
+    <button class="btn btn-outline-primary" (click)="previous()" 
+      [disabled]="selectedIndex === 0">«</button>
+    <button class="btn btn-outline-primary" (click)="next()"
+      [disabled]="selectedIndex === tableData.length - 1">»</button>
+  </div>
   <app-football-table [csvPath]="selectedCsv"></app-football-table>
 </div>

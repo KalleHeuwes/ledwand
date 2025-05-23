@@ -4,15 +4,15 @@ import * as Papa from 'papaparse';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 interface TeamStanding {
-  Pl: string;
+  Platz: string;
   Mannschaft: string;
-  Sp: string;
+  Spiele: string;
   g: string;
   u: string;
   v: string;
   Tore: string;
   Diff: string;
-  Pkt: string;
+  Punkte: string;
 }
 
 @Component({
