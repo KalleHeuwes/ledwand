@@ -1,11 +1,22 @@
-Saison;Liga;Spiele;Platz;Punkte;Bemerkungen;Import_Tabelle;Import_Spiele;
-15/16;Landesliga;28;5;50;;1516_Abschluss;;
-16/17;Landesliga;30;15;33;Absteiger;1617_Abschluss;;
-17/18;Bezirksliga;30;9;38;;1718_Abschluss;;
-18/19;Bezirksliga;32;9;43;;1819_Abschluss;;
-19/20;Bezirksliga;20;10;24;Corona;1920_Abschluss;;
-20/21;Bezirksliga;8;5;16;Corona;2021_Abschluss;;
-21/22;Bezirksliga;34;11;46;;2122_Abschluss;2122;
-22/23;Bezirksliga;32;6;53;;2223_Abschluss;;
-23/24;Bezirksliga;28;3;57;;2324_Abschluss;;
-24/25;Bezirksliga;30;1;78;Aufsteiger;2425_Abschluss;;
+Saison;Liga;Spiele;Platz;Punkte;Bemerkungen;Import_Tabelle;Import_Spiele
+04/05;Oberliga Westfalen;34;9;43;;0405_Abschluss;
+05/06;Oberliga Westfalen;34;9;43;;0506_Abschluss;
+06/07;Oberliga Westfalen;34;17;31;Absteiger;0607_Abschluss;
+07/08;Westfalenliga 1;28;7;39;;0708_Abschluss;
+08/09;Westfalenliga 1;34;9;45;;0809_Abschluss;
+09/10;Westfalenliga 1;34;9;50;;0910_Abschluss;
+10/11;Westfalenliga 1;32;17;13;Absteiger;1011_Abschluss;
+11/12;Landesliga 4;30;15;20;Absteiger;1112_Abschluss;
+12/13;Bezirksliga 12;34;1;82;Aufsteiger;1213_Abschluss;
+13/14;Landesliga 4;30;10;42;;1314_Abschluss;
+14/15;Landesliga 4;30;9;44;;1415_Abschluss;
+15/16;Landesliga 4;28;5;50;;1516_Abschluss;
+16/17;Landesliga 4;30;15;33;Absteiger;1617_Abschluss;
+17/18;Bezirksliga 12;30;9;38;;1718_Abschluss;
+18/19;Bezirksliga 12;32;9;43;;1819_Abschluss;
+19/20;Bezirksliga 12;20;10;24;Corona;1920_Abschluss;
+20/21;Bezirksliga 12;8;5;16;Corona;2021_Abschluss;
+21/22;Bezirksliga 12;34;11;46;;2122_Abschluss;2122
+22/23;Bezirksliga 12;32;6;53;;2223_Abschluss;
+23/24;Bezirksliga 12;28;3;57;;2324_Abschluss;
+24/25;Bezirksliga 12;30;1;78;Aufsteiger;2425_Abschluss;
