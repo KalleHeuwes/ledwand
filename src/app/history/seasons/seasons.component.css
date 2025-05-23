@@ -1,0 +1,14 @@
+.row-absteiger {
+  background-color: #f8d7da !important;
+  color: #842029;
+}
+
+.row-aufsteiger {
+  background-color: #d1e7dd !important;
+  color: #0f5132;
+}
+
+.row-relegation {
+  background-color: #fff3cd !important;
+  color: #664d03;
+}

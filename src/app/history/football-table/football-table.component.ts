@@ -23,6 +23,7 @@ interface TeamStanding {
 })
 export class FootballTableComponent implements OnChanges {
   @Input() csvPath: string = '';
+  @Input() titel1: string = '';
   titel: string = 'Saison ' + this.csvPath;
   tableData: TeamStanding[] = [];
   columns: string[] = [];

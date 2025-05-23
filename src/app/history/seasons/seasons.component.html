@@ -8,7 +8,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let season of tableData">
+      <tr *ngFor="let season of tableData"
+      [class.table-danger]="season.Bemerkungen.includes('Absteiger')"
+      [class.table-success]="season.Bemerkungen.includes('Aufsteiger')">
         <td>{{ season.Saison }}</td>
         <td>{{ season.Liga }}</td>
         <td>{{ season.Spiele }}</td>
@@ -18,7 +20,7 @@
       </tr>
     </tbody>
   </table>
-  <h3>Wähle eine Liga:</h3>
+  <h3>Wähle eine Saison:</h3>
 
   <div class="d-flex align-items-center gap-2 mb-3">
 
@@ -31,5 +33,5 @@
     <button class="btn btn-outline-primary" (click)="next()"
       [disabled]="selectedIndex === tableData.length - 1">»</button>
   </div>
-  <app-football-table [csvPath]="selectedCsv"></app-football-table>
+  <app-football-table [csvPath]="selectedCsv" [titel1]="titelTabelle"></app-football-table>
 </div>

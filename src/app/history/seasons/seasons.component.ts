@@ -31,6 +31,14 @@ export class SeasonsComponent implements OnInit {
   get selectedCsv(): string {
     return this.tableData[this.selectedIndex].Import_Tabelle;
   }
+
+  get titelTabelle(): string {
+    let t = this.tableData[this.selectedIndex].Liga + ' ' 
+    + this.tableData[this.selectedIndex].Saison + ' ' 
+    + this.tableData[this.selectedIndex].Bemerkungen;
+    return t;
+  }
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -43,7 +51,7 @@ export class SeasonsComponent implements OnInit {
           complete: (result) => {
             this.tableData = result.data as Season[];
             const allColumns = result.meta.fields || [];
-            this.columns = allColumns.slice(0, -3); // entfernt die letzten zwei Spalten
+            this.columns = allColumns.slice(0, -2); // entfernt die letzten zwei Spalten
 
             //this.columns = result.meta.fields || [];
           }
@@ -76,4 +84,22 @@ export class SeasonsComponent implements OnInit {
       this.selectedIndex++;
     }
   }
+
+  getRowClass(bemerkungen: any): string {
+
+  if (bemerkungen.includes('Absteiger')){
+    return 'row-absteiger';
+  }
+
+  if (bemerkungen.includes('Aufsteiger')) {
+    return 'row-aufsteiger';
+  }
+
+  if (bemerkungen.includes('Relegation')) {
+    return 'row-relegation';
+  }
+
+  return 'row-aufsteiger';
+}
+
 }
