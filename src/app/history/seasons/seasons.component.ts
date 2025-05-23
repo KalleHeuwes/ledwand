@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as Papa from 'papaparse';
 import { HttpClient } from '@angular/common/http';
+import { FootballTableComponent } from '../football-table/football-table.component';
 
 
 interface Season {
@@ -18,12 +19,13 @@ interface Season {
 @Component({
   selector: 'app-seasons',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FootballTableComponent],
   templateUrl: './seasons.component.html'
 })
 export class SeasonsComponent implements OnInit {
   tableData: Season[] = [];
   columns: string[] = [];
+  selectedCsv: string = 'assets/abschluss.csv'; // Default-Datei
 
   constructor(private http: HttpClient) {}
 
@@ -40,5 +42,10 @@ export class SeasonsComponent implements OnInit {
           }
         });
       });
+  }
+
+    onFileChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.selectedCsv = select.value;
   }
 }
