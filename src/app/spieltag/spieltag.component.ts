@@ -11,7 +11,7 @@ import { ZeitenComponent } from './zeiten/zeiten.component';
 import { Player } from '../models/player';
 import { AufstellungComponent } from './aufstellung/aufstellung.component';
 import { HalbzeitComponent } from './halbzeit/halbzeit.component';
-import { SubdesignComponent } from './subdesign/subdesign.component';
+//import { SubdesignComponent } from './subdesign/subdesign.component';
 //import {StatusKennzeichen} from '../enums/status-kennzeichen';
 
 enum StatusKennzeichen {
@@ -29,7 +29,7 @@ enum StatusKennzeichen {
 @Component({
     selector: 'app-spieltag',
     imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent, AufstellungComponent, HalbzeitComponent,
-        SubdesignComponent
+        
     ],
     templateUrl: './spieltag.component.html',
     styleUrl: './spieltag.component.css'

@@ -6,11 +6,10 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import { HttpClient } from '@angular/common/http';
 import { Player } from '../models/player';
 import { ConfigurationService } from '../services/configuration.service';
-import { NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 
 @Component({
     selector: 'app-smartupdate',
-    imports: [MatMenuModule, MatButtonModule, NgxMatTimepickerModule, MatExpansionModule],
+    imports: [MatMenuModule, MatButtonModule, MatExpansionModule],
     templateUrl: './smartupdate.component.html',
     styleUrl: './smartupdate.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush

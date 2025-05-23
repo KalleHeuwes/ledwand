@@ -40,3 +40,6 @@ GitPush "20241031 a"
 GitPull
 
 ng serve --host 0.0.0.0
+
+## Komponente anlegen
+ng g c history\football-table
