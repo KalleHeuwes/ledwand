@@ -27,6 +27,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HistorieComponent } from './historie/historie.component';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +37,11 @@ import { HistorieComponent } from './historie/historie.component';
     DragDropComponent
   ],
   imports: [
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
     MatCardModule, 
     MatButtonModule,
     MatSlideToggleModule,

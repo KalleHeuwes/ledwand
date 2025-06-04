@@ -2,17 +2,26 @@
 
 
 .default{
-    top: -170px;
+	position: fixed; /* oder absolute, je nach Kontext */
+	top: 20%;
+	left: 50%;
+	
+	z-index: 100;
+
+    /*top: -170px;
     left: 640px;
 	width: 600px;
     position: absolute;
+	display: block;
+	text-align: center;
+	margin: 10% 0;
+	transform: translateX(-10%);
+	*/
     font-family: 'Courier New', Arial, "Birthstone", cursive;
 	font-size: 18rem;
 	font-weight: 900;
 	color: #e63946;
-	display: block;
-	text-align: center;
-	margin: 10% 0;
+	
 	letter-spacing: 10px;
 	text-shadow: 1px 1px 0px #fad5a5, 3px 3px 0px #fad5a5, 5px 5px 0px #fad5a5,
 		6px 6px 0px #8b8000, 7px 7px 0px #8b8000, 8px 8px 0px #8b8000,

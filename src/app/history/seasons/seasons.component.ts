@@ -25,7 +25,6 @@ interface Season {
 export class SeasonsComponent implements OnInit {
   tableData: Season[] = [];
   columns: string[] = [];
-  //selectedCsv: string = 'assets/abschluss.csv'; // Default-Datei
   selectedIndex = 0;
 
   get selectedCsv(): string {

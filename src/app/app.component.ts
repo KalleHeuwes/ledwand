@@ -13,4 +13,9 @@ export class AppComponent implements OnInit {
     console.log("ngOnInit AppComponent 1");
   }
   title = '05 - The wall';
+    collapsed = false;
+
+  toggleCollapse() {
+    this.collapsed = !this.collapsed;
+  }
 }

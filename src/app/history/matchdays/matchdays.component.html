@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Spieltage</h2>
+  <table class="table table-sm table-striped table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th *ngFor="let col of columns">{{ col }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let matchday of tableData">
+        <td>{{ matchday.Saison }}</td>
+        <td>{{ matchday.Spieltag }}</td>
+        <td>{{ matchday.Datum }}</td>
+        <td>{{ matchday.HA }}</td>
+        <td>{{ matchday.Gegner }}</td>
+        <td>{{ matchday.Ergebnis }}</td>
+        <td>{{ matchday.Punkte }}</td>
+        <td>{{ matchday.Platz }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

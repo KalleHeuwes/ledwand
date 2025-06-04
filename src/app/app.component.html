@@ -1,11 +1,40 @@
 <!--
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" [opened]="true" class="sidenav" [class.collapsed]="collapsed">
+    <mat-toolbar> </mat-toolbar>
+    <mat-nav-list>
 
-<nav>
-  <a class="button" routerLink="/aufstellung"     routerLinkActive="activebutton" ariaCurrentWhenActive="page">Aufstellung</a> |
-  <a class="button" routerLink="/players-list"    routerLinkActive="activebutton" ariaCurrentWhenActive="page">Spielerliste</a>
-  <a class="button" routerLink="/spieltag"        routerLinkActive="activebutton" ariaCurrentWhenActive="page">Spieltag</a>
-  <a class="button" routerLink="/statusupdatexxx" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Statusupdate</a>
-  <a class="button" routerLink="/checkitout"      routerLinkActive="activebutton" ariaCurrentWhenActive="page">Check it out</a>
-</nav>
+      <a mat-list-item routerLink="/startseite">
+        <mat-icon>home</mat-icon>
+        <span class="label" *ngIf="!collapsed">Startseite</span>
+      </a>
+      <a mat-list-item routerLink="/historie">
+        <mat-icon>history</mat-icon>
+        <span class="label" *ngIf="!collapsed">Historie</span>
+      </a>
+      <a mat-list-item routerLink="/spieltag">
+        <mat-icon>sports_soccer</mat-icon>
+        <span class="label" *ngIf="!collapsed">Spieltag</span>
+      </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="toggleCollapse()">
+        <mat-icon>{{ collapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+      </button>
+      <span>Meine Anwendung</span>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 -->
-<router-outlet></router-outlet>
+
+<div class="content">
+      <router-outlet></router-outlet>
+    </div>

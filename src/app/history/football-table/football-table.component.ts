@@ -33,7 +33,7 @@ export class FootballTableComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['csvPath'] && this.csvPath) {
       this.titel = 'Saison ' + this.csvPath.substring(0, 2) + '/' + this.csvPath.substring(2, 4);
-      this.loadCsv('assets/' + this.csvPath + '.csv');
+      this.loadCsv('assets/abschlusstabellen/' + this.csvPath + '.csv');
     }
   }
 

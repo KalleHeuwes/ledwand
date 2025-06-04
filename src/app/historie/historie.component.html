@@ -1,5 +1,23 @@
 <h1>Historie</h1>
 
+<!-- selection.component.html -->
+<label for="viewSelector">Ansicht wählen:</label>
+<select id="viewSelector" [(ngModel)]="selectedView">
+  <option value="historisch">Historische Spielzeiten</option>
+  <option value="abschluss">Abschlusstabellen</option>
+  <option value="einzel">Einzelspiele</option>
+</select>
+
+<div class="component-container">
+  <app-seasons *ngIf="selectedView === 'historisch'"></app-seasons>
+  <app-seasons *ngIf="selectedView === 'abschluss'"></app-seasons>
+  <app-matchdays *ngIf="selectedView === 'einzel'"></app-matchdays>
+</div>
+
+<!-- 
+
 <div class="container">
     <app-seasons></app-seasons>
+    <app-matchdays></app-matchdays>
 </div>
+-->
