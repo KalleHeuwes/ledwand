@@ -1,3 +1,28 @@
+.zeiten{
+    /*position: absolute;*/
+  font-family: Arial, cursive;
+	font-size: clamp(4em, 6vw, 8em);
+	font-weight: 900;
+	color: whitesmoke;
+	display: block;
+	text-align: center;
+	letter-spacing: 10px;
+	text-shadow: 1px 1px 0px #fad5a5, 3px 3px 0px #fad5a5, 5px 5px 0px #fad5a5;
+	transform: rotateX(-20deg) rotateY(0deg) rotate(0deg);
+	perspective: 100px;
+}
+
+.zeitenklein{
+  font-size: clamp(3em, 3vw, 5em);
+}
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/*
 :host {
   position: fixed;
   top: 0;
@@ -5,8 +30,40 @@
   width: 100vw;
   height: 100vh;
   z-index: 1000;
-  background-color: white; /* oder transparent */
+  background-color: white;
 }
+*/
+
+.background {
+  background-image: url('../../assets/pictures/others/grass.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-columns: 30% 40% 30%;
+  width: 90%;
+  height: 90%;
+  color: white;
+  font-size: clamp(1em, 2vw, 2em);;
+  text-align: center;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .fullscreen-img {
   position: fixed;
@@ -39,7 +96,9 @@
 .nameGast {   right: 16px;  }
 
 .laufschrift {
-  position: absolute;    top: 80%;    left: 1%;
+  /*position: absolute;    top: 80%;    left: 1%;*/
   color: whitesmoke;
-  font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;    font-size: 180px;    font-weight: bold;
+  font-family: 'Doodle', Georgia, 'Times New Roman', Times, serif;
+  font-size: clamp(2em, 4vw, 4em);
+  font-weight: bold;
 }

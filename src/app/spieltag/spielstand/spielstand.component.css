@@ -2,13 +2,18 @@
 
 
 .default{
-	position: fixed; /* oder absolute, je nach Kontext */
+	
+
+    /*
+	position: fixed;
+
 	top: 20%;
 	left: 50%;
 	
-	z-index: 100;
-
-    /*top: -170px;
+	z-index: 100;	
+	
+	
+	top: -170px;
     left: 640px;
 	width: 600px;
     position: absolute;
@@ -18,7 +23,7 @@
 	transform: translateX(-10%);
 	*/
     font-family: 'Courier New', Arial, "Birthstone", cursive;
-	font-size: 18rem;
+	font-size: clamp(4em, 16vw, 16em);
 	font-weight: 900;
 	color: #e63946;
 	

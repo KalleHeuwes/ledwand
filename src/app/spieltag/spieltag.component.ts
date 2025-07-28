@@ -65,7 +65,7 @@ export class SpieltagComponent implements OnInit, OnDestroy {
   public torschuetze: String = '';
   public design: String = 'default';
   public laufschrift: string = '';
-  public laufschriftScrollAmount: number = 33;
+  public laufschriftScrollAmount: number = 11;
   public laufschriftVisibility: boolean = false;  
   
   public startelf: Player[] = [];

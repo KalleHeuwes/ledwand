@@ -30,6 +30,7 @@ import { HistorieComponent } from './historie/historie.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { SpielanzeigeComponent } from './temp/spielanzeige/spielanzeige.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,7 @@ import { MatListModule } from '@angular/material/list';
       {path: 'smartupdate', component: SmartupdateComponent},
       {path: 'checkitout', component: CheckitoutComponent},
       {path: 'historie', component: HistorieComponent},
-      {path: 'temp', component: DragDropComponent},
+      {path: 'temp', component: SpielanzeigeComponent},
       {path: '', redirectTo: '/startseite', pathMatch: 'full'},
       {path: '**', component: PageNotFoundComponent}
     ]),
