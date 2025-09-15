@@ -1,4 +1,71 @@
 <h1>Historie</h1>
+<div class="cards-row">
+  <mat-card class="retro-card">
+    <mat-card-header>
+      <mat-card-title>Historische Spielzeiten</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <img
+        src="assets/historische-spielzeiten.png"
+        alt="Historische Spielzeiten"
+        class="card-image"
+      />
+      <p class="card-text">
+        Übersicht über vergangene Saisons des Vereins.
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="onAction('action1')">action1</button>
+      <button mat-raised-button (click)="onAction('action2')">action2</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="retro-card">
+    <mat-card-header>
+      <mat-card-title>Abschlusstabellen</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <img
+        src="assets/abschlusstabellen.png"
+        alt="Abschlusstabellen"
+        class="card-image"
+      />
+      <p class="card-text">
+        Tabellenübersicht mit Platzierungen und Punkten.
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="onAction('action3')">action3</button>
+      <button mat-raised-button (click)="onAction('action4')">action4</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="retro-card">
+    <mat-card-header>
+      <mat-card-title>Einzelspiele</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <img
+        src="assets/einzelspiele.png"
+        alt="Einzelspiele"
+        class="card-image"
+      />
+      <p class="card-text">
+        Ergebnisse einzelner Spiele und Spielberichte.
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="onAction('action5')">action5</button>
+      <button mat-raised-button (click)="onAction('action6')">action6</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
 
 <!-- selection.component.html -->
 <label for="viewSelector">Ansicht wählen:</label>
@@ -6,9 +73,10 @@
   <option value="historisch">Historische Spielzeiten</option>
   <option value="abschluss">Abschlusstabellen</option>
   <option value="einzel">Einzelspiele</option>
+  <option value="nix">LEER</option>
 </select>
 
-<div class="component-container">
+<div class="component-containerx scrollable">
   <app-seasons *ngIf="selectedView === 'historisch'"></app-seasons>
   <app-seasons *ngIf="selectedView === 'abschluss'"></app-seasons>
   <app-matchdays *ngIf="selectedView === 'einzel'"></app-matchdays>

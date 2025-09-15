@@ -1,0 +1,88 @@
+.scrollable{
+      height: 1100px;          /* Höhe begrenzen */
+        overflow-y: auto;       /* nur vertikaler Scrollbalken */
+        overflow-x: hidden;     /* kein horizontaler Scrollbalken */
+        border: 1px solid #ccc; /* optional, zur Sichtbarkeit */
+        padding: 10px;
+}
+
+.cards-row {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch; /* gleiche Höhe */
+  justify-content: center;
+  flex-wrap: wrap; /* bei kleinen Bildschirmen umbrechen */
+  margin: 1rem;
+}
+
+/* Card Styling im Retro-Look */
+.retro-card {
+  flex: 1 1 300px; /* wächst, schrumpft; Basisbreite 300px */
+  max-width: 360px;
+  background-color: #f8f0de; /* cremeweiß */
+  border-radius: 12px;
+  border: 3px solid #cdb99a; /* hellbraun Rand */
+  color: #3b3228;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+/* Titel */
+.retro-card ::ng-deep .mat-card-title {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #3b3228; /* dunkles braun */
+  padding: 0.5rem 1rem;
+}
+
+/* Bild */
+.card-image {
+  width: 60%;
+  height: 80px;
+  object-fit: contain; /* behält Proportionen, passt in Box */
+  display: block;
+  margin: 0.25rem 0 0.6rem 0;
+  padding: 0 1rem;
+  background: transparent;
+}
+
+/* erklärender Text */
+.card-text {
+  padding: 0 1rem 0.6rem 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #4a3f36;
+}
+
+/* Aktionen (Buttons) */
+.retro-card ::ng-deep .mat-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  justify-content: flex-end;
+}
+
+/* Retro-Buttons */
+.retro-card ::ng-deep button.mat-raised-button {
+  background-color: #cfe6cf; /* mintgrün */
+  color: #3b3228;
+  border-radius: 10px;
+  box-shadow: none;
+  text-transform: none;
+  font-weight: 600;
+}
+
+/* Hover/Effekt dezent */
+.retro-card ::ng-deep button.mat-raised-button:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+/* Responsive: weniger Abstand auf sehr kleinen Bildschirmen */
+@media (max-width: 480px) {
+  .card-image { height: 140px; }
+  .retro-card { max-width: 100%; flex-basis: 100%; }
+}
