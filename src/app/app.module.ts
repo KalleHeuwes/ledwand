@@ -31,6 +31,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { SpielanzeigeComponent } from './temp/spielanzeige/spielanzeige.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +74,7 @@ import { SpielanzeigeComponent } from './temp/spielanzeige/spielanzeige.componen
     MatTableModule,
     MatPaginatorModule,
     MatSortModule, 
+    MatSnackBarModule,
   ],
   providers: [
     provideAnimationsAsync()

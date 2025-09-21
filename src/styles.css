@@ -14,3 +14,31 @@ html, body {
 }
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.retro-snackbar {
+  background-color: #f8f0de; /* cremeweiß */
+  color: #3b3228;
+  border: 2px solid #cdb99a;
+  font-family: "Georgia", serif;
+  font-weight: bold;
+  border-radius: 28px;
+}
+.retro-snackbar-mint {
+  background-color: #d9f2e6 !important; /* mintgrün */
+  color: #2c3a33 !important;
+  font-family: "Georgia", serif !important;
+  font-weight: bold !important;
+  border: 2px solid #a6cbb9 !important;
+  border-radius: 12px !important;
+  box-shadow: 2px 2px 6px rgba(44, 58, 51, 0.4) !important;
+}
+.retro-snackbar-creme {
+  background-color: #f8f0de !important; /* cremeweiß */
+  color: #3b2f2f !important;
+  font-family: "Courier New", monospace !important; /* Retro-Schreibmaschinen-Look */
+  font-weight: 600 !important;
+  border: 2px dashed #b89c7d !important;
+  border-radius: 4px !important;
+  box-shadow: inset 0 0 6px rgba(60, 40, 20, 0.3),
+              3px 3px 0 #b89c7d !important;
+}

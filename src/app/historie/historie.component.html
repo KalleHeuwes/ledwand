@@ -1,6 +1,6 @@
 <h1>Historie</h1>
 <div class="cards-row">
-  <mat-card class="retro-card">
+  <mat-card class="retro-card" (click)="onAction('Historische Spielzeiten')">
     <mat-card-header>
       <mat-card-title>Historische Spielzeiten</mat-card-title>
     </mat-card-header>
@@ -15,14 +15,9 @@
         Übersicht über vergangene Saisons des Vereins.
       </p>
     </mat-card-content>
-
-    <mat-card-actions>
-      <button mat-raised-button (click)="onAction('action1')">action1</button>
-      <button mat-raised-button (click)="onAction('action2')">action2</button>
-    </mat-card-actions>
   </mat-card>
 
-  <mat-card class="retro-card">
+  <mat-card class="retro-card" (click)="onAction('Abschlusstabellen')">
     <mat-card-header>
       <mat-card-title>Abschlusstabellen</mat-card-title>
     </mat-card-header>
@@ -37,14 +32,9 @@
         Tabellenübersicht mit Platzierungen und Punkten.
       </p>
     </mat-card-content>
-
-    <mat-card-actions>
-      <button mat-raised-button (click)="onAction('action3')">action3</button>
-      <button mat-raised-button (click)="onAction('action4')">action4</button>
-    </mat-card-actions>
   </mat-card>
 
-  <mat-card class="retro-card">
+  <mat-card class="retro-card" (click)="onAction('Einzelspiele')">
     <mat-card-header>
       <mat-card-title>Einzelspiele</mat-card-title>
     </mat-card-header>
@@ -59,11 +49,6 @@
         Ergebnisse einzelner Spiele und Spielberichte.
       </p>
     </mat-card-content>
-
-    <mat-card-actions>
-      <button mat-raised-button (click)="onAction('action5')">action5</button>
-      <button mat-raised-button (click)="onAction('action6')">action6</button>
-    </mat-card-actions>
   </mat-card>
 </div>
 

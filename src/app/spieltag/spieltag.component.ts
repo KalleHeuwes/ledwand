@@ -7,7 +7,6 @@ import { ConfigurationService } from '../services/configuration.service';
 import { SpielerwechselComponent } from './spielerwechsel/spielerwechsel.component';
 import { TorfuerunsComponent } from './torfueruns/torfueruns.component';
 import { SpielstandComponent } from './spielstand/spielstand.component';
-import { ZeitenComponent } from './zeiten/zeiten.component';
 import { Player } from '../models/player';
 import { AufstellungComponent } from './aufstellung/aufstellung.component';
 import { HalbzeitComponent } from './halbzeit/halbzeit.component';
@@ -28,7 +27,7 @@ enum StatusKennzeichen {
 
 @Component({
     selector: 'app-spieltag',
-    imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, ZeitenComponent, AufstellungComponent, HalbzeitComponent,
+    imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, AufstellungComponent, HalbzeitComponent,
         
     ],
     templateUrl: './spieltag.component.html',

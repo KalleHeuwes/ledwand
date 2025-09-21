@@ -30,15 +30,6 @@
   padding: 0.5rem 0;
 }
 
-/* Titel */
-.retro-card ::ng-deep .mat-card-title {
-  font-family: "Georgia", "Times New Roman", serif;
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: #3b3228; /* dunkles braun */
-  padding: 0.5rem 1rem;
-}
-
 /* Bild */
 .card-image {
   width: 60%;
@@ -59,7 +50,7 @@
 }
 
 /* Aktionen (Buttons) */
-.retro-card ::ng-deep .mat-card-actions {
+mat-card-actions {
   display: flex;
   gap: 0.5rem;
   padding: 0.6rem 1rem;
@@ -67,7 +58,7 @@
 }
 
 /* Retro-Buttons */
-.retro-card ::ng-deep button.mat-raised-button {
+.retro-btn {
   background-color: #cfe6cf; /* mintgrün */
   color: #3b3228;
   border-radius: 10px;
@@ -76,8 +67,19 @@
   font-weight: 600;
 }
 
+mat-card-title {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #6b5b4b;
+  text-shadow: 2px 2px 0 #f8f0de, 4px 4px 0 #cdb99a;
+  transform: rotate(-0deg); /* minimal gekippt */
+  margin-bottom: 0.8rem;
+  letter-spacing: 2px;
+}
+
 /* Hover/Effekt dezent */
-.retro-card ::ng-deep button.mat-raised-button:hover {
+.retro-btn:hover {
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
 }
 
@@ -86,3 +88,5 @@
   .card-image { height: 140px; }
   .retro-card { max-width: 100%; flex-basis: 100%; }
 }
+
+
