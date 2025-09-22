@@ -1,0 +1,70 @@
+<div class="profil-container">
+  <!-- Linkes Drittel -->
+  <div class="profil-links">
+    <mat-card class="foto-card">
+      <div class="bilder">
+        <img src="assets/spieler-aktuell.jpg" alt="Aktuelles Foto" class="foto-aktuell">
+        <div class="fotos-alt">
+          <img src="assets/spieler-alt1.jpg" alt="Altes Foto 1" class="foto-alt">
+          <img src="assets/spieler-alt2.jpg" alt="Altes Foto 2" class="foto-alt">
+        </div>
+      </div>
+      <div class="info">
+        <p><strong>Name:</strong> Müller</p>
+        <p><strong>Vorname:</strong> Max</p>
+        <p><strong>Geburtsdatum:</strong> 01.01.1995</p>
+        <p><strong>Im Verein seit:</strong> 2010</p>
+        <p><strong>Position:</strong> Stürmer</p>
+        <p class="beschreibung">
+          Max ist ein schneller, wendiger Stürmer mit großem Torriecher.
+          Seine Stärken liegen im 1-gegen-1 und im Abschluss mit beiden Füßen.
+          Er gilt als Publikumsliebling durch seinen Einsatz.
+        </p>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- Rechtes Zweidrittel -->
+  <div class="profil-rechts">
+    <mat-card>
+      <mat-card-title>Spieleinsätze</mat-card-title>
+      <mat-card-content>
+        <table mat-table [dataSource]="daten" class="mat-elevation-z2 full-width-table">
+
+          <ng-container matColumnDef="saison">
+            <th mat-header-cell *matHeaderCellDef> Spielzeit </th>
+            <td mat-cell *matCellDef="let element"> {{element.saison}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="spieltag">
+            <th mat-header-cell *matHeaderCellDef> Spieltag </th>
+            <td mat-cell *matCellDef="let element"> {{element.spieltag}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="datum">
+            <th mat-header-cell *matHeaderCellDef> Datum </th>
+            <td mat-cell *matCellDef="let element"> {{element.datum}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="einsatzzeit">
+            <th mat-header-cell *matHeaderCellDef> Einsatzzeit </th>
+            <td mat-cell *matCellDef="let element"> {{element.einsatzzeit}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="tore">
+            <th mat-header-cell *matHeaderCellDef> Tore </th>
+            <td mat-cell *matCellDef="let element"> {{element.tore}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="bemerkungen">
+            <th mat-header-cell *matHeaderCellDef> Bemerkungen </th>
+            <td mat-cell *matCellDef="let element"> {{element.bemerkungen}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

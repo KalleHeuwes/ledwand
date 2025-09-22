@@ -1,76 +1,87 @@
 <h1>Historie</h1>
-<div class="cards-row">
-  <mat-card class="retro-card" (click)="onAction('Historische Spielzeiten')">
-    <mat-card-header>
-      <mat-card-title>Historische Spielzeiten</mat-card-title>
-    </mat-card-header>
-
-    <mat-card-content>
-      <img
-        src="assets/historische-spielzeiten.png"
-        alt="Historische Spielzeiten"
-        class="card-image"
-      />
-      <p class="card-text">
-        Übersicht über vergangene Saisons des Vereins.
-      </p>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="retro-card" (click)="onAction('Abschlusstabellen')">
-    <mat-card-header>
-      <mat-card-title>Abschlusstabellen</mat-card-title>
-    </mat-card-header>
-
-    <mat-card-content>
-      <img
-        src="assets/abschlusstabellen.png"
-        alt="Abschlusstabellen"
-        class="card-image"
-      />
-      <p class="card-text">
-        Tabellenübersicht mit Platzierungen und Punkten.
-      </p>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="retro-card" (click)="onAction('Einzelspiele')">
-    <mat-card-header>
-      <mat-card-title>Einzelspiele</mat-card-title>
-    </mat-card-header>
-
-    <mat-card-content>
-      <img
-        src="assets/einzelspiele.png"
-        alt="Einzelspiele"
-        class="card-image"
-      />
-      <p class="card-text">
-        Ergebnisse einzelner Spiele und Spielberichte.
-      </p>
-    </mat-card-content>
-  </mat-card>
+<div *ngIf="selectedView !== 'menu'">
+  <button mat-raised-button color="primary" (click)="selectedView = 'menu'">
+    Zurück zum Menü
+  </button>
 </div>
+<div *ngIf="selectedView === 'menu'">
+  <div class="cards-row">
+    <mat-card class="retro-card" (click)="onAction('historisch')">
+      <mat-card-header>
+        <mat-card-title>Historische Spielzeiten</mat-card-title>
+      </mat-card-header>
 
-<!-- selection.component.html -->
-<label for="viewSelector">Ansicht wählen:</label>
-<select id="viewSelector" [(ngModel)]="selectedView">
-  <option value="historisch">Historische Spielzeiten</option>
-  <option value="abschluss">Abschlusstabellen</option>
-  <option value="einzel">Einzelspiele</option>
-  <option value="nix">LEER</option>
-</select>
+      <mat-card-content>
+        <img
+          src="assets/historische-spielzeiten.png"
+          alt="Historische Spielzeiten"
+          class="card-image"
+        />
+        <p class="card-text">
+          Übersicht über vergangene Saisons des Vereins.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="retro-card" (click)="onAction('abschluss')">
+      <mat-card-header>
+        <mat-card-title>Abschlusstabellen</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <img
+          src="assets/abschlusstabellen.png"
+          alt="Abschlusstabellen"
+          class="card-image"
+        />
+        <p class="card-text">
+          Tabellenübersicht mit Platzierungen und Punkten.
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="retro-card" (click)="onAction('einzel')">
+      <mat-card-header>
+        <mat-card-title>Einzelspiele</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <img
+          src="assets/einzelspiele.png"
+          alt="Einzelspiele"
+          class="card-image"
+        />
+        <p class="card-text">
+          Ergebnisse einzelner Spiele und Spielberichte.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="cards-row">
+    <mat-card class="retro-card" (click)="onAction('spieler')">
+      <mat-card-header>
+        <mat-card-title>Spielerprofile</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <img
+          src="assets/spielerprofile.png"
+          alt="Spielerprofile"
+          class="card-image"
+        />
+        <p class="card-text">
+          Informationen zu einzelnen Spielern
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
 
 <div class="component-containerx scrollable">
   <app-seasons *ngIf="selectedView === 'historisch'"></app-seasons>
-  <app-seasons *ngIf="selectedView === 'abschluss'"></app-seasons>
+  <app-football-table *ngIf="selectedView === 'abschluss'" 
+    [csvPath]="'assets/abschlusstabellen/0001_Abschluss.csv'"></app-football-table>
   <app-matchdays *ngIf="selectedView === 'einzel'"></app-matchdays>
+  <app-spielerprofil *ngIf="selectedView === 'spieler'"></app-spielerprofil>
 </div>
-
-<!-- 
-
-<div class="container">
-    <app-seasons></app-seasons>
-    <app-matchdays></app-matchdays>
-</div>
--->
