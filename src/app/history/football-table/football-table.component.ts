@@ -1,7 +1,18 @@
-import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, Input, SimpleChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as Papa from 'papaparse';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+interface Season {
+  Saison: string;
+  Liga: string;
+  Spiele: string;
+  Platz: string;
+  Punkte: string;
+  Bemerkungen: string;
+  Import_Tabelle: string;
+  Import_Spiele: string;
+}
 
 interface TeamStanding {
   Platz: string;
@@ -21,14 +32,31 @@ interface TeamStanding {
   imports: [CommonModule],
   templateUrl: './football-table.component.html'
 })
-export class FootballTableComponent implements OnChanges {
+export class FootballTableComponent implements OnChanges, OnInit {
   @Input() csvPath: string = '';
   @Input() titel1: string = '';
   titel: string = 'Saison ' + this.csvPath;
   tableData: TeamStanding[] = [];
-  columns: string[] = [];
+  seasons: Season[] = [];
+  columns: string[] = [];  
+  selectedIndex = 0;
 
   constructor(private http: HttpClient) {}
+  ngOnInit(): void {
+    this.http.get('assets/historie/saisons.csv', { responseType: 'text' })
+      .subscribe(csvData => {
+        Papa.parse(csvData, {
+          header: true,
+          delimiter: ";",
+          skipEmptyLines: true,
+          complete: (result) => {
+            this.seasons = result.data as Season[];
+            const allColumns = result.meta.fields || [];
+            this.columns = allColumns.slice(0, -2); // entfernt die letzten zwei Spalten
+          }
+        });
+      });
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['csvPath'] && this.csvPath) {
@@ -38,7 +66,10 @@ export class FootballTableComponent implements OnChanges {
   }
 
   private loadCsv(path: string) {
+    this.titel = this.titelTabelle;
+      
     this.http.get(path, { responseType: 'text' }).subscribe(csvData => {
+      console.log('Pfad:', path);
       Papa.parse(csvData, {
         header: true,
         delimiter: ";",
@@ -49,5 +80,41 @@ export class FootballTableComponent implements OnChanges {
         }
       });
     });
+  }
+
+  onSelectChange(event: Event) {
+    const value = (event.target as HTMLSelectElement).value;
+    const index = this.seasons.findIndex(file => file.Import_Tabelle === value);
+    if (index !== -1) {
+      this.selectedIndex = index;
+      console.log(this.selectedIndex);
+      console.log(this.seasons[this.selectedIndex].Import_Tabelle);    
+      this.loadCsv('assets/historie/abschlusstabellen/' + this.seasons[this.selectedIndex].Import_Tabelle + '.csv');
+    }
+  }
+
+  previous() {
+    if (this.selectedIndex > 0) {
+      this.selectedIndex--;
+      this.loadCsv('assets/historie/abschlusstabellen/' + this.seasons[this.selectedIndex].Import_Tabelle + '.csv');
+    }
+  }
+
+  next() {
+    if (this.selectedIndex < this.seasons.length - 1) {
+      this.selectedIndex++;
+      this.loadCsv('assets/historie/abschlusstabellen/' + this.seasons[this.selectedIndex].Import_Tabelle + '.csv');
+    }
+  }
+  
+  get selectedCsv(): string {
+    return this.seasons[this.selectedIndex].Import_Tabelle;
+  }
+
+  get titelTabelle(): string {
+    let t = this.seasons[this.selectedIndex].Liga + ' ' 
+    + this.seasons[this.selectedIndex].Saison + ' ' 
+    + this.seasons[this.selectedIndex].Bemerkungen;
+    return t;
   }
 }

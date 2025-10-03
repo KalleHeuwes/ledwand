@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as Papa from 'papaparse';
 import { HttpClient } from '@angular/common/http';
-import { FootballTableComponent } from '../football-table/football-table.component';
 
 
 interface Season {
@@ -19,7 +18,7 @@ interface Season {
 @Component({
   selector: 'app-seasons',
   standalone: true,
-  imports: [CommonModule, FootballTableComponent],
+  imports: [CommonModule],
   templateUrl: './seasons.component.html'
 })
 export class SeasonsComponent implements OnInit {
@@ -51,39 +50,11 @@ export class SeasonsComponent implements OnInit {
             this.tableData = result.data as Season[];
             const allColumns = result.meta.fields || [];
             this.columns = allColumns.slice(0, -2); // entfernt die letzten zwei Spalten
-
-            //this.columns = result.meta.fields || [];
           }
         });
       });
   }
-
-  /*
-    onFileChange(event: Event) {
-    const select = event.target as HTMLSelectElement;
-    this.selectedCsv = select.value;
-  }
-    */
   
-  onSelectChange(event: Event) {
-    const value = (event.target as HTMLSelectElement).value;
-    const index = this.tableData.findIndex(file => file.Import_Tabelle === value);
-    if (index !== -1) {
-      this.selectedIndex = index;
-    }
-  }
-    previous() {
-    if (this.selectedIndex > 0) {
-      this.selectedIndex--;
-    }
-  }
-
-  next() {
-    if (this.selectedIndex < this.tableData.length - 1) {
-      this.selectedIndex++;
-    }
-  }
-
   getRowClass(bemerkungen: any): string {
 
   if (bemerkungen.includes('Absteiger')){
