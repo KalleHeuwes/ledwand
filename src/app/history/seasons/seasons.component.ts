@@ -41,7 +41,7 @@ export class SeasonsComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get('assets/saisons.csv', { responseType: 'text' })
+    this.http.get('assets/historie/saisons.csv', { responseType: 'text' })
       .subscribe(csvData => {
         Papa.parse(csvData, {
           header: true,

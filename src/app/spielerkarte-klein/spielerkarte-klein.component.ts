@@ -4,6 +4,7 @@ import {MatCardModule} from '@angular/material/card';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
     imports: [MatCardModule, MatButtonModule],
     selector: 'app-spielerkarte-klein',
     templateUrl: './spielerkarte-klein.component.html',

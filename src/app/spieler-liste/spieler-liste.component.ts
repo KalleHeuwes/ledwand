@@ -8,6 +8,7 @@ import { Player } from '../models/player';
 @Component({
     imports: [SpielerkarteComponent, CommonModule, MatGridListModule, MatGridTile],
     selector: 'app-spieler-liste',
+    standalone: true,
     templateUrl: './spieler-liste.component.html',
     styleUrl: './spieler-liste.component.css'
 })

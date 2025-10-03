@@ -7,6 +7,7 @@ import { SpieltagsConfigService } from '../services/spieltags-config.service';
 
 @Component({
     selector: 'app-checkitout',
+    standalone: true,
     imports: [],
     templateUrl: './checkitout.component.html',
     styleUrl: './checkitout.component.css'

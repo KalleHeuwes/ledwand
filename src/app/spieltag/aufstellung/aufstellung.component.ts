@@ -19,6 +19,7 @@ enum StatusKennzeichen {
 
 @Component({
     selector: 'app-aufstellung',
+    standalone: true,
     imports: [SpielerkarteKleinComponent, SpielerkarteComponent, CommonModule],
     templateUrl: './aufstellung.component.html',
     styleUrl: './aufstellung.component.css'

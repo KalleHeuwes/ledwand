@@ -8,6 +8,7 @@ import { Player } from '../models/player';
 @Component({
     imports: [SpielerkarteKleinComponent, CommonModule, MatGridListModule, MatGridTile],
     selector: 'app-aufstellung',
+    standalone: true,
     templateUrl: './aufstellung.component.html',
     styleUrl: './aufstellung.component.css'
 })

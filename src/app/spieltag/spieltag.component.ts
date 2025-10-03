@@ -27,6 +27,7 @@ enum StatusKennzeichen {
 
 @Component({
     selector: 'app-spieltag',
+    standalone: true,
     imports: [CommonModule, SpielerwechselComponent, TorfuerunsComponent, SpielstandComponent, AufstellungComponent, HalbzeitComponent,
         
     ],

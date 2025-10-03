@@ -11,6 +11,7 @@ import { FootballTableComponent } from '../history/football-table/football-table
 
 @Component({
     selector: 'app-historie',
+    standalone: true,
     imports: [ SeasonsComponent, MatchdaysComponent, SpielerprofilComponent, CommonModule, FormsModule
       , MatButtonModule, MatCardModule, FootballTableComponent],
     templateUrl: './historie.component.html',

@@ -8,6 +8,7 @@ import { Player } from '../models/player';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatCardModule, MatButtonModule, CommonModule],
     selector: 'app-spielerkarte',
+    standalone: true,
     templateUrl: './spielerkarte.component.html',
     styleUrl: './spielerkarte.component.css'
 })

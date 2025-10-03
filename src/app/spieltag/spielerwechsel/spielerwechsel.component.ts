@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 
 @Component({
     selector: 'app-spielerwechsel',
+    standalone: true,
     imports: [SpielerkarteComponent, CommonModule],
     templateUrl: './spielerwechsel.component.html',
     styleUrl: './spielerwechsel.component.css'

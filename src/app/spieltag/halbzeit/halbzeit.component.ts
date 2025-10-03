@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-halbzeit',
+    standalone: true,
     imports: [CommonModule],
     templateUrl: './halbzeit.component.html',
     styleUrl: './halbzeit.component.css'

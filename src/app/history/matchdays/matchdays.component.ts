@@ -20,6 +20,7 @@ interface Matchday {
 
 @Component({
   selector: 'app-matchdays',
+    standalone: true,
   imports: [CommonModule],
   templateUrl: './matchdays.component.html',
   styleUrl: './matchdays.component.css'
@@ -32,7 +33,7 @@ export class MatchdaysComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    this.loadCsv('assets/spieltageAlle.csv');
+    this.loadCsv('assets/historie/spieltageAlle.csv');
   }
 
   private loadCsv(path: string) {
