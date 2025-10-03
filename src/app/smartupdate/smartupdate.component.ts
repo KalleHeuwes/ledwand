@@ -9,6 +9,7 @@ import { ConfigurationService } from '../services/configuration.service';
 
 @Component({
     selector: 'app-smartupdate',
+    standalone: true,
     imports: [MatMenuModule, MatButtonModule, MatExpansionModule],
     templateUrl: './smartupdate.component.html',
     styleUrl: './smartupdate.component.css',
