@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigurationService {
-  public static readonly HOST = 'heuweslap3';
+  public static readonly HOST = 'heuweslap2';
   public static readonly ANZEIGE_TS: number = 2000;
   public static readonly URL = 'http://' + ConfigurationService.HOST + ':8080';
   public static readonly URLUPLOAD = 'http://' + ConfigurationService.HOST + ':3000';

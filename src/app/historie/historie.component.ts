@@ -8,12 +8,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SpielerprofilComponent } from '../history/spielerprofil/spielerprofil.component';
 import { FootballTableComponent } from '../history/football-table/football-table.component';
+import { HistorieAdminComponent } from '../history/historie-admin/historie-admin.component';
 
 @Component({
     selector: 'app-historie',
     standalone: true,
     imports: [ SeasonsComponent, MatchdaysComponent, SpielerprofilComponent, CommonModule, FormsModule
-      , MatButtonModule, MatCardModule, FootballTableComponent],
+      , MatButtonModule, MatCardModule, FootballTableComponent, HistorieAdminComponent],
     templateUrl: './historie.component.html',
     styleUrl: './historie.component.css'
 })

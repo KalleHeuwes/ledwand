@@ -23,6 +23,23 @@
       </mat-card-content>
     </mat-card>
 
+    <mat-card class="retro-card" (click)="onAction('admin')">
+      <mat-card-header>
+        <mat-card-title>Admin</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <img
+          src="assets/historische-spielzeiten.png"
+          alt="Historische Spielzeiten"
+          class="card-image"
+        />
+        <p class="card-text">
+          Importe und sonstiges
+        </p>
+      </mat-card-content>
+    </mat-card>
+
     <mat-card class="retro-card" (click)="onAction('abschluss')">
       <mat-card-header>
         <mat-card-title>Abschlusstabellen</mat-card-title>
@@ -79,6 +96,7 @@
 </div>
 
 <div class="component-containerx scrollable">
+  <app-historie-admin *ngIf="selectedView === 'admin'"></app-historie-admin>
   <app-seasons *ngIf="selectedView === 'historisch'"></app-seasons>
   <app-football-table *ngIf="selectedView === 'abschluss'" 
     [csvPath]="'0001_Abschluss'"></app-football-table>

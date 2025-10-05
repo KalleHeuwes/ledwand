@@ -1,0 +1,11 @@
+<button (click)="triggerImport()" [disabled]="isImporting">
+  CSV-Datenbankimport starten
+</button>
+
+<p style="margin-top: 20px;">
+  Status: <strong>{{ importStatus }}</strong>
+</p>
+
+<div *ngIf="isImporting">
+  Import läuft... Bitte warten.
+</div>
