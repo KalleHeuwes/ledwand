@@ -1,4 +1,17 @@
 <div class="container mt-4">
+  <h3>Wähle eine Saison:</h3>
+
+  <div class="d-flex align-items-center gap-2 mb-3">
+
+    <select class="form-select mb-4" (change)="onSelectChange($event)">
+      <option *ngFor="let season of seasons" [value]="season.Import_Tabelle">{{ season.Saison }}</option>
+    </select>
+
+    <button class="btn btn-outline-primary" (click)="previous()" 
+      [disabled]="selectedIndex === 0">«</button>
+    <button class="btn btn-outline-primary" (click)="next()"
+      [disabled]="selectedIndex === tableData.length - 1">»</button>
+  </div>
   <h2 class="mb-3">Spieltage</h2>
   <table class="table table-sm table-striped table-bordered table-hover">
     <thead class="table-dark">
@@ -7,15 +20,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let matchday of tableData">
-        <td>{{ matchday.Saison }}</td>
-        <td>{{ matchday.Spieltag }}</td>
-        <td>{{ matchday.Datum }}</td>
-        <td>{{ matchday.HA }}</td>
-        <td>{{ matchday.Gegner }}</td>
-        <td>{{ matchday.Ergebnis }}</td>
-        <td>{{ matchday.Punkte }}</td>
-        <td>{{ matchday.Platz }}</td>
+      <tr *ngFor="let matchday of spieltage">
+        <td>{{ matchday.saison }}</td>
+        <td>{{ matchday.spieltag }}</td>
+        <td>{{ matchday.datum }}</td>
+        <td>{{ matchday.heimOderAuswaerts }}</td>
+        <td>{{ matchday.gegner }}</td>
+        <td>{{ matchday.ergebnis }}</td>
+        <td>{{ matchday.punkte }}</td>
+        <td>{{ matchday.platz }}</td>
       </tr>
     </tbody>
   </table>
