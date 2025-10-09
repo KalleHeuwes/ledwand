@@ -32,6 +32,7 @@ export class MatchdaysComponent implements OnInit {
   tableData: Matchday[] = [];
   spieltage: Spieltage[] = [];
   columns: string[] = [];
+  selectedIndex: number = 0;
   url: string = 'http://localhost:8080/historie/spieltage/202223';
 
   constructor(private http: HttpClient) {}

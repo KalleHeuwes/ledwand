@@ -3,7 +3,7 @@
   <div class="d-flex align-items-center gap-2 mb-3">
 
     <select class="form-select mb-4" (change)="onSelectChange($event)">
-      <option *ngFor="let season of seasons" [value]="season.Import_Tabelle">{{ season.Saison }}</option>
+      <option *ngFor="let season of seasons" [value]="season.Import_Tabelle">{{ season.saison }}</option>
     </select>
 
     <button class="btn btn-outline-primary" (click)="previous()" 

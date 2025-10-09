@@ -9,26 +9,38 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SpielerprofilComponent } from '../history/spielerprofil/spielerprofil.component';
 import { FootballTableComponent } from '../history/football-table/football-table.component';
 import { HistorieAdminComponent } from '../history/historie-admin/historie-admin.component';
+import { SaisonSelectorComponent } from './saisonauswahl/saison-selector/saison-selector.component';
 
 @Component({
     selector: 'app-historie',
     standalone: true,
     imports: [ SeasonsComponent, MatchdaysComponent, SpielerprofilComponent, CommonModule, FormsModule
-      , MatButtonModule, MatCardModule, FootballTableComponent, HistorieAdminComponent],
+      , MatButtonModule, MatCardModule, FootballTableComponent, HistorieAdminComponent, SaisonSelectorComponent],
     templateUrl: './historie.component.html',
     styleUrl: './historie.component.css'
 })
 export class HistorieComponent {
+  geladeneSaison: string | null = null;
   constructor(private snackBar: MatSnackBar) {}
-    selectedView: string = 'menu'; // Standardauswahl
-      onAction(action: string) {
-        this.snackBar.open(`Card "${action}" geklickt!`, 'Schließen', {   // Toast öffnen, 3 Sekunden sichtbar
-          duration: 3000, // ms
-          horizontalPosition: 'center',
-          verticalPosition: 'bottom',
-          panelClass: 'retro-snackbar-creme',
-        });
-        this.selectedView = action;
-        // this.router.navigate(['/detail', action]); // Beispiel: wenn du Routing willst:
+  selectedView: string = 'menu'; // Standardauswahl
+  onAction(action: string) {
+    this.snackBar.open(`Card "${action}" geklickt!`, 'Schließen', {   // Toast öffnen, 3 Sekunden sichtbar
+      duration: 3000, // ms
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      panelClass: 'retro-snackbar-creme',
+    });
+    this.selectedView = action;
+    // this.router.navigate(['/detail', action]); // Beispiel: wenn du Routing willst:
+  }
+
+  // Methode, die aufgerufen wird, wenn die Saison ausgewählt wird
+  handleSaisonAuswahl(saisonId: string): void {
+    this.geladeneSaison = saisonId;
+    console.log(`Abschlusstabellen lädt Daten für Saison-ID: ${saisonId}`);
+    // Hier rufen Sie Ihren Daten-Service auf:
+    // this.datenService.getAbschlusstabelle(saisonId).subscribe(data => {
+    //   this.tabellenDaten = data;
+    // });
   }
 }

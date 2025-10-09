@@ -1,0 +1,19 @@
+<div class="saison-auswahl-container">
+  <label for="saison-select">Saison auswählen:</label>
+  
+  <ng-container *ngIf="saisons$ | async as saisons">
+    <select
+      id="saison-select"
+      [(ngModel)]="aktuelleSaison"
+      (change)="onSaisonChange()"
+    >
+      <option *ngFor="let saison of saisons" [ngValue]="saison.saison">
+        {{ saison.saison }}
+      </option>
+    </select>
+  </ng-container>
+
+  <ng-container *ngIf="!(saisons$ | async)">
+    <p>Saisons werden geladen...</p>
+  </ng-container>
+</div>

@@ -2,18 +2,7 @@ import { Component, OnChanges, Input, SimpleChanges, OnInit } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import * as Papa from 'papaparse';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-interface Season {
-  Saison: string;
-  Liga: string;
-  Spiele: string;
-  Platz: string;
-  Punkte: string;
-  Bemerkungen: string;
-  Import_Tabelle: string;
-  Import_Spiele: string;
-}
-
+import { Saison } from 'src/app/historie/saisonauswahl/saison';
 interface TeamStanding {
   Platz: string;
   Mannschaft: string;
@@ -37,7 +26,7 @@ export class FootballTableComponent implements OnChanges, OnInit {
   @Input() titel1: string = '';
   titel: string = 'Saison ' + this.csvPath;
   tableData: TeamStanding[] = [];
-  seasons: Season[] = [];
+  seasons: Saison[] = [];
   columns: string[] = [];  
   selectedIndex = 0;
 
@@ -50,7 +39,7 @@ export class FootballTableComponent implements OnChanges, OnInit {
           delimiter: ";",
           skipEmptyLines: true,
           complete: (result) => {
-            this.seasons = result.data as Season[];
+            this.seasons = result.data as Saison[];
             const allColumns = result.meta.fields || [];
             this.columns = allColumns.slice(0, -2); // entfernt die letzten zwei Spalten
           }
@@ -113,7 +102,7 @@ export class FootballTableComponent implements OnChanges, OnInit {
 
   get titelTabelle(): string {
     let t = this.seasons[this.selectedIndex].Liga + ' ' 
-    + this.seasons[this.selectedIndex].Saison + ' ' 
+    + this.seasons[this.selectedIndex].saison + ' ' 
     + this.seasons[this.selectedIndex].Bemerkungen;
     return t;
   }

@@ -1,4 +1,20 @@
-<h1>Historie</h1>
+<h1>Historie V2</h1>
+  <div>
+Selektor starten
+<hr>
+<app-saison-selector (saisonGewaehlt)="handleSaisonAuswahl($event)"></app-saison-selector>
+<hr>
+
+<div *ngIf="geladeneSaison">
+  <h3>Tabelle für Saison {{ geladeneSaison }}</h3>
+  <p>Hier erscheinen die Daten...</p>
+</div>
+
+<div *ngIf="!geladeneSaison">
+  <p>Bitte warten Sie auf die Saisonauswahl...</p>
+</div>
+Selektor Ende
+  </div>
 <div *ngIf="selectedView !== 'menu'">
   <button mat-raised-button color="primary" (click)="selectedView = 'menu'">
     Zurück zum Menü
@@ -94,6 +110,7 @@
 
   </div>
 </div>
+
 
 <div class="component-containerx scrollable">
   <app-historie-admin *ngIf="selectedView === 'admin'"></app-historie-admin>
