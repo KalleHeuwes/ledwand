@@ -1,64 +1,35 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import * as Papa from 'papaparse';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Spieltage } from 'src/app/models/spieltage';
-
-//Saison;Spieltag;Datum;HA;Gegner;Ergebnis;Punkte;Platz;PPP;Geschossen;Kassiert
-interface Matchday {
-  Saison: string;
-  Spieltag: string;
-  Datum: string;
-  HA: string;
-  Gegner: string;
-  Ergebnis: string;
-  Punkte: string;
-  Platz: string;
-  PPP: string;
-  Geschossen: string;
-  Kassiert: string;
-}
+import { SaisonSelectorComponent } from '../../historie/saisonauswahl/saison-selector/saison-selector.component';
+import { SaisonsService } from 'src/app/historie/saisonauswahl/saisons.service';
+import { Spieltag } from 'src/app/historie/saisonauswahl/spieltag';
 
 @Component({
   selector: 'app-matchdays',
     standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SaisonSelectorComponent],
   templateUrl: './matchdays.component.html',
   styleUrl: './matchdays.component.css'
 })
 export class MatchdaysComponent implements OnInit {
   @Input() csvPath: string = '';
   titel: string = 'Saison ' + this.csvPath;
-  tableData: Matchday[] = [];
-  spieltage: Spieltage[] = [];
-  columns: string[] = [];
-  selectedIndex: number = 0;
-  url: string = 'http://localhost:8080/historie/spieltage/202223';
+  tableData: Spieltag[] = [];
+  selectedIndex = 0;
+  geladeneSaison: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private saisonService: SaisonsService) {}
   ngOnInit(): void {
-    this.loadCsv('assets/historie/spieltageAlle.csv');
+    console.log('MatchdaysComponent: ngOnInit');
   }
 
-  private LoadFromUrl(){
-    this.http.get<Spieltage[]>(this.url).subscribe(data => {
-      this.spieltage = data;
+  // Methode, die aufgerufen wird, wenn die Saison ausgewählt wird
+  handleSaisonAuswahl(saisonId: string): void {
+    this.geladeneSaison = saisonId;
+    console.log(`MatchdaysComponent lädt Daten für Saison-ID: ${saisonId}`);
+    this.saisonService.getSpieltage(saisonId).subscribe(data => {
+       this.tableData = data;
     });
   }
 
-
-  private loadCsv(path: string) {
-    this.http.get(path, { responseType: 'text' }).subscribe(csvData => {
-      Papa.parse(csvData, {
-        header: true,
-        delimiter: ";",
-        skipEmptyLines: true,
-        complete: (result) => {
-          console.log(result);
-          this.tableData = result.data as Matchday[];
-          this.columns = result.meta.fields || [];
-        }
-      });
-    });
-  }
 }

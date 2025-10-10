@@ -9,18 +9,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SpielerprofilComponent } from '../history/spielerprofil/spielerprofil.component';
 import { FootballTableComponent } from '../history/football-table/football-table.component';
 import { HistorieAdminComponent } from '../history/historie-admin/historie-admin.component';
-import { SaisonSelectorComponent } from './saisonauswahl/saison-selector/saison-selector.component';
 
 @Component({
     selector: 'app-historie',
     standalone: true,
     imports: [ SeasonsComponent, MatchdaysComponent, SpielerprofilComponent, CommonModule, FormsModule
-      , MatButtonModule, MatCardModule, FootballTableComponent, HistorieAdminComponent, SaisonSelectorComponent],
+      , MatButtonModule, MatCardModule, FootballTableComponent, HistorieAdminComponent],
     templateUrl: './historie.component.html',
     styleUrl: './historie.component.css'
 })
 export class HistorieComponent {
-  geladeneSaison: string | null = null;
   constructor(private snackBar: MatSnackBar) {}
   selectedView: string = 'menu'; // Standardauswahl
   onAction(action: string) {
@@ -34,13 +32,4 @@ export class HistorieComponent {
     // this.router.navigate(['/detail', action]); // Beispiel: wenn du Routing willst:
   }
 
-  // Methode, die aufgerufen wird, wenn die Saison ausgewählt wird
-  handleSaisonAuswahl(saisonId: string): void {
-    this.geladeneSaison = saisonId;
-    console.log(`Abschlusstabellen lädt Daten für Saison-ID: ${saisonId}`);
-    // Hier rufen Sie Ihren Daten-Service auf:
-    // this.datenService.getAbschlusstabelle(saisonId).subscribe(data => {
-    //   this.tabellenDaten = data;
-    // });
-  }
 }

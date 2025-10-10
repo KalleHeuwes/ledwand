@@ -1,15 +1,20 @@
 <div class="container mt-4">
-
+  <app-saison-selector (saisonGewaehlt)="handleSaisonAuswahl($event)"></app-saison-selector>
   <h2 class="mb-3">Spieltage</h2>
   <table class="table table-sm table-striped table-bordered table-hover">
     <thead class="table-dark">
       <tr>
-        <th *ngFor="let col of columns">{{ col }}</th>
+        <th>Spieltag</th>
+        <th>Datum</th>
+        <th>H/A</th>
+        <th>Gegner</th>
+        <th>Ergebnis</th>
+        <th>Punkte</th>
+        <th>Platz</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let matchday of spieltage">
-        <td>{{ matchday.saison }}</td>
+      <tr *ngFor="let matchday of tableData">
         <td>{{ matchday.spieltag }}</td>
         <td>{{ matchday.datum }}</td>
         <td>{{ matchday.heimOderAuswaerts }}</td>

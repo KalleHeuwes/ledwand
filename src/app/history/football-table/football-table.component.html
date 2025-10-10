@@ -1,37 +1,32 @@
-<h3>Wähle eine Saison:</h3>
-
-  <div class="d-flex align-items-center gap-2 mb-3">
-
-    <select class="form-select mb-4" (change)="onSelectChange($event)">
-      <option *ngFor="let season of seasons" [value]="season.Import_Tabelle">{{ season.saison }}</option>
-    </select>
-
-    <button class="btn btn-outline-primary" (click)="previous()" 
-      [disabled]="selectedIndex === 0">«</button>
-    <button class="btn btn-outline-primary" (click)="next()"
-      [disabled]="selectedIndex === tableData.length - 1">»</button>
-  </div>
-
+<app-saison-selector (saisonGewaehlt)="handleSaisonAuswahl($event)"></app-saison-selector>
 <div class="container mt-4">
   <h2 class="mb-3">⚽ Abschlusstabelle {{titel}} ⚽</h2>
   <table class="table table-sm table-striped table-bordered table-hover">
     <thead class="table-dark">
       <tr>
-        <th *ngFor="let col of columns">{{ col }}</th>
+        <th>Platz</th>
+        <th>Mannschaft</th>
+        <th>Spiele</th>
+        <th>G</th>
+        <th>U</th>
+        <th>V</th>
+        <th>Tore</th>
+        <th>Diff</th>
+        <th>Punkte</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let team of tableData" 
-      [class.table-primary]="team.Mannschaft.includes('SpVg Emsdetten 05')">
-        <td>{{ team.Platz }}</td>
-        <td>{{ team.Mannschaft }}</td>
-        <td>{{ team.Spiele }}</td>
+      [class.table-primary]="team.mannschaft.includes('SpVg Emsdetten 05')">
+        <td>{{ team.platz }}</td>
+        <td>{{ team.mannschaft }}</td>
+        <td>{{ team.spiele }}</td>
         <td>{{ team.g }}</td>
         <td>{{ team.u }}</td>
         <td>{{ team.v }}</td>
-        <td>{{ team.Tore }}</td>
-        <td>{{ team.Diff }}</td>
-        <td>{{ team.Punkte }}</td>
+        <td>{{ team.tore }}</td>
+        <td>{{ team.diff }}</td>
+        <td>{{ team.punkte }}</td>
       </tr>
     </tbody>
   </table>
