@@ -4,19 +4,24 @@
   <table class="table table-striped table-bordered table-hover">
     <thead class="table-dark">
       <tr>
-        <th *ngFor="let col of columns">{{ col }}</th>
+        <th>Saison</th>
+        <th>Liga</th>
+        <th>Spiele</th>
+        <th>Platz</th>
+        <th>Punkte</th>
+        <th>Bemerkungen</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let season of tableData"
-      [class.table-danger]="season.Bemerkungen.includes('Absteiger')"
-      [class.table-success]="season.Bemerkungen.includes('Aufsteiger')">
-        <td>{{ season.Saison }}</td>
-        <td>{{ season.Liga }}</td>
-        <td>{{ season.Spiele }}</td>
-        <td>{{ season.Platz }}</td>
-        <td>{{ season.Punkte }}</td>
-        <td>{{ season.Bemerkungen }}</td>
+      [class.table-danger]="season.bemerkungen.includes('Absteiger')"
+      [class.table-success]="season.bemerkungen.includes('Aufsteiger')">
+        <td>{{ season.saison }}</td>
+        <td>{{ season.liga }}</td>
+        <td>{{ season.spiele }}</td>
+        <td>{{ season.platz }}</td>
+        <td>{{ season.punkte }}</td>
+        <td>{{ season.bemerkungen }}</td>
       </tr>
     </tbody>
   </table>

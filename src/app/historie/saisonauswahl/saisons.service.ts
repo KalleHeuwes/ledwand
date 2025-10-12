@@ -19,9 +19,6 @@ export class SaisonsService {
 
   /** Liste aller verfügbaren Saisons aus dem Backend laden */
   getSaisons(): Observable<Saison[]> {
-    //const ret: Observable<Saison[]> = this.http.get<Saison[]>(this.baseUrl);
-    //console.log('SaisonsService: Saisons geladen');
-    //ret.subscribe(saisons => console.table(saisons));
     return this.http.get<Saison[]>(this.baseUrl);
   }
 

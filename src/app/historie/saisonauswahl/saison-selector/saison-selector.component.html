@@ -8,7 +8,7 @@
       (change)="onSaisonChange()"
     >
       <option *ngFor="let saison of saisons" [ngValue]="saison.saison">
-        {{ saison.saison }}
+        {{ saison.saison + ' - ' + saison.liga + ' ' + saison.bemerkungen}}
       </option>
     </select>
   </ng-container>

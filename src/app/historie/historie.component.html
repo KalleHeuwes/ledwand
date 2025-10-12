@@ -1,106 +1,57 @@
-<h1>Historie V2</h1>
-<div *ngIf="selectedView !== 'menu'">
-  <button mat-raised-button color="primary" (click)="selectedView = 'menu'">
-    Zurück zum Menü
-  </button>
+<div class="header-container">
+  <h1>Historie</h1>
+  <div *ngIf="selectedView !== 'menu'">
+    <button mat-raised-button color="primary" (click)="selectedView = 'menu'">
+      Zurück zum Menü
+    </button>
+  </div>
 </div>
+
 <div *ngIf="selectedView === 'menu'">
   <div class="cards-row">
-    <mat-card class="retro-card" (click)="onAction('historisch')">
-      <mat-card-header>
-        <mat-card-title>Historische Spielzeiten</mat-card-title>
-      </mat-card-header>
+    <app-menu-card
+      [title]="'Hist. Spielzeiten'" [imageSrc]="'assets/historische-spielzeiten.png'"
+      [imageAlt]="'Historische Spielzeiten'"
+      [cardText]="'Übersicht über die vergangenen Saisons'"
+      [actionType]="'historisch'"   (cardClicked)="onAction($event)">
+    </app-menu-card>
 
-      <mat-card-content>
-        <img
-          src="assets/historische-spielzeiten.png"
-          alt="Historische Spielzeiten"
-          class="card-image"
-        />
-        <p class="card-text">
-          Übersicht über vergangene Saisons des Vereins.
-        </p>
-      </mat-card-content>
-    </mat-card>
+    <app-menu-card
+      [title]="'Abschlusstabellen'" [imageSrc]="'assets/abschlusstabellen.png'"
+      [imageAlt]="'Abschlusstabellen'"
+      [cardText]="'Übersicht über die Abschlusstabellen'"
+      [actionType]="'abschluss'"   (cardClicked)="onAction($event)">
+    </app-menu-card>
 
-    <mat-card class="retro-card" (click)="onAction('admin')">
-      <mat-card-header>
-        <mat-card-title>Admin</mat-card-title>
-      </mat-card-header>
+    <app-menu-card
+      [title]="'Einzelspiele'" [imageSrc]="'assets/einzelspiele.png'"
+      [imageAlt]="'Einzelspiele'"
+      [cardText]="'Ergebnisse einzelner Spiele'"
+      [actionType]="'einzel'"   (cardClicked)="onAction($event)">
+    </app-menu-card>
 
-      <mat-card-content>
-        <img
-          src="assets/administrationKlein.png"
-          alt="Administration"
-          class="card-image"
-        />
-        <p class="card-text">
-          Importe und Administration
-        </p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="retro-card" (click)="onAction('abschluss')">
-      <mat-card-header>
-        <mat-card-title>Abschlusstabellen</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-        <img
-          src="assets/abschlusstabellen.png"
-          alt="Abschlusstabellen"
-          class="card-image"
-        />
-        <p class="card-text">
-          Tabellenübersicht mit Platzierungen und Punkten.
-        </p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="retro-card" (click)="onAction('einzel')">
-      <mat-card-header>
-        <mat-card-title>Einzelspiele</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-        <img
-          src="assets/einzelspiele.png"
-          alt="Einzelspiele"
-          class="card-image"
-        />
-        <p class="card-text">
-          Ergebnisse einzelner Spiele und Spielberichte.
-        </p>
-      </mat-card-content>
-    </mat-card>
+    <app-menu-card
+      [title]="'Spielerprofile'" [imageSrc]="'assets/spielerprofile.png'"
+      [imageAlt]="'Spielerprofile'"
+      [cardText]="'Informationen zu einzelnen Spielern'"
+      [actionType]="'spieler'"   (cardClicked)="onAction($event)">
+    </app-menu-card>
   </div>
   <div class="cards-row">
-    <mat-card class="retro-card" (click)="onAction('spieler')">
-      <mat-card-header>
-        <mat-card-title>Spielerprofile</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-        <img
-          src="assets/spielerprofile.png"
-          alt="Spielerprofile"
-          class="card-image"
-        />
-        <p class="card-text">
-          Informationen zu einzelnen Spielern
-        </p>
-      </mat-card-content>
-    </mat-card>
+    <app-menu-card
+      [title]="'Admin'" [imageSrc]="'assets/administrationKlein.png'"
+      [imageAlt]="'Admin'"
+      [cardText]="'Verwaltung und Einstellungen.'"
+      [actionType]="'admin'"   (cardClicked)="onAction('admin')">
+    </app-menu-card>
 
   </div>
 </div>
-
 
 <div class="component-containerx scrollable">
   <app-historie-admin *ngIf="selectedView === 'admin'"></app-historie-admin>
   <app-seasons *ngIf="selectedView === 'historisch'"></app-seasons>
-  <app-football-table *ngIf="selectedView === 'abschluss'" 
-    [csvPath]="'0001_Abschluss'"></app-football-table>
+  <app-football-table *ngIf="selectedView === 'abschluss'"></app-football-table>
   <app-matchdays *ngIf="selectedView === 'einzel'"></app-matchdays>
   <app-spielerprofil *ngIf="selectedView === 'spieler'"></app-spielerprofil>
 </div>

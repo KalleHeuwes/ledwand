@@ -1,0 +1,71 @@
+
+/* Card Styling im Retro-Look */
+.retro-card {
+  flex: 1 1 300px; /* wächst, schrumpft; Basisbreite 300px */
+  max-width: 360px;
+  background-color: #f8f0de; /* cremeweiß */
+  border-radius: 12px;
+  border: 3px solid #cdb99a; /* hellbraun Rand */
+  color: #3b3228;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+/* Bild */
+.card-image {
+  width: 60%;
+  height: 80px;
+  object-fit: contain; /* behält Proportionen, passt in Box */
+  display: block;
+  margin: 0.25rem 0 0.6rem 0;
+  padding: 0 1rem;
+  background: transparent;
+}
+
+/* erklärender Text */
+.card-text {
+  padding: 0 1rem 0.6rem 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #4a3f36;
+}
+mat-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  justify-content: flex-end;
+}
+
+/* Retro-Buttons */
+.retro-btn {
+  background-color: #cfe6cf; /* mintgrün */
+  color: #3b3228;
+  border-radius: 10px;
+  box-shadow: none;
+  text-transform: none;
+  font-weight: 600;
+}
+mat-card-title {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #6b5b4b;
+  text-shadow: 2px 2px 0 #f8f0de, 4px 4px 0 #cdb99a;
+  transform: rotate(-0deg); /* minimal gekippt */
+  margin-bottom: 0.8rem;
+  letter-spacing: 2px;
+}
+
+/* Hover/Effekt dezent */
+.retro-btn:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+/* Responsive: weniger Abstand auf sehr kleinen Bildschirmen */
+@media (max-width: 480px) {
+  .card-image { height: 140px; }
+  .retro-card { max-width: 100%; flex-basis: 100%; }
+}

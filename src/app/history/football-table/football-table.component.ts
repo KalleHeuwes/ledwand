@@ -14,7 +14,7 @@ import { SaisonsService } from 'src/app/historie/saisonauswahl/saisons.service';
 export class FootballTableComponent implements OnInit {
   @Input() csvPath: string = '';
   @Input() titel1: string = '';
-  titel: string = 'Saison ' + this.csvPath;
+  titel: string = 'Saison ';
   tableData: TeamPerformance[] = [];
   seasons: Saison[] = [];
   selectedIndex = 0;
@@ -23,11 +23,13 @@ export class FootballTableComponent implements OnInit {
   constructor(private saisonService: SaisonsService) {}
   ngOnInit(): void {
     console.log('FootballTableComponent: ngOnInit');
+    this.titel = 'Saison ' + this.geladeneSaison;
   }
 
   // Methode, die aufgerufen wird, wenn die Saison ausgewählt wird
   handleSaisonAuswahl(saisonId: string): void {
     this.geladeneSaison = saisonId;
+    this.titel = 'Saison ' + this.geladeneSaison;
     console.log(`Abschlusstabellen lädt Daten für Saison-ID: ${saisonId}`);
     this.saisonService.getAbschlusstabelle(saisonId).subscribe(data => {
        this.tableData = data;
@@ -35,9 +37,9 @@ export class FootballTableComponent implements OnInit {
   }
 
   get titelTabelle(): string {
-    let t = this.seasons[this.selectedIndex].Liga + ' ' 
+    let t = this.seasons[this.selectedIndex].liga + ' ' 
     + this.seasons[this.selectedIndex].saison + ' ' 
-    + this.seasons[this.selectedIndex].Bemerkungen;
+    + this.seasons[this.selectedIndex].bemerkungen;
     return t;
   }
 }
