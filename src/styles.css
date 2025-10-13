@@ -42,3 +42,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   box-shadow: inset 0 0 6px rgba(60, 40, 20, 0.3),
               3px 3px 0 #b89c7d !important;
 }
+
+.erg-sieg {
+  background-color: #0bf742 !important;
+}
+
+.erg-unentschieden {
+  background-color: #f0ec09 !important;
+}
+.erg-niederlage {
+  background-color: #f00943 !important;
+}

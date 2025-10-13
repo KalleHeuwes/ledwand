@@ -14,7 +14,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let matchday of tableData">
+      <tr *ngFor="let matchday of tableData"
+      
+      [class.table-success]="matchday.punkte === 3"
+      [class.erg-unentschieden]="matchday.punkte === 1"
+      [class.table-danger]="matchday.punkte === 0">
         <td>{{ matchday.spieltag }}</td>
         <td>{{ matchday.datum }}</td>
         <td>{{ matchday.heimOderAuswaerts }}</td>
