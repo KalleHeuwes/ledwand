@@ -9,3 +9,9 @@
 <div *ngIf="isImporting">
   Import läuft... Bitte warten.
 </div>
+<div>
+  <h2>Testabfragen</h2>
+  <a href="http://localhost:8080/h2-console" target="_blank">Datenbank verwalten(jdbc:h2:file:./data/fussballDB;sa/password)</a><br/>
+  <a href="http://localhost:8080/api/historie/spieltage/202223" target="_blank">Spieltage anzeigen</a><br/>
+  <a href="http://localhost:8080/api/historie/spieltagskader?saison=202425&spiel=1" target="_blank">Spieltagskader anzeigen</a>
+</div>
