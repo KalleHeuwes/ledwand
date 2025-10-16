@@ -1,0 +1,66 @@
+<div *ngIf="matchData" class="match-container">
+
+  <div class="score-header">
+    <div class="team-info home-team">
+      <img [src]="matchData.homeTeam.logoUrl" alt="{{ matchData.homeTeam.name }} Logo" class="team-logo">
+      <h3>{{ matchData.homeTeam.name }}</h3>
+    </div>
+
+    <div class="score-box">
+      <span class="score-number">{{ matchData.homeScore }}</span>
+      <span class="score-separator">:</span>
+      <span class="score-number">{{ matchData.awayScore }}</span>
+    </div>
+
+    <div class="team-info away-team">
+      <h3>{{ matchData.awayTeam.name }}</h3>
+      <img [src]="matchData.awayTeam.logoUrl" alt="{{ matchData.awayTeam.name }} Logo" class="team-logo">
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>⚽ Spielverlauf (Tore)</h2>
+  <ul class="goal-list">
+    <li *ngFor="let goal of matchData.goals">
+      <strong>{{ goal.minute }}'</strong> 
+      {{ goal.scorerName }} ({{ goal.team === 'HOME' ? matchData.homeTeam.name : matchData.awayTeam.name }})
+    </li>
+  </ul>
+
+  <hr>
+
+  <div class="squad-details">
+    
+    <div class="squad-section">
+      <h3>🟢 Startelf</h3>
+      <ul class="player-list">
+        <li *ngFor="let player of sortedStartingEleven">
+          {{ player.name }} ({{ player.position }})
+          <span *ngIf="player.isSubstituted" class="substitution-info">
+             ⬇️ {{ player.substituteInMinute }}'
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="squad-section">
+      <h3>🔄 Eingewechselt</h3>
+      <ul class="player-list">
+        <li *ngFor="let sub of matchData.substitutesUsed">
+          {{ sub.name }} ({{ sub.position }}) ⬆️ {{ sub.substituteInMinute }}'
+        </li>
+      </ul>
+    </div>
+
+    <div class="squad-section">
+      <h3>🚫 Nicht Eingesetzt</h3>
+      <ul class="player-list">
+        <li *ngFor="let benchPlayer of matchData.benchPlayers">
+          {{ benchPlayer.name }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,80 @@
+.match-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.score-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.team-info {
+  flex: 1;
+}
+
+.team-logo {
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.score-box {
+  font-size: 2.5em;
+  font-weight: bold;
+  padding: 0 15px;
+}
+
+.score-separator {
+  margin: 0 5px;
+}
+
+.squad-details {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.squad-section {
+  flex: 1;
+  min-width: 0; 
+}
+
+.squad-section h3 {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.player-list {
+  list-style: none;
+  padding: 0;
+}
+
+.player-list li {
+  line-height: 1.5;
+}
+
+.substitution-info {
+  color: #c0392b; /* Rot */
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.goal-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.goal-list li {
+  padding: 5px 0;
+  border-bottom: 1px dotted #eee;
+}
