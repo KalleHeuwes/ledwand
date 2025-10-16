@@ -34,7 +34,7 @@ export class MatchdaysComponent implements OnInit {
   }
 
     zeigeSpielDetails(spiel: number) {
-    // Navigiert zu /spiel/2024/5
+    // Navigiert zu /spiel/202425/5
     this.router.navigate(['/spiel', this.geladeneSaison, spiel]);
   }
 

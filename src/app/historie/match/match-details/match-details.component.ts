@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatchData, SpieltagskaderEintrag } from '../match.module';
 import { SaisonsService } from '../../saisonauswahl/saisons.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Spieltag } from '../../saisonauswahl/spieltag';
 
 @Component({
   selector: 'app-match-details',
@@ -15,6 +15,15 @@ export class MatchDetailsComponent implements OnInit {
   kader: SpieltagskaderEintrag[] = [];
   startelf: SpieltagskaderEintrag[] = [];
   bank: SpieltagskaderEintrag[] = [];
+  toreWir: number = 0;
+  toreGegner: number = 0;
+  nameGegner: string = 'SV Gast';
+  logoGegner: string = '/assets/logo-away.png';
+  nameWir: string = 'FC Meine Stadt';
+  logoWir: string = '/assets/logo-home.png';
+  toreStrWir: string = '';
+  toreStrGegner: string = '';
+  //isLoading: boolean = true;
   //@Input() matchData!: MatchData;
     constructor(private saisonService: SaisonsService, private route: ActivatedRoute) {}
 
@@ -25,6 +34,21 @@ export class MatchDetailsComponent implements OnInit {
 
         if (saison && spieltag) {
           console.log(`Lade Daten für Saison: ${saison}, Spieltag: ${spieltag}`);
+
+          this.saisonService.getSpiel(saison.replace('/', ''), parseInt(spieltag)).subscribe(
+            (spiel: Spieltag) => {
+              this.toreWir = spiel.ergebnis.substring(0, spiel.ergebnis.indexOf(':')) as unknown as number;
+              this.toreGegner = spiel.ergebnis.substring(spiel.ergebnis.indexOf(':') + 1) as unknown as number;
+              this.nameGegner = spiel.gegner;
+              this.nameWir = 'SpVg Emsdetten 05';
+              this.toreStrWir = spiel.geschossen;
+              this.toreStrGegner = spiel.kassiert;
+              //this.isLoading = false;
+            },
+            (error) => {
+              console.error('Fehler beim Laden des Spiels:', error);
+            }
+          );        
 
           this.saisonService.getSpieltagskader(saison.replace('/', ''), spieltag).subscribe(
             (kaderArray: SpieltagskaderEintrag[]) => {

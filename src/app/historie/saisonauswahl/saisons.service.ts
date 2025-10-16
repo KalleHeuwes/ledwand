@@ -14,6 +14,7 @@ export class SaisonsService {
   private urlSaisons = 'http://localhost:8080/api/historie/saisons';
   private urlAbschlusstabelle = 'http://localhost:8080/api/historie/abschlusstabelle/{saison}';
   private urlSpieltage = 'http://localhost:8080/api/historie/spieltage/{saison}';
+  private urlSpiel = 'http://localhost:8080/api/historie/spieltag?saison={saison}&spieltag={spieltag}';
   private urlKader = 'http://localhost:8080/api/historie/spieltagskader?saison={saison}&spiel={spiel}';
   private aktuelleSaisonSubject = new BehaviorSubject<Saison | null>(null);
 
@@ -42,6 +43,11 @@ export class SaisonsService {
     return this.http.get<Spieltag[]>(url);
   }
 
+  /** Spieltage einer Saison */
+  getSpiel(saison: string, spieltag: number): Observable<Spieltag> {
+    const url = this.urlSpiel.replace('{saison}', saison.replace('/', '')).replace('{spieltag}', spieltag.toString());
+    return this.http.get<Spieltag>(url);
+  }
   /** Aktuell gewählte Saison als Observable bereitstellen */
   getAktuelleSaison(): Observable<Saison | null> {
     return this.aktuelleSaisonSubject.asObservable();

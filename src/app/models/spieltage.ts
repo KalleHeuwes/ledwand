@@ -9,5 +9,5 @@ export interface Spieltage {
   punkte: number;
   platz: number;
   geschossen: string;
-  kassiert: number;
+  kassiert: string;
 }

@@ -2,19 +2,19 @@
 
   <div class="score-header">
     <div class="team-info home-team">
-      <img [src]="matchData.nameWir.logoUrl" alt="{{ matchData.nameWir.name }} Logo" class="team-logo">
-      <h3>{{ matchData.nameWir.name }}</h3>
+      <img [src]="logoWir" alt="{{ nameWir }} Logo" class="team-logo">
+      <h3>{{ nameWir }}</h3>
     </div>
 
     <div class="score-box">
-      <span class="score-number">{{ matchData.toreWir }}</span>
+      <span class="score-number">{{ toreWir }}</span>
       <span class="score-separator">:</span>
-      <span class="score-number">{{ matchData.toreGegner }}</span>
+      <span class="score-number">{{ toreGegner }}</span>
     </div>
 
     <div class="team-info away-team">
-      <h3>{{ matchData.nameGegner.name }}</h3>
-      <img [src]="matchData.nameGegner.logoUrl" alt="{{ matchData.nameGegner.name }} Logo" class="team-logo">
+      <h3>{{ nameGegner }}</h3>
+      <img [src]="logoGegner" alt="{{ nameGegner }} Logo" class="team-logo">
     </div>
   </div>
 
@@ -22,6 +22,7 @@
   
   <h2>⚽ Spielverlauf (Tore)</h2>
   <ul class="goal-list">
+    {{ toreStrWir }} - {{ toreStrGegner }}
     <li *ngFor="let goal of matchData.tore">
       <strong>{{ goal.minute }}'</strong> 
       {{ goal.nachname }} ({{ goal.team === 'W' ? matchData.nameWir.name : matchData.nameGegner.name }})
@@ -36,12 +37,10 @@
       <h3>🟢 Startelf</h3>
       <ul class="player-list">
         <li *ngFor="let player of startelf">
-          {{ player.nachname }} ({{ player.vorname }})
-          <!--
-            <span *ngIf="player.isSubstituted" class="substitution-info">
-             ⬇️ {{ player.substituteInMinute }}'
+          {{ player.vorname }} {{ player.nachname }}
+            <span *ngIf="player.einsatz.indexOf('-') !== -1" class="substitution-info">
+             ⬇️ {{ player.einsatz.substring(player.einsatz.indexOf('-') + 1, 99) }}'
           </span>
-          -->
 
         </li>
       </ul>
@@ -51,7 +50,7 @@
       <h3>🔄 Eingewechselt</h3>
       <ul class="player-list">
         <li *ngFor="let sub of bank">
-          {{ sub.nachname }} ({{ sub.vorname }}) ⬆️ 33'
+          {{ sub.vorname }} {{ sub.nachname }} ⬆️ {{ sub.einsatz.substring(0, sub.einsatz.indexOf('-')) }}'
         </li>
       </ul>
     </div>
@@ -60,7 +59,7 @@
       <h3>🚫 Nicht Eingesetzt</h3>
       <ul class="player-list">
         <li *ngFor="let benchPlayer of kader">
-          {{ benchPlayer.nachname }}
+          {{ benchPlayer.vorname }} {{ benchPlayer.nachname }}
         </li>
       </ul>
     </div>
