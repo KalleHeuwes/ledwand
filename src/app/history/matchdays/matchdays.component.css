@@ -1,0 +1,8 @@
+.game-row {
+  cursor: pointer; /* Zeigt eine klickbare Hand an */
+  transition: background-color 0.2s;
+}
+
+.game-row:hover {
+  background-color: #f0f0f0; /* Hellere Farbe beim Hovern */
+}

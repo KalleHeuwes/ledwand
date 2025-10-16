@@ -32,6 +32,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { SpielanzeigeComponent } from './temp/spielanzeige/spielanzeige.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatchDetailsComponent } from './historie/match/match-details/match-details.component';
 
 @NgModule({
   declarations: [
@@ -57,16 +58,17 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: 'startseite', component: StartseiteComponent},
-      {path: 'players-list', component: SpielerListeComponent},
-      {path: 'aufstellung', component: AufstellungComponent},
-      {path: 'spieltag', component: SpieltagComponent},
-      {path: 'smartupdate', component: SmartupdateComponent},
-      {path: 'checkitout', component: CheckitoutComponent},
-      {path: 'historie', component: HistorieComponent},
-      {path: 'temp', component: SpielanzeigeComponent},
+      {path: 'startseite', 				component: StartseiteComponent},
+      {path: 'players-list', 			component: SpielerListeComponent},
+      {path: 'aufstellung', 			component: AufstellungComponent},
+      {path: 'spieltag', 				component: SpieltagComponent},
+      {path: 'smartupdate', 			component: SmartupdateComponent},
+      {path: 'checkitout', 				component: CheckitoutComponent},
+      {path: 'historie',				component: HistorieComponent},
+      {path: 'spiel/:saison/:spieltag',	component: MatchDetailsComponent},
+      {path: 'temp', 					component: SpielanzeigeComponent},
       {path: '', redirectTo: '/startseite', pathMatch: 'full'},
-      {path: '**', component: PageNotFoundComponent}
+      {path: '**', 						component: PageNotFoundComponent}
     ]),
     DragDropModule,
     MatMenuModule,

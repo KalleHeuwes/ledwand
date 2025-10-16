@@ -4,22 +4,30 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Saison } from './saison';
 import { TeamPerformance } from './team-performance';
 import { Spieltag } from './spieltag';
+import { SpieltagskaderEintrag } from '../match/match.module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaisonsService {
 
-  private baseUrl = 'http://localhost:8080/api/historie/saisons';
+  private urlSaisons = 'http://localhost:8080/api/historie/saisons';
   private urlAbschlusstabelle = 'http://localhost:8080/api/historie/abschlusstabelle/{saison}';
   private urlSpieltage = 'http://localhost:8080/api/historie/spieltage/{saison}';
+  private urlKader = 'http://localhost:8080/api/historie/spieltagskader?saison={saison}&spiel={spiel}';
   private aktuelleSaisonSubject = new BehaviorSubject<Saison | null>(null);
 
   constructor(private http: HttpClient) {}
 
+  /** Liste aller Spieler im Kader eines Spieltags */
+  getSpieltagskader(saison: string, spiel: string): Observable<SpieltagskaderEintrag[]> {
+    const url = this.urlKader.replace('{saison}', saison).replace('{spiel}', spiel);
+    return this.http.get<SpieltagskaderEintrag[]>(url);
+  }
+
   /** Liste aller verfügbaren Saisons aus dem Backend laden */
   getSaisons(): Observable<Saison[]> {
-    return this.http.get<Saison[]>(this.baseUrl);
+    return this.http.get<Saison[]>(this.urlSaisons);
   }
 
   /** Abschlusstabelle einer Saison */

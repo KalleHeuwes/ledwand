@@ -1,6 +1,7 @@
 // match.model.ts
 
 export interface Spieler {
+  id: number;
   nachname: string;
   vorname: string;
 }
@@ -15,6 +16,16 @@ export interface Tor {
 export interface Team {
   name: string;
   logoUrl: string;
+}
+
+export interface SpieltagskaderEintrag {
+    id: number;
+    saison: string;
+    spiel: string;
+    nachname: string;
+    vorname: string;
+    einsatz: string;
+    gruppe: string;
 }
 
 export interface MatchData {
