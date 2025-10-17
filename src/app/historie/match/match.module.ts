@@ -6,10 +6,10 @@ export interface Spieler {
   vorname: string;
 }
 
-export interface Tor {
+export interface TorEreignis {
   minute: number;
-  nachname: string;
-  vorname: string;
+  spielstand: string;
+  torschuetze: string;
   team: 'W' | 'G' | 'ET' | 'ETG'; // W = Wir, G = Gegner, ET = Eigentor, ETG = Eigentor Gegner
 }
 
@@ -36,5 +36,5 @@ export interface MatchData {
   startelf: Spieler[];
   bank: Spieler[];
   kader: Spieler[]; // Spieler im Kader, die nicht eingesetzt wurden
-  tore: Tor[];
+  tore: TorEreignis[];
 }

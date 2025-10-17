@@ -1,4 +1,11 @@
-<div *ngIf="matchData" class="match-container">
+<div *ngIf="2>1" class="match-container">
+  
+  <div class="d-flex align-items-center mb-3">
+      <button class="btn btn-primary mb-3" (click)="menu()">Zurück</button>
+    <button class="btn btn-primary mb-3" (click)="spieltagWechseln(-1)">-1</button>
+    <h2>Saison {{ saison }} Spieltag {{ spiel }}</h2>
+    <button class="btn btn-primary mb-3" (click)="spieltagWechseln(+1)">+1</button>
+  </div>
 
   <div class="score-header">
     <div class="team-info home-team">
@@ -22,10 +29,9 @@
   
   <h2>⚽ Spielverlauf (Tore)</h2>
   <ul class="goal-list">
-    {{ toreStrWir }} - {{ toreStrGegner }}
-    <li *ngFor="let goal of matchData.tore">
+    <li *ngFor="let goal of toreReihenfolge">
       <strong>{{ goal.minute }}'</strong> 
-      {{ goal.nachname }} ({{ goal.team === 'W' ? matchData.nameWir.name : matchData.nameGegner.name }})
+      {{ goal.spielstand }}  {{ goal.torschuetze }} {{ goal.team === 'W' ? '' : '(' + nameGegner + ')' }}
     </li>
   </ul>
 
@@ -56,7 +62,7 @@
     </div>
 
     <div class="squad-section">
-      <h3>🚫 Nicht Eingesetzt</h3>
+      <h3>🚫 Kader</h3>
       <ul class="player-list">
         <li *ngFor="let benchPlayer of kader">
           {{ benchPlayer.vorname }} {{ benchPlayer.nachname }}

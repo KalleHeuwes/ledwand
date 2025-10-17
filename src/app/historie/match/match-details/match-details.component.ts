@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatchData, SpieltagskaderEintrag } from '../match.module';
+import { MatchData, SpieltagskaderEintrag, TorEreignis } from '../match.module';
 import { SaisonsService } from '../../saisonauswahl/saisons.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Spieltag } from '../../saisonauswahl/spieltag';
 
 @Component({
@@ -23,14 +23,22 @@ export class MatchDetailsComponent implements OnInit {
   logoWir: string = '/assets/logo-home.png';
   toreStrWir: string = '';
   toreStrGegner: string = '';
+  toreReihenfolge: TorEreignis[] = [];
+  saison: string = '';
+  spiel: number = 0;
   //isLoading: boolean = true;
   //@Input() matchData!: MatchData;
-    constructor(private saisonService: SaisonsService, private route: ActivatedRoute) {}
+
+  //isLoading: boolean = true;
+  //@Input() matchData!: MatchData;
+    constructor(private saisonService: SaisonsService, private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit(): void {
       this.route.paramMap.subscribe((params: ParamMap) => {
         const saison = params.get('saison');
         const spieltag = params.get('spieltag');
+        this.spiel = parseInt(spieltag?.toString() || '0');
+        this.saison = saison?.toString() || '';
 
         if (saison && spieltag) {
           console.log(`Lade Daten für Saison: ${saison}, Spieltag: ${spieltag}`);
@@ -43,6 +51,7 @@ export class MatchDetailsComponent implements OnInit {
               this.nameWir = 'SpVg Emsdetten 05';
               this.toreStrWir = spiel.geschossen;
               this.toreStrGegner = spiel.kassiert;
+              this.toreReihenfolge = this.saisonService.erstelleTorreihenfolgeAlsArray(spiel.geschossen, spiel.kassiert);
               //this.isLoading = false;
             },
             (error) => {
@@ -54,6 +63,10 @@ export class MatchDetailsComponent implements OnInit {
             (kaderArray: SpieltagskaderEintrag[]) => {
               //this.kader = kaderArray;  // 2. Das erhaltene Array speichern
               console.log('--- Kader Iteration ---');
+              this.startelf = [];
+              this.bank = [];
+              this.kader = [];
+              // 3. Iteration über das Array
               kaderArray.forEach(eintrag => {
                 // Zugriff auf die Eigenschaften jedes Elements
                 console.log(
@@ -80,30 +93,15 @@ export class MatchDetailsComponent implements OnInit {
 
     }
 
+    menu(){
+      this.router.navigate(['/historie']);
+    }
 
-matchData: MatchData = {
-    nameWir: { name: 'FC Meine Stadt', logoUrl: '/assets/logo-home.png' },
-    nameGegner: { name: 'SV Gast', logoUrl: '/assets/logo-away.png' },
-    toreWir: 3,
-    toreGegner: 1,
-    startelf: [
-      { id: 1, nachname: 'Meier', vorname: 'Torwart' },
-      { id: 2, nachname: 'Schulz', vorname: 'Abwehr' },
-      { id: 3, nachname: 'Müller', vorname: 'Mittelfeld' },
-      { id: 4, nachname: 'Weber', vorname: 'Sturm' },
-    ],
-    bank: [
-      { id: 12, nachname: 'Schmidt', vorname: 'Abwehr' },
-    ],
-    kader: [
-      { id: 20, nachname: 'Bauer', vorname: 'Mittelfeld' },
-      { id: 21, nachname: 'Fischer', vorname: 'Sturm' },
-    ],
-    tore: [
-      { minute: 15, nachname: 'Bauer', vorname: 'Mittelfeld', team: 'W' },
-      { minute: 40, nachname: 'Kahn', vorname: 'Torwart', team: 'G' },
-      { minute: 62, nachname: 'Weber', vorname: 'Sturm', team: 'W' },
-      { minute: 88, nachname: 'Müller', vorname: 'Mittelfeld', team: 'W' },
-    ]
-  };
+    spieltagWechseln(richtung: number) {
+        const neueSpiel = this.spiel + richtung;
+        if(neueSpiel < 1) {
+            return; // Verhindert Wechsel zu Spieltag < 1
+        }
+        this.router.navigate(['/spiel', this.saison, neueSpiel]);
+    }
 }

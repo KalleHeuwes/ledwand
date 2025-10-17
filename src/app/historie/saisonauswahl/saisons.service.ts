@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Saison } from './saison';
 import { TeamPerformance } from './team-performance';
 import { Spieltag } from './spieltag';
-import { SpieltagskaderEintrag } from '../match/match.module';
+import { SpieltagskaderEintrag, TorEreignis } from '../match/match.module';
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +61,63 @@ export class SaisonsService {
   /** Zugriff auf den aktuellen Wert (z. B. beim Initialisieren) */
   getAktuelleSaisonWert(): Saison | null {
     return this.aktuelleSaisonSubject.value;
+  }
+
+  erstelleTorreihenfolgeAlsArray(geschossen: string, kassiert: string): TorEreignis[] {
+      // 1. Minuten und Torschützen (wenn vorhanden) parsen und Aktionen zuweisen
+      const tore: { minute: number, torschuetze: string, istGeschossen: boolean }[] = [];
+
+      // Geschossene Tore (Format: Minute|Schütze|Minute|Schütze|...)
+      if (geschossen) {
+          const teile = geschossen.split('|');
+          for (let i = 0; i < teile.length; i += 2) {
+              const minute = parseInt(teile[i].trim());
+              const torschuetze = teile[i + 1] ? teile[i + 1].trim() : "";
+
+              if (!isNaN(minute)) {
+                  tore.push({ minute, torschuetze, istGeschossen: true });
+              }
+          }
+      }
+
+      // Kassierte Tore (Format: Minute|Minute|...)
+      if (kassiert) {
+          kassiert.split('|').forEach(minStr => {
+              const minute = parseInt(minStr.trim());
+              if (!isNaN(minute)) {
+                  // Bei kassierten Toren ist der Schütze leer
+                  tore.push({ minute, torschuetze: "", istGeschossen: false });
+              }
+          });
+      }
+
+      // 2. Nach Minute sortieren
+      tore.sort((a, b) => a.minute - b.minute);
+
+      // 3. Ergebnis-Array erstellen und Spielstand berechnen
+      const ergebnisArray: TorEreignis[] = [];
+      let bilanzGeschossen = 0;
+      let bilanzKassiert = 0;
+
+      for (const tor of tore) {
+          if (tor.istGeschossen) {
+              bilanzGeschossen++;
+          } else {
+              bilanzKassiert++;
+          }
+
+          const spielstand = `${bilanzGeschossen}:${bilanzKassiert}`;
+          const team = tor.istGeschossen ? 'W' : 'G';
+          const torschuetze = tor.istGeschossen ? tor.torschuetze : "";
+
+          ergebnisArray.push({
+              minute: tor.minute,
+              spielstand: spielstand,
+              torschuetze: torschuetze,
+              team: team
+          });
+      }
+
+      return ergebnisArray;
   }
 }
