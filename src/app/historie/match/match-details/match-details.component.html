@@ -1,10 +1,10 @@
 <div *ngIf="2>1" class="match-container">
   
   <div class="d-flex align-items-center mb-3">
-      <button class="btn btn-primary mb-3" (click)="menu()">Zurück</button>
+    <button class="btn btn-primary mb-3" (click)="menu()">Zurück</button>
     <button class="btn btn-primary mb-3" (click)="spieltagWechseln(-1)">-1</button>
-    <h2>Saison {{ saison }} Spieltag {{ spiel }}</h2>
     <button class="btn btn-primary mb-3" (click)="spieltagWechseln(+1)">+1</button>
+    <h2>Saison {{ saison }} Spieltag {{ spiel }}</h2>
   </div>
 
   <div class="score-header">
@@ -20,20 +20,20 @@
     </div>
 
     <div class="team-info away-team">
+      <img [src]="logoGegner" alt="Bild {{logoGegner}} für {{ nameGegner }} nicht gefunden" class="team-logo">
       <h3>{{ nameGegner }}</h3>
-      <img [src]="logoGegner" alt="{{ nameGegner }} Logo" class="team-logo">
     </div>
   </div>
 
   <hr>
   
   <h2>⚽ Spielverlauf (Tore)</h2>
-  <ul class="goal-list">
-    <li *ngFor="let goal of toreReihenfolge">
+  <div class="tor-container">
+    <div class="tor-item" *ngFor="let goal of toreReihenfolge">
       <strong>{{ goal.minute }}'</strong> 
       {{ goal.spielstand }}  {{ goal.torschuetze }} {{ goal.team === 'W' ? '' : '(' + nameGegner + ')' }}
-    </li>
-  </ul>
+    </div>
+  </div>
 
   <hr>
 

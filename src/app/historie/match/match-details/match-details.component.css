@@ -69,12 +69,32 @@
   margin-left: 5px;
 }
 
-.goal-list {
-  list-style-type: none;
-  padding-left: 0;
+/* list-columns.component.css */
+
+.tor-container {
+  /* Definiert den Container als Grid-Layout */
+  display: grid;
+  
+  /* Definiert die Anzahl der Reihen (max. 3 Tore untereinander) */
+  /* Da 15 / 3 = 5 ist, benötigen wir 5 Reihen (rows). */
+  /* repeat(5, 1fr) erstellt 5 Zeilen gleicher Höhe */
+  grid-template-rows: repeat(3, auto); 
+  
+  /* Definiert die Anzahl der Spalten (max. 3 Spalten nebeneinander) */
+  /* repeat(3, 1fr) erstellt 3 Spalten gleicher Breite */
+  grid-template-columns: repeat(3, 1fr); 
+  
+  /* Wichtig: Lässt die Elemente zuerst die Zeilen füllen (von oben nach unten)
+     und dann in die nächste Spalte springen. */
+  grid-auto-flow: column;
+  
+  /* Optionale Stile für die Übersichtlichkeit */
+  gap: 10px; /* Abstand zwischen den Elementen */
+  max-width: 900px; /* Beispielbreite */
 }
 
-.goal-list li {
-  padding: 5px 0;
-  border-bottom: 1px dotted #eee;
+.tor-item {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
 }

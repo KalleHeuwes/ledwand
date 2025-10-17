@@ -18,9 +18,9 @@ export class MatchDetailsComponent implements OnInit {
   toreWir: number = 0;
   toreGegner: number = 0;
   nameGegner: string = 'SV Gast';
-  logoGegner: string = '/assets/logo-away.png';
+  logoGegner: string = '/assets/pictures/teams/SV_Mesum.svg';
   nameWir: string = 'FC Meine Stadt';
-  logoWir: string = '/assets/logo-home.png';
+  logoWir: string = '/assets/pictures/teams/logo_sve.png';
   toreStrWir: string = '';
   toreStrGegner: string = '';
   toreReihenfolge: TorEreignis[] = [];
