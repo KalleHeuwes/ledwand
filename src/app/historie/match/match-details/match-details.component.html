@@ -1,5 +1,5 @@
 <div *ngIf="2>1" class="match-container">
-  
+
   <div class="d-flex align-items-center mb-3">
     <button class="btn btn-primary mb-3" (click)="menu()">Zurück</button>
     <button class="btn btn-primary mb-3" (click)="spieltagWechseln(-1)">-1</button>
@@ -68,6 +68,11 @@
           {{ benchPlayer.vorname }} {{ benchPlayer.nachname }}
         </li>
       </ul>
+    </div>
+    <div class="squad-section">
+      <img [src]="'http://localhost:8080/api/files/download?filePath=' + selectedFile.path" 
+        [alt]="selectedFile.name"
+        *ngIf="selectedFile.type === 'png'">
     </div>
 
   </div>

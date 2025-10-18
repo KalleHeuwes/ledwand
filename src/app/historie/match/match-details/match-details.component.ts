@@ -26,6 +26,7 @@ export class MatchDetailsComponent implements OnInit {
   toreReihenfolge: TorEreignis[] = [];
   saison: string = '';
   spiel: number = 0;
+  selectedFile: { path: string; name: string; type: string } = { path: './Saison2526/EV-Bälle/Saison2526_02_Bälle.png', name: 'Saison2526_02_Bälle.png', type: 'png' };
   //isLoading: boolean = true;
   //@Input() matchData!: MatchData;
 
@@ -39,9 +40,15 @@ export class MatchDetailsComponent implements OnInit {
         const spieltag = params.get('spieltag');
         this.spiel = parseInt(spieltag?.toString() || '0');
         this.saison = saison?.toString() || '';
+        const saison4 = this.saison.replace('/', '').substring(2, 6);
+        const spieltag2 = spieltag?.toString().padStart(2, '0');
 
         if (saison && spieltag) {
           console.log(`Lade Daten für Saison: ${saison}, Spieltag: ${spieltag}`);
+          this.selectedFile = { 
+            path: './Saison' + saison4 + '/EV-Bälle/Saison' + saison4 + '_' + spieltag2 + '_Bälle.png', 
+            name: 'Saison' + saison4 + '_' + spieltag2 + '_Bälle.png', 
+            type: 'png' };
 
           this.saisonService.getSpiel(saison.replace('/', ''), parseInt(spieltag)).subscribe(
             (spiel: Spieltag) => {
