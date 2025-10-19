@@ -18,6 +18,11 @@ export interface Team {
   logoUrl: string;
 }
 
+export interface FileItem {
+  fileName: string;
+  filePath: string;
+  typ: string;
+}
 export interface SpieltagskaderEintrag {
     id: number;
     saison: string;

@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Saison } from './saison';
 import { TeamPerformance } from './team-performance';
 import { Spieltag } from './spieltag';
-import { SpieltagskaderEintrag, TorEreignis } from '../match/match.module';
+import { FileItem, SpieltagskaderEintrag, TorEreignis } from '../match/match.module';
 
 @Injectable({
   providedIn: 'root'
@@ -51,12 +51,12 @@ export class SaisonsService {
   }
 
   /** Dokumente (Torvideos, Berichte) */
-  getDokumente(typ: string, saison: string, spieltag: string): Observable<String[]> {
+  getDokumente(typ: string, saison: string, spieltag: string): Observable<FileItem[]> {
     const url = this.urlDokumente
       .replace('{typ}', typ)
       .replace('{saison}', saison.replace('/', ''))
       .replace('{spieltag}', spieltag);
-    return this.http.get<String[]>(url);
+    return this.http.get<FileItem[]>(url);
   }
 
   /** Aktuell gewählte Saison als Observable bereitstellen */

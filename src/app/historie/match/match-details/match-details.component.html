@@ -77,12 +77,16 @@
       <img [src]="'http://localhost:8080/api/files/download?filePath=' + selectedFile.path" 
         [alt]="selectedFile.name" *ngIf="selectedFile.type === 'png'">
     </div>
-    <ul><li *ngFor="let dokument of dokumente">
-      <a (click)="openFile(dokument)" href="javascript:void(0);">
-      {{ dokument }} </a>
-
-    </li></ul>
-    <ul><li *ngFor="let video of torvideos">{{ video }}</li></ul>
+    <ul>
+      <li *ngFor="let dokument of dokumente">
+        <a (click)="openFile(dokument.filePath)" href="javascript:void(0);">{{ dokument.fileName }} </a>
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let video of torvideos">
+        <a (click)="openFile(video.filePath)" href="javascript:void(0);">{{ video.fileName }} </a>
+      </li>
+    </ul>
   </div>
 
 </div>

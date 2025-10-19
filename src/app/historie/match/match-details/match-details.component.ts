@@ -1,16 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SpieltagskaderEintrag, TorEreignis } from '../match.module';
+import { SpieltagskaderEintrag, TorEreignis, FileItem } from '../match.module';
 import { SaisonsService } from '../../saisonauswahl/saisons.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Spieltag } from '../../saisonauswahl/spieltag';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'; // <-- Wichtig!
-
-// Angenommen, dies ist Ihr Datenmodell, das Sie vom Backend erhalten
-interface FileItem {
-  name: string;
-  path: string; // Relativer Pfad, z.B. "Saison2526/EV-Bälle/Saison2526_02_Bälle.png"
-}
 
 @Component({
   selector: 'app-match-details',
@@ -22,8 +16,8 @@ export class MatchDetailsComponent implements OnInit {
   kader: SpieltagskaderEintrag[] = [];
   startelf: SpieltagskaderEintrag[] = [];
   bank: SpieltagskaderEintrag[] = [];
-  dokumente: String[] = [];
-  torvideos: String[] = [];
+  dokumente: FileItem[] = [];
+  torvideos: FileItem[] = [];
   toreWir: number = 0;
   toreGegner: number = 0;
   nameGegner: string = 'SV Gast';
@@ -93,15 +87,15 @@ export class MatchDetailsComponent implements OnInit {
           );          
 
           this.saisonService.getDokumente('Dokumente', saison.replace('/', ''), spieltag2).subscribe(
-            (dokumente: String[]) => {
+            (docs: FileItem[]) => {
               this.dokumente = [];
-              dokumente.forEach(eintrag => {this.dokumente.push(eintrag); });
+              docs.forEach(eintrag => {this.dokumente.push(eintrag); });
             },
             (error) => { console.error('Fehler beim Laden der Dokumente:', error); }
           ); 
 
           this.saisonService.getDokumente('Torvideos', saison.replace('/', ''), spieltag2).subscribe(
-            (dokumente: String[]) => {
+            (dokumente: FileItem[]) => {
               this.torvideos = [];
               dokumente.forEach(eintrag => {this.torvideos.push(eintrag); });
             },
@@ -122,7 +116,7 @@ export class MatchDetailsComponent implements OnInit {
       const encodedPath = encodeURIComponent(filePath.toString());
       
       // 2. Erstellung der vollständigen URL zum Backend-Endpunkt
-      const fullUrl = `/api/files/download?filePath=${encodedPath}`;
+      const fullUrl = `http://localhost:8080/api/files/download?filePath=${encodedPath}`;
       window.open(fullUrl, '_blank');
 
       // 3. Den DomSanitizer verwenden, um die URL für den iFrame als sicher zu markieren
