@@ -1,79 +1,79 @@
-<div *ngIf="2>1" class="match-container">
+<div class="overall-wrapper">
+  <div class="match-container">
 
-  <div class="d-flex align-items-center mb-3">
-    <button class="btn btn-primary mb-3" (click)="menu()">Zurück</button>
-    <button class="btn btn-primary mb-3" (click)="spieltagWechseln(-1)">-1</button>
-    <button class="btn btn-primary mb-3" (click)="spieltagWechseln(+1)">+1</button>
-    <h2>Saison {{ saison }} Spieltag {{ spiel }}</h2>
-  </div>
-
-  <div class="score-header">
-    <div class="team-info home-team">
-      <img [src]="logoWir" alt="{{ nameWir }} Logo" class="team-logo">
-      <h3>{{ nameWir }}</h3>
+    <div class="d-flex align-items-center mb-3">
+      <button class="btn btn-primary mb-3" (click)="menu()">Zurück</button>
+      <button class="btn btn-primary mb-3" (click)="spieltagWechseln(-1)">-1</button>
+      <button class="btn btn-primary mb-3" (click)="spieltagWechseln(+1)">+1</button>
+      <h2>Saison {{ saison }} Spieltag {{ spiel }}</h2>
     </div>
 
-    <div class="score-box">
-      <span class="score-number">{{ toreWir }}</span>
-      <span class="score-separator">:</span>
-      <span class="score-number">{{ toreGegner }}</span>
+    <div class="score-header">
+      <div class="team-info home-team">
+        <img [src]="logoWir" alt="{{ nameWir }} Logo" class="team-logo">
+        <h3>{{ nameWir }}</h3>
+      </div>
+
+      <div class="score-box">
+        <span class="score-number">{{ toreWir }}</span>
+        <span class="score-separator">:</span>
+        <span class="score-number">{{ toreGegner }}</span>
+      </div>
+
+      <div class="team-info away-team">
+        <img [src]="logoGegner" alt="Bild {{logoGegner}} für {{ nameGegner }} nicht gefunden" class="team-logo">
+        <h3>{{ nameGegner }}</h3>
+      </div>
+
     </div>
 
-    <div class="team-info away-team">
-      <img [src]="logoGegner" alt="Bild {{logoGegner}} für {{ nameGegner }} nicht gefunden" class="team-logo">
-      <h3>{{ nameGegner }}</h3>
-    </div>
-  </div>
-
-  <hr>
-  
-  <h2>⚽ Spielverlauf (Tore)</h2>
-  <div class="tor-container">
-    <div class="tor-item" *ngFor="let goal of toreReihenfolge">
-      <strong>{{ goal.minute }}'</strong> 
-      {{ goal.spielstand }}  {{ goal.torschuetze }} {{ goal.team === 'W' ? '' : '(' + nameGegner + ')' }}
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="squad-details">
+    <hr>
     
-    <div class="squad-section">
-      <h3>🟢 Startelf</h3>
-      <ul class="player-list">
-        <li *ngFor="let player of startelf">
-          {{ player.vorname }} {{ player.nachname }}
-            <span *ngIf="player.einsatz.indexOf('-') !== -1" class="substitution-info">
-             ⬇️ {{ player.einsatz.substring(player.einsatz.indexOf('-') + 1, 99) }}'
-          </span>
-
-        </li>
-      </ul>
+    <h2>⚽ Spielverlauf</h2>
+    <div class="tor-container">
+      <div class="tor-item" *ngFor="let goal of toreReihenfolge">
+        <strong>{{ goal.minute }}'</strong> 
+        {{ goal.spielstand }}  {{ goal.torschuetze }} {{ goal.team === 'W' ? '' : '(' + nameGegner + ')' }}
+      </div>
     </div>
 
-    <div class="squad-section">
-      <h3>🔄 Eingewechselt</h3>
-      <ul class="player-list">
-        <li *ngFor="let sub of bank">
-          {{ sub.vorname }} {{ sub.nachname }} ⬆️ {{ sub.einsatz.substring(0, sub.einsatz.indexOf('-')) }}'
-        </li>
-      </ul>
-    </div>
+    <div class="squad-details">
+      
+      <div class="squad-section">
+        <h3>🟢 Startelf</h3>
+        <ul class="player-list">
+          <li *ngFor="let player of startelf">
+            {{ player.vorname }} {{ player.nachname }}
+              <span *ngIf="player.einsatz.indexOf('-') !== -1" class="substitution-info">
+              ⬇️ {{ player.einsatz.substring(player.einsatz.indexOf('-') + 1, 99) }}'
+            </span>
 
-    <div class="squad-section">
-      <h3>🚫 Kader</h3>
-      <ul class="player-list">
-        <li *ngFor="let benchPlayer of kader">
-          {{ benchPlayer.vorname }} {{ benchPlayer.nachname }}
-        </li>
-      </ul>
-    </div>
-    <div class="squad-section">
-      <img [src]="'http://localhost:8080/api/files/download?filePath=' + selectedFile.path" 
-        [alt]="selectedFile.name"
-        *ngIf="selectedFile.type === 'png'">
-    </div>
+          </li>
+        </ul>
+      </div>
 
+      <div class="squad-section">
+        <h3>🔄 Eingewechselt</h3>
+        <ul class="player-list">
+          <li *ngFor="let sub of bank">
+            {{ sub.vorname }} {{ sub.nachname }} ⬆️ {{ sub.einsatz.substring(0, sub.einsatz.indexOf('-')) }}'
+          </li>
+        </ul>
+      </div>
+
+      <div class="squad-section">
+        <h3>🚫 Kader</h3>
+        <ul class="player-list">
+          <li *ngFor="let benchPlayer of kader">
+            {{ benchPlayer.vorname }} {{ benchPlayer.nachname }}
+          </li>
+        </ul>
+      </div>
+
+    </div>
   </div>
+    <div class="evbaelle">
+      <img [src]="'http://localhost:8080/api/files/download?filePath=' + selectedFile.path" 
+        [alt]="selectedFile.name" *ngIf="selectedFile.type === 'png'">
+    </div>
 </div>

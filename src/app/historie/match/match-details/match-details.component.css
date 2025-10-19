@@ -1,5 +1,11 @@
+.overall-wrapper {
+  display: flex;
+  /* Optionale Einstellungen für die Ausrichtung der Gesamtstruktur: */
+  /* align-items: flex-start; /* Oder center, je nachdem, wie Sie sie vertikal ausrichten möchten */
+  /* width: 100%; */
+}
 .match-container {
-  max-width: 800px;
+  width: 1200px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ddd;
@@ -89,12 +95,17 @@
   grid-auto-flow: column;
   
   /* Optionale Stile für die Übersichtlichkeit */
-  gap: 10px; /* Abstand zwischen den Elementen */
+  gap: 2px; /* Abstand zwischen den Elementen */
   max-width: 900px; /* Beispielbreite */
 }
 
 .tor-item {
-  padding: 8px;
+  padding: 1px;
   border: 1px solid #ccc;
   text-align: left;
+}
+
+.evbaelle1 {
+  width:100px;
+  height:500px;
 }
