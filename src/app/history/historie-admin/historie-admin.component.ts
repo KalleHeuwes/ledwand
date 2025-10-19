@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UploadService } from '../../services/upload.service'; // Pfad anpassen
+import { UploadService } from '../../services/upload.service';
 
 @Component({
   selector: 'app-historie-admin',
@@ -18,26 +18,10 @@ importStatus: string = 'Bereit zum Starten des Imports.';
     this.isImporting = true;
     console.log('Datenimport wird gestartet...');
     this.importStatus = 'Datenimport wird gestartet...';
-
-    // 1. Die Service-Methode aufrufen
     this.adminService.startDataImport().subscribe({
-      
-      // 2. Erfolg: Die Rückmeldung vom Backend erhalten (z.B. "Datenimport erfolgreich...")
-      next: (response) => {
-        this.importStatus = response;
-        console.log('Import erfolgreich:', response);
-      },
-      
-      // 3. Fehler: Fehlerbehandlung (z.B. bei 500 Internal Server Error)
-      error: (error) => {
-        this.importStatus = `FEHLER beim Import: ${error.error}`;
-        console.error('Importfehler:', error);
-      },
-      
-      // 4. Abschluss
-      complete: () => {
-        this.isImporting = false;
-      }
+      next: (response) => { this.importStatus = response; },
+      error: (error) => { this.importStatus = `FEHLER beim Import: ${error.error}`; },
+      complete: () => { this.isImporting = false; }
     });
   }
 }

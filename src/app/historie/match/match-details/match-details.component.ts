@@ -1,9 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatchData, SpieltagskaderEintrag, TorEreignis } from '../match.module';
+import { SpieltagskaderEintrag, TorEreignis } from '../match.module';
 import { SaisonsService } from '../../saisonauswahl/saisons.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Spieltag } from '../../saisonauswahl/spieltag';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'; // <-- Wichtig!
+
+// Angenommen, dies ist Ihr Datenmodell, das Sie vom Backend erhalten
+interface FileItem {
+  name: string;
+  path: string; // Relativer Pfad, z.B. "Saison2526/EV-Bälle/Saison2526_02_Bälle.png"
+}
 
 @Component({
   selector: 'app-match-details',
@@ -15,6 +22,8 @@ export class MatchDetailsComponent implements OnInit {
   kader: SpieltagskaderEintrag[] = [];
   startelf: SpieltagskaderEintrag[] = [];
   bank: SpieltagskaderEintrag[] = [];
+  dokumente: String[] = [];
+  torvideos: String[] = [];
   toreWir: number = 0;
   toreGegner: number = 0;
   nameGegner: string = 'SV Gast';
@@ -27,12 +36,13 @@ export class MatchDetailsComponent implements OnInit {
   saison: string = '';
   spiel: number = 0;
   selectedFile: { path: string; name: string; type: string } = { path: './Saison2526/EV-Bälle/Saison2526_02_Bälle.png', name: 'Saison2526_02_Bälle.png', type: 'png' };
-  //isLoading: boolean = true;
-  //@Input() matchData!: MatchData;
+  selectedFileUrl: SafeResourceUrl | null = null; // Die sichere URL für den iFrame
 
-  //isLoading: boolean = true;
-  //@Input() matchData!: MatchData;
-    constructor(private saisonService: SaisonsService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private sanitizer: DomSanitizer, 
+    private saisonService: SaisonsService, 
+    private route: ActivatedRoute, 
+    private router: Router) {}
 
     ngOnInit(): void {
       this.route.paramMap.subscribe((params: ParamMap) => {
@@ -41,7 +51,7 @@ export class MatchDetailsComponent implements OnInit {
         this.spiel = parseInt(spieltag?.toString() || '0');
         this.saison = saison?.toString() || '';
         const saison4 = this.saison.replace('/', '').substring(2, 6);
-        const spieltag2 = spieltag?.toString().padStart(2, '0');
+        const spieltag2 = spieltag?.toString().padStart(2, '0') || '';
 
         if (saison && spieltag) {
           console.log(`Lade Daten für Saison: ${saison}, Spieltag: ${spieltag}`);
@@ -68,41 +78,59 @@ export class MatchDetailsComponent implements OnInit {
 
           this.saisonService.getSpieltagskader(saison.replace('/', ''), spieltag).subscribe(
             (kaderArray: SpieltagskaderEintrag[]) => {
-              //this.kader = kaderArray;  // 2. Das erhaltene Array speichern
-              console.log('--- Kader Iteration ---');
               this.startelf = [];
               this.bank = [];
               this.kader = [];
-              // 3. Iteration über das Array
               kaderArray.forEach(eintrag => {
-                // Zugriff auf die Eigenschaften jedes Elements
-                console.log(
-                  `Spieler: ${eintrag.vorname} ${eintrag.nachname} | Gruppe: ${eintrag.gruppe} | Einsatz: ${eintrag.einsatz}`
-                );
-                
-                // Hier können Sie komplexere Logik einfügen, z.B. das Filtern in Startelf/Bank:
                 if (eintrag.gruppe.substring(0, 2) === '01') { this.startelf.push(eintrag);}
                 if (eintrag.gruppe.substring(0, 2) === '02') { this.bank.push(eintrag);}
                 if (eintrag.gruppe.substring(0, 2) === '03') { this.kader.push(eintrag);}
               });
-              console.log('--- Iteration Ende ---');
             },
             (error) => {
               console.error('Fehler beim Laden des Spieltagskaders:', error);
             }
           );          
 
-        } else {
-          console.error('Saison oder Spieltag fehlen in der Route.');
-          //this.isLoading = false;
-        }
+          this.saisonService.getDokumente('Dokumente', saison.replace('/', ''), spieltag2).subscribe(
+            (dokumente: String[]) => {
+              this.dokumente = [];
+              dokumente.forEach(eintrag => {this.dokumente.push(eintrag); });
+            },
+            (error) => { console.error('Fehler beim Laden der Dokumente:', error); }
+          ); 
+
+          this.saisonService.getDokumente('Torvideos', saison.replace('/', ''), spieltag2).subscribe(
+            (dokumente: String[]) => {
+              this.torvideos = [];
+              dokumente.forEach(eintrag => {this.torvideos.push(eintrag); });
+            },
+            (error) => { console.error('Fehler beim Laden der Torvideos:', error); }
+          ); 
+        } else {console.error('Saison oder Spieltag fehlen in der Route.');}
       });
 
     }
 
-    menu(){
-      this.router.navigate(['/historie']);
+    /**
+      * Erzeugt die sichere URL für den PDF-Download und die Anzeige.
+    * @param filePath Der relative Pfad der Datei.
+    */
+    openFile(filePath: String): void {
+      
+      // 1. URI-Codierung des Pfadparameters
+      const encodedPath = encodeURIComponent(filePath.toString());
+      
+      // 2. Erstellung der vollständigen URL zum Backend-Endpunkt
+      const fullUrl = `/api/files/download?filePath=${encodedPath}`;
+      window.open(fullUrl, '_blank');
+
+      // 3. Den DomSanitizer verwenden, um die URL für den iFrame als sicher zu markieren
+      // Dies ist zwingend erforderlich, da Angular iFrames standardmäßig aus Sicherheitsgründen blockiert.
+      //this.selectedFileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fullUrl);
     }
+
+    menu(){ this.router.navigate(['/historie']); }
 
     spieltagWechseln(richtung: number) {
         const neueSpiel = this.spiel + richtung;

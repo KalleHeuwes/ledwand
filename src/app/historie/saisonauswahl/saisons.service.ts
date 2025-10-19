@@ -16,6 +16,7 @@ export class SaisonsService {
   private urlSpieltage = 'http://localhost:8080/api/historie/spieltage/{saison}';
   private urlSpiel = 'http://localhost:8080/api/historie/spieltag?saison={saison}&spieltag={spieltag}';
   private urlKader = 'http://localhost:8080/api/historie/spieltagskader?saison={saison}&spiel={spiel}';
+  private urlDokumente = 'http://localhost:8080/api/historie/documents?typ={typ}&saison={saison}&spieltag={spieltag}';
   private aktuelleSaisonSubject = new BehaviorSubject<Saison | null>(null);
 
   constructor(private http: HttpClient) {}
@@ -43,11 +44,21 @@ export class SaisonsService {
     return this.http.get<Spieltag[]>(url);
   }
 
-  /** Spieltage einer Saison */
+  /** Spieltag */
   getSpiel(saison: string, spieltag: number): Observable<Spieltag> {
     const url = this.urlSpiel.replace('{saison}', saison.replace('/', '')).replace('{spieltag}', spieltag.toString());
     return this.http.get<Spieltag>(url);
   }
+
+  /** Dokumente (Torvideos, Berichte) */
+  getDokumente(typ: string, saison: string, spieltag: string): Observable<String[]> {
+    const url = this.urlDokumente
+      .replace('{typ}', typ)
+      .replace('{saison}', saison.replace('/', ''))
+      .replace('{spieltag}', spieltag);
+    return this.http.get<String[]>(url);
+  }
+
   /** Aktuell gewählte Saison als Observable bereitstellen */
   getAktuelleSaison(): Observable<Saison | null> {
     return this.aktuelleSaisonSubject.asObservable();
