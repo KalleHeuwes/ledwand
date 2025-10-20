@@ -17,6 +17,7 @@ export class MatchDetailsComponent implements OnInit {
   startelf: SpieltagskaderEintrag[] = [];
   bank: SpieltagskaderEintrag[] = [];
   dokumente: FileItem[] = [];
+  fotos: FileItem[] = [];
   torvideos: FileItem[] = [];
   toreWir: number = 0;
   toreGegner: number = 0;
@@ -100,6 +101,14 @@ export class MatchDetailsComponent implements OnInit {
               dokumente.forEach(eintrag => {this.torvideos.push(eintrag); });
             },
             (error) => { console.error('Fehler beim Laden der Torvideos:', error); }
+          ); 
+
+          this.saisonService.getDokumente('Fotos', saison.replace('/', ''), spieltag2).subscribe(
+            (dokumente: FileItem[]) => {
+              this.fotos = [];
+              dokumente.forEach(eintrag => {this.fotos.push(eintrag); });
+            },
+            (error) => { console.error('Fehler beim Laden der Fotos:', error); }
           ); 
         } else {console.error('Saison oder Spieltag fehlen in der Route.');}
       });
