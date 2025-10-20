@@ -28,54 +28,63 @@
     </div>
 
     <hr>
-    
-    <h2>⚽ Spielverlauf</h2>
-    <div class="tor-container">
-      <div class="tor-item" *ngFor="let goal of toreReihenfolge">
-        <strong>{{ goal.minute }}'</strong> 
-        {{ goal.spielstand }}  {{ goal.torschuetze }} {{ goal.team === 'W' ? '' : '(' + nameGegner + ')' }}
-      </div>
-    </div>
-
     <div class="squad-details">
       
       <div class="squad-section">
         <h3>🟢 Startelf</h3>
-        <ul class="player-list">
-          <li *ngFor="let player of startelf">
-            {{ player.vorname }} {{ player.nachname }}
-              <span *ngIf="player.einsatz.indexOf('-') !== -1" class="substitution-info">
-              ⬇️ {{ player.einsatz.substring(player.einsatz.indexOf('-') + 1, 99) }}'
-            </span>
-
-          </li>
-        </ul>
+        <table>
+          <tbody>
+            <tr *ngFor="let player of startelf">
+              <td width="150px">{{ player.vorname }} {{ player.nachname }}</td>
+              <td><span *ngIf="player.einsatz.indexOf('-') !== -1" class="substitution-info">
+                    ⬇️
+                  </span>
+              </td>
+              <td><span *ngIf="player.einsatz.indexOf('-') !== -1" class="substitution-info">
+                    {{ player.einsatz.substring(player.einsatz.indexOf('-') + 1, 99) }}'
+                  </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="squad-section">
-        <h3>🔄 Eingewechselt</h3>
-        <ul class="player-list">
-          <li *ngFor="let sub of bank">
-            {{ sub.vorname }} {{ sub.nachname }} ⬆️ {{ sub.einsatz.substring(0, sub.einsatz.indexOf('-')) }}'
-          </li>
-        </ul>
-      </div>
 
+        <h3>🔄 Bank</h3>
+        <table>
+          <tbody>
+            <tr *ngFor="let sub of bank">
+              <td width="150px">{{ sub.vorname }} {{ sub.nachname }}</td>
+              <td>⬆️</td>
+              <td>{{ sub.einsatz.substring(0, sub.einsatz.indexOf('-')) }}'</td>
+            </tr>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr *ngFor="let benchPlayer of kader">
+              <td width="150px">{{ benchPlayer.vorname }} {{ benchPlayer.nachname }}</td>
+              <td>🚫</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div class="squad-section">
-        <h3>🚫 Kader</h3>
-        <ul class="player-list">
-          <li *ngFor="let benchPlayer of kader">
-            {{ benchPlayer.vorname }} {{ benchPlayer.nachname }}
-          </li>
-        </ul>
+        <h3>⚽ Spielverlauf</h3>
+      
+        <div class="tor-item" *ngFor="let goal of toreReihenfolge">
+          <strong>{{ goal.minute }}'</strong> 
+          {{ goal.spielstand }}  {{ goal.torschuetze }} {{ goal.team === 'W' ? '' : '(' + nameGegner + ')' }}
+        </div>
       </div>
-
     </div>
   </div>
-  <div>
-    <div class="evbaelle">
+  <div class="rechts">
+    <div>
       <img [src]="'http://localhost:8080/api/files/download?filePath=' + selectedFile.path" 
-        [alt]="selectedFile.name" *ngIf="selectedFile.type === 'png'">
+        [alt]="selectedFile.name" *ngIf="selectedFile.type === 'png'" width="160px" height="400px">
     </div>
     <h3>Dokumente</h3>
     <ul>
