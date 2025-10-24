@@ -5,10 +5,12 @@ import { SaisonsService } from '../../saisonauswahl/saisons.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Spieltag } from '../../saisonauswahl/spieltag';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'; // <-- Wichtig!
+import { TableOfPlayersComponent } from './table-of-players/table-of-players.component';
+import { TableOfDocsComponent } from './table-of-docs/table-of-docs.component';
 
 @Component({
   selector: 'app-match-details',
-  imports: [CommonModule],
+  imports: [CommonModule, TableOfPlayersComponent, TableOfDocsComponent],
   templateUrl: './match-details.component.html',
   styleUrl: './match-details.component.css'
 })

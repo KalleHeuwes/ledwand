@@ -31,45 +31,12 @@
     <div class="squad-details">
       
       <div class="squad-section">
-        <h3>🟢 Startelf</h3>
-        <table>
-          <tbody>
-            <tr *ngFor="let player of startelf">
-              <td width="150px">{{ player.vorname }} {{ player.nachname }}</td>
-              <td><span *ngIf="player.einsatz.indexOf('-') !== -1" class="substitution-info">
-                    ⬇️
-                  </span>
-              </td>
-              <td><span *ngIf="player.einsatz.indexOf('-') !== -1" class="substitution-info">
-                    {{ player.einsatz.substring(player.einsatz.indexOf('-') + 1, 99) }}'
-                  </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <app-table-of-players [playerstable]="startelf" typ="startelf" titel="🟢 Startelf"></app-table-of-players>
       </div>
 
       <div class="squad-section">
-
-        <h3>🔄 Bank</h3>
-        <table>
-          <tbody>
-            <tr *ngFor="let sub of bank">
-              <td width="150px">{{ sub.vorname }} {{ sub.nachname }}</td>
-              <td>⬆️</td>
-              <td>{{ sub.einsatz.substring(0, sub.einsatz.indexOf('-')) }}'</td>
-            </tr>
-          </tbody>
-        </table>
-        <table>
-          <tbody>
-            <tr *ngFor="let benchPlayer of kader">
-              <td width="150px">{{ benchPlayer.vorname }} {{ benchPlayer.nachname }}</td>
-              <td>🚫</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <app-table-of-players [playerstable]="bank" typ="bank" titel="🔄 Bank"></app-table-of-players>
+        <app-table-of-players [playerstable]="kader" typ="kader"></app-table-of-players>
       </div>
       <div class="squad-section">
         <h3>⚽ Spielverlauf</h3>
@@ -86,24 +53,9 @@
       <img [src]="'http://localhost:8080/api/files/download?filePath=' + selectedFile.path" 
         [alt]="selectedFile.name" *ngIf="selectedFile.type === 'png'" width="160px" height="400px">
     </div>
-    <h3>Dokumente</h3>
-    <ul>
-      <li *ngFor="let dokument of dokumente">
-        <a (click)="openFile(dokument.filePath)" href="javascript:void(0);">{{ dokument.fileName }} </a>
-      </li>
-    </ul>
-    <h3>Torvideos</h3>
-    <ul>
-      <li *ngFor="let video of torvideos">
-        <a (click)="openFile(video.filePath)" href="javascript:void(0);">{{ video.fileName }} </a>
-      </li>
-    </ul>
-    <h3>Fotos</h3>
-    <ul>
-      <li *ngFor="let foto of fotos">
-        <a (click)="openFile(foto.filePath)" href="javascript:void(0);">{{ foto.fileName }} </a>
-      </li>
-    </ul>
+    <app-table-of-docs [titel]="'Dokumente'" [docs]="dokumente"></app-table-of-docs>
+    <app-table-of-docs [titel]="'Torvideos'" [docs]="torvideos"></app-table-of-docs>
+    <app-table-of-docs [titel]="'Fotos'" [docs]="fotos"></app-table-of-docs>
   </div>
 
 </div>
