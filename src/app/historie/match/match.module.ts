@@ -11,6 +11,7 @@ export interface TorEreignis {
   spielstand: string;
   torschuetze: string;
   team: 'W' | 'G' | 'ET' | 'ETG'; // W = Wir, G = Gegner, ET = Eigentor, ETG = Eigentor Gegner
+  videourl: string;
 }
 
 export interface Team {

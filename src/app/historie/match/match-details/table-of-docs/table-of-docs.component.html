@@ -1,6 +1,4 @@
 <h3>{{titel}}</h3>
-<ul>
-    <li *ngFor="let doc of docs">
+<div *ngFor="let doc of docs">
     <a (click)="openFile(doc.filePath)" href="javascript:void(0);">{{ doc.fileName }} </a>
-    </li>
-</ul>
+</div>

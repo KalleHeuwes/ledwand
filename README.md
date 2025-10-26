@@ -43,6 +43,7 @@ ng serve --host 0.0.0.0
 
 ## Komponente anlegen
 ng g c history\football-table
+ng g c historie\match\match-details\table-of-goals 
 
 ## Service anlegen
 ng g s historie/saisonauswahl/saisons

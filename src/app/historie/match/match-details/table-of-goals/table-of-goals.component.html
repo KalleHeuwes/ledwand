@@ -1,0 +1,15 @@
+<h3 *ngIf="titel !== ''">{{ titel }}</h3>
+<table>
+    <tbody>
+    <tr *ngFor="let goal of goals">
+        <td width="20px"><strong>{{ goal.minute }}'</strong></td>
+        <td>{{ goal.spielstand }}</td>
+        <td>{{ goal.torschuetze }} {{ goal.team === 'W' ? '' : '(' + nameGegner + ')' }}</td>
+        <td><a *ngIf="goal.videourl" [href]="goal.videourl" target="_blank" rel="noopener noreferrer">
+                <mat-icon aria-hidden="false" aria-label="Video ansehen">videocam</mat-icon>
+                <span class="visually-hidden">Video ansehen</span>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>

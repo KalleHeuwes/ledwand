@@ -4,15 +4,15 @@
     <tr *ngFor="let player of playerstable" [class]="getClassForPlayer(typ, player.einsatz)">
         <td width="150px">{{ player.vorname }} {{ player.nachname }}</td>
         <td>
-            <span *ngIf="typ === 'startelf' && player.einsatz.indexOf('-') !== -1" class="substitution-infoxxx">⬇️</span>
-            <span *ngIf="typ === 'bank' && player.einsatz.indexOf('-') !== -1" class="substitution-infoxxx">⬆️</span>
-            <span *ngIf="typ === 'kader'" class="substitution-info">🚫</span>
+            <span *ngIf="typ === 'startelf' && player.einsatz.indexOf('-') !== -1">⬇️</span>
+            <span *ngIf="typ === 'bank' && player.einsatz.indexOf('-') !== -1">⬆️</span>
+            <span *ngIf="typ === 'kader'">🚫</span>
         </td>
         <td>
-            <span *ngIf="typ === 'startelf' && player.einsatz.indexOf('-') !== -1" class="substitution-infoxxx">
+            <span *ngIf="typ === 'startelf' && player.einsatz.indexOf('-') !== -1">
                 {{ player.einsatz.substring(player.einsatz.indexOf('-') + 1, 99) }}'
             </span>
-            <span *ngIf="typ === 'bank' && player.einsatz.indexOf('-') !== -1" class="substitution-infoxxx">
+            <span *ngIf="typ === 'bank' && player.einsatz.indexOf('-') !== -1">
                 {{ player.einsatz.substring(0, player.einsatz.indexOf('-')) }}'
             </span>
         </td>

@@ -39,22 +39,16 @@
         <app-table-of-players [playerstable]="kader" typ="kader"></app-table-of-players>
       </div>
       <div class="squad-section">
-        <h3>⚽ Spielverlauf</h3>
-      
-        <div class="tor-item" *ngFor="let goal of toreReihenfolge">
-          <strong>{{ goal.minute }}'</strong> 
-          {{ goal.spielstand }}  {{ goal.torschuetze }} {{ goal.team === 'W' ? '' : '(' + nameGegner + ')' }}
-        </div>
+        <app-table-of-goals [titel]="'⚽ Spielverlauf'" [goals]="toreReihenfolge" [nameGegner]="nameGegner"></app-table-of-goals>
       </div>
     </div>
   </div>
   <div class="rechts">
     <div>
-      <img [src]="'http://localhost:8080/api/files/download?filePath=' + selectedFile.path" 
-        [alt]="selectedFile.name" *ngIf="selectedFile.type === 'png'" width="160px" height="400px">
+      <img [src]="'http://localhost:8080/api/files/download?filePath=' + evbaelleFile.path" 
+        [alt]="evbaelleFile.name" *ngIf="evbaelleFile.type === 'png'" width="160px" height="400px">
     </div>
     <app-table-of-docs [titel]="'Dokumente'" [docs]="dokumente"></app-table-of-docs>
-    <app-table-of-docs [titel]="'Torvideos'" [docs]="torvideos"></app-table-of-docs>
     <app-table-of-docs [titel]="'Fotos'" [docs]="fotos"></app-table-of-docs>
   </div>
 

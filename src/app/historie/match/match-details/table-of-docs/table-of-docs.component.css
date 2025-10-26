@@ -1,0 +1,50 @@
+/* Styling für alle PDF-Links */
+a {
+  /* Darstellung als Inline-Block für Padding und Hintergrund */
+  display: inline-block;
+  padding: 8px 15px; /* Innenabstand für Button-Feeling */
+  margin: 5px 0; /* Vertikaler Abstand zu anderen Elementen */
+  
+  /* Hintergrund und Rahmen */
+  background-color: #f8f9fa; /* Heller, neutraler Hintergrund */
+  border: 1px solid #ced4da; /* Dezenter Rahmen */
+  border-radius: 4px; /* Abgerundete Ecken */
+  
+  /* Typografie */
+  color: #212529; /* Dunkle Schriftfarbe */
+  font-weight: 500; /* Halbfett */
+  text-decoration: none; /* Entfernt die Standard-Unterstreichung */
+  font-size: 14px; /* Klare Schriftgröße */
+  
+  /* Übergang für sanfte Hover-Effekte */
+  transition: all 0.3s ease;
+  
+  /* Optional: Icon über Pseudo-Element */
+  position: relative;
+  padding-left: 35px; /* Platz für das Icon */
+}
+
+/* Icon (z.B. ein PDF-Symbol) hinzufügen */
+a::before {
+  content: "📄"; /* Oder "⬇️" oder ein FontAwesome-Icon */
+  font-family: 'Arial', sans-serif; /* Stellt sicher, dass das Icon angezeigt wird */
+  font-size: 16px;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Hover-Effekt für Interaktion */
+a:hover {
+  background-color: #e2e6ea; /* Dunklerer Hintergrund bei Hover */
+  border-color: #adb5bd; /* Dunklerer Rahmen bei Hover */
+  color: #000; /* Schwarzer Text bei Hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Dezenter Schatten */
+}
+
+/* Optional: Fokus-Stil für Barrierefreiheit */
+a:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}

@@ -125,7 +125,8 @@ export class SaisonsService {
               minute: tor.minute,
               spielstand: spielstand,
               torschuetze: torschuetze,
-              team: team
+              team: team,
+              videourl: ''
           });
       }
 

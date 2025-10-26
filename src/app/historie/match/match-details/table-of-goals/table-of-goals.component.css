@@ -20,7 +20,7 @@ tr:hover td {
 }
 
 /* Pfeil-Zelle (mittlere Zelle) wird zum Akzent-Block */
-td:nth-child(2) {
+xxtd:nth-child(2) {
     text-align: center;
     width: 20px;
     font-size: 1.2em;
@@ -29,5 +29,5 @@ td:nth-child(2) {
 }
 
 /* Spielername und Minute anpassen */
-td:nth-child(1) { font-weight: 600; }
-td:nth-child(3) { color: #666; text-align: right; width: 15%; }
+xxtd:nth-child(1) { font-weight: 600; }
+xxtd:nth-child(3) { color: #666; text-align: right; width: 15%; }
