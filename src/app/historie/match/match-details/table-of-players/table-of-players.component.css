@@ -1,0 +1,45 @@
+/* Generelle Tabellen-Basis */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: separate; /* Für abgerundete Ecken */
+    border-spacing: 0 4px; /* Abstand zwischen Zeilen */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+td {
+    padding: 2px 3px;
+    border: none;
+    background-color: #f4f4f4; /* Hellgrauer Hintergrund für alle Zellen */
+    vertical-align: middle;
+}
+
+/* Einheitlicher Hover-Effekt */
+tr:hover td {
+    background-color: #eaeaea;
+}
+
+/* Pfeil-Zelle (mittlere Zelle) wird zum Akzent-Block */
+td:nth-child(2) {
+    text-align: center;
+    width: 50px;
+    font-size: 1.2em;
+    font-weight: bolder;
+    border-radius: 4px;
+}
+
+/* GRÜNER Block für Einwechslung */
+.substitution-in td:nth-child(2) {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* ROTER Block für Auswechslung */
+.substitution-out td:nth-child(2) {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Spielername und Minute anpassen */
+td:nth-child(1) { font-weight: 600; }
+td:nth-child(3) { color: #666; text-align: right; width: 15%; }

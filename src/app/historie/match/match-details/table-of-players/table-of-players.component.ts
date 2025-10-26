@@ -12,4 +12,20 @@ export class TableOfPlayersComponent {
   @Input() typ: string = '';
   @Input() titel: string = '';
   @Input() playerstable: SpieltagskaderEintrag[] = [];
+
+  /**
+   * Gibt den passenden CSS-Klassennamen zurück.
+   * @param status 'IN' oder 'OUT'
+   * @returns 'substitution-in' oder 'substitution-out'
+   */
+  getClassForPlayer(typ: string, einsatz: string): string {
+      // Hier können Sie komplexe Logik implementieren
+      if (typ === 'bank' && einsatz.indexOf('-') !== -1) {
+          return 'substitution-in';
+      } else if (typ === 'startelf' && einsatz.indexOf('-') !== -1) {
+          return 'substitution-out';
+      }
+      return ''; // Standard-Klasse
+  }
+
 }
