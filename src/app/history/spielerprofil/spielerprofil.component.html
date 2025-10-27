@@ -10,7 +10,7 @@
             [matAutocomplete]="auto">
     </mat-form-field>
 
-    <mat-autocomplete #auto="matAutocomplete">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="spielerGewaehlt($event.option.value)">
       <mat-option *ngFor="let option of filteredPlayers | async" [value]="option">
         {{ option }}
       </mat-option>
@@ -29,15 +29,13 @@
         </div>
       </div>
       <div class="info">
-        <p><strong>Name:</strong> Müller</p>
-        <p><strong>Vorname:</strong> Max</p>
-        <p><strong>Geburtsdatum:</strong> 01.01.1995</p>
-        <p><strong>Im Verein seit:</strong> 2010</p>
-        <p><strong>Position:</strong> Stürmer</p>
+        <p><strong>Name:</strong>{{spieler.name}}</p>
+        <p><strong>Vorname:</strong>{{spieler.vorname}}</p>
+        <p><strong>Geburtsdatum:</strong>{{spieler.geburtsdatum}}</p>
+        <p><strong>Im Verein seit:</strong>{{spieler.imVereinSeit}}</p>
+        <p><strong>Position:</strong>{{spieler.position}}</p>
         <p class="beschreibung">
-          Max ist ein schneller, wendiger Stürmer mit großem Torriecher.
-          Seine Stärken liegen im 1-gegen-1 und im Abschluss mit beiden Füßen.
-          Er gilt als Publikumsliebling durch seinen Einsatz.
+          {{spieler.beschreibung}}
         </p>
       </div>
     </mat-card>

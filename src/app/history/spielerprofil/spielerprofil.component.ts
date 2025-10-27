@@ -28,6 +28,14 @@ interface Spiel {
   styleUrls: ['./spielerprofil.component.css']
 })
 export class SpielerprofilComponent implements OnInit {
+  spieler = {
+    name: 'Mustermann',
+    vorname: 'Max',
+    geburtsdatum: '01.01.1995',
+    imVereinSeit: '2010',
+    position: 'Stürmer',
+    beschreibung: 'Max ist ein schneller, wendiger Stürmer mit großem Torriecher. Seine Stärken liegen im 1-gegen-1 und im Abschluss mit beiden Füßen. Er gilt als Publikumsliebling durch seinen Einsatz.'
+  };
   myControl = new FormControl('');
   players: string[] = ['Spieler A', 'Spieler B', 'Max Mustermann', 'Erika Musterfrau']; // Beispiel-Daten
   filteredPlayers: Observable<string[]> | undefined;
@@ -46,6 +54,16 @@ export class SpielerprofilComponent implements OnInit {
   private _filterPlayers(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.players.filter(player => player.toLowerCase().includes(filterValue));
+  }
+
+  /**
+   * Wird aufgerufen, sobald ein Spieler aus der Autocomplete-Liste ausgewählt wird.
+   * @param spielername Der Name des ausgewählten Spielers.
+   */
+  spielerGewaehlt(spielername: string): void {
+    console.log(`Der ausgewählte Spieler ist: ${spielername}`);
+    this.spieler.name = spielername.split(',')[0].trim() || '';
+    this.spieler.vorname = spielername.split(',')[1].trim() || '';
   }
 
   daten: Spiel[] = [
