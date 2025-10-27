@@ -12,6 +12,7 @@ import { FileItem, SpieltagskaderEintrag, TorEreignis } from '../match/match.mod
 export class SaisonsService {
 
   private urlSaisons = 'http://localhost:8080/api/historie/saisons';
+  private urlSpielerliste = 'http://localhost:8080/api/historie/spielerliste';
   private urlAbschlusstabelle = 'http://localhost:8080/api/historie/abschlusstabelle/{saison}';
   private urlSpieltage = 'http://localhost:8080/api/historie/spieltage/{saison}';
   private urlSpiel = 'http://localhost:8080/api/historie/spieltag?saison={saison}&spieltag={spieltag}';
@@ -36,6 +37,11 @@ export class SaisonsService {
   getAbschlusstabelle(saison: string): Observable<TeamPerformance[]> {
     const url = this.urlAbschlusstabelle.replace('{saison}', saison.replace('/', ''));
     return this.http.get<TeamPerformance[]>(url);
+  }
+
+  /** Spieltage einer Saison */
+  getSpielerliste(): Observable<string[]> {
+    return this.http.get<string[]>(this.urlSpielerliste);
   }
 
   /** Spieltage einer Saison */

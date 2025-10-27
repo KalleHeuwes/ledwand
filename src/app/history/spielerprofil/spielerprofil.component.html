@@ -1,4 +1,23 @@
 <div class="profil-container">
+  <div>
+    <mat-form-field>
+      <mat-label>Spieler suchen</mat-label>
+      <input type="text"
+            placeholder="Name eingeben"
+            aria-label="Spieler"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto">
+    </mat-form-field>
+
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredPlayers | async" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </div>
+
+
   <!-- Linkes Drittel -->
   <div class="profil-links">
     <mat-card class="foto-card">
