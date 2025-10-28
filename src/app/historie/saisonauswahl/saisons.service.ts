@@ -18,6 +18,7 @@ export class SaisonsService {
   private urlSpiel = 'http://localhost:8080/api/historie/spieltag?saison={saison}&spieltag={spieltag}';
   private urlKader = 'http://localhost:8080/api/historie/spieltagskader?saison={saison}&spiel={spiel}';
   private urlDokumente = 'http://localhost:8080/api/historie/documents?typ={typ}&saison={saison}&spieltag={spieltag}';
+  private urlEinsaetze = 'http://localhost:8080/api/historie/einsaetze?nachname={nachname}&vorname={vorname}';
   private aktuelleSaisonSubject = new BehaviorSubject<Saison | null>(null);
 
   constructor(private http: HttpClient) {}
@@ -25,6 +26,12 @@ export class SaisonsService {
   /** Liste aller Spieler im Kader eines Spieltags */
   getSpieltagskader(saison: string, spiel: string): Observable<SpieltagskaderEintrag[]> {
     const url = this.urlKader.replace('{saison}', saison).replace('{spiel}', spiel);
+    return this.http.get<SpieltagskaderEintrag[]>(url);
+  }
+
+  /** Liste aller Spieler im Kader eines Spieltags */
+  getSpieleEinesSpielers(nachname: string, vorname: string): Observable<SpieltagskaderEintrag[]> {
+    const url = this.urlEinsaetze.replace('{nachname}', nachname).replace('{vorname}', vorname);
     return this.http.get<SpieltagskaderEintrag[]>(url);
   }
 

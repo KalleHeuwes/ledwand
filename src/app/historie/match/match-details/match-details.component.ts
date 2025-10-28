@@ -112,8 +112,8 @@ export class MatchDetailsComponent implements OnInit {
     this.nameHeim = (heimspiel) ? 'SpVg Emsdetten 05' : spiel.gegner;
     this.nameGast = (heimspiel) ? spiel.gegner : 'SpVg Emsdetten 05';
     this.nameGegner = spiel.gegner;    
-    this.logoHeim = (heimspiel) ? '/assets/pictures/teams/logo_sve.png' : '';
-    this.logoGast = (heimspiel) ? '' : '/assets/pictures/teams/logo_sve.png';
+    this.logoHeim = (heimspiel) ? '/assets/pictures/teams/logo_sve.png' : '/assets/pictures/teams/NichtGefunden.svg';
+    this.logoGast = (heimspiel) ? '/assets/pictures/teams/NichtGefunden.svg' : '/assets/pictures/teams/logo_sve.png';
     this.toreReihenfolge = this.saisonService.erstelleTorreihenfolgeAlsArray(spiel.geschossen, spiel.kassiert);
     //this.isLoading = false;
     this.torvideos = [];

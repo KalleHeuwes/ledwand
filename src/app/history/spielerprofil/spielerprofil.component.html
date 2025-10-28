@@ -55,27 +55,13 @@
 
           <ng-container matColumnDef="spieltag">
             <th mat-header-cell *matHeaderCellDef> Spieltag </th>
-            <td mat-cell *matCellDef="let element"> {{element.spieltag}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.spiel}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="datum">
-            <th mat-header-cell *matHeaderCellDef> Datum </th>
-            <td mat-cell *matCellDef="let element"> {{element.datum}} </td>
-          </ng-container>
 
           <ng-container matColumnDef="einsatzzeit">
             <th mat-header-cell *matHeaderCellDef> Einsatzzeit </th>
-            <td mat-cell *matCellDef="let element"> {{element.einsatzzeit}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="tore">
-            <th mat-header-cell *matHeaderCellDef> Tore </th>
-            <td mat-cell *matCellDef="let element"> {{element.tore}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="bemerkungen">
-            <th mat-header-cell *matHeaderCellDef> Bemerkungen </th>
-            <td mat-cell *matCellDef="let element"> {{element.bemerkungen}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.einsatz}} </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

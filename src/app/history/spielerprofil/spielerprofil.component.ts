@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { SaisonsService } from 'src/app/historie/saisonauswahl/saisons.service';
+import { SpieltagskaderEintrag } from 'src/app/historie/match/match.module';
 
 interface Spiel {
   saison: string;
@@ -39,7 +40,8 @@ export class SpielerprofilComponent implements OnInit {
   myControl = new FormControl('');
   players: string[] = ['Spieler A', 'Spieler B', 'Max Mustermann', 'Erika Musterfrau']; // Beispiel-Daten
   filteredPlayers: Observable<string[]> | undefined;
-  displayedColumns: string[] = ['saison', 'spieltag', 'datum', 'einsatzzeit', 'tore', 'bemerkungen'];
+  displayedColumns: string[] = ['saison', 'spieltag', 'einsatzzeit'];
+  daten: SpieltagskaderEintrag[] = [];
   constructor( private saisonService: SaisonsService) {}
   ngOnInit() {
     this.saisonService.getSpielerliste().subscribe(data => {
@@ -64,11 +66,9 @@ export class SpielerprofilComponent implements OnInit {
     console.log(`Der ausgewählte Spieler ist: ${spielername}`);
     this.spieler.name = spielername.split(',')[0].trim() || '';
     this.spieler.vorname = spielername.split(',')[1].trim() || '';
+    this.saisonService.getSpieleEinesSpielers(this.spieler.name, this.spieler.vorname).subscribe(data => {
+      this.daten = data;
+    });
   }
 
-  daten: Spiel[] = [
-    { saison: '2022/23', spieltag: 1, datum: '12.08.2022', einsatzzeit: '90 min', tore: 1, bemerkungen: 'Starker Start' },
-    { saison: '2022/23', spieltag: 2, datum: '19.08.2022', einsatzzeit: '75 min', tore: 0, bemerkungen: '-' },
-    { saison: '2022/23', spieltag: 3, datum: '26.08.2022', einsatzzeit: '60 min', tore: 2, bemerkungen: 'Matchwinner' }
-  ];
 }
