@@ -16,8 +16,8 @@
 
 /* Bild */
 .card-image {
-  width: 60%;
-  height: 80px;
+  width: 100%;
+  height: 100px;
   object-fit: contain; /* behält Proportionen, passt in Box */
   display: block;
   margin: 0.25rem 0 0.6rem 0;

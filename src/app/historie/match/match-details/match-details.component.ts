@@ -24,14 +24,13 @@ export class MatchDetailsComponent implements OnInit {
   dokumente: FileItem[] = [];
   fotos: FileItem[] = [];
   torvideos: FileItem[] = [];
-  toreWir: number = 0;
-  toreGegner: number = 0;
-  nameGegner: string = 'SV Gast';
-  logoGegner: string = '/assets/pictures/teams/SV_Mesum.svg';
-  nameWir: string = 'FC Meine Stadt';
-  logoWir: string = '/assets/pictures/teams/logo_sve.png';
-  toreStrWir: string = '';
-  toreStrGegner: string = '';
+  toreHeim: number = 0;
+  toreGast: number = 0;
+  nameHeim: string = '';
+  nameGast: string = '';
+  nameGegner: string = '';
+  logoGast: string = '';
+  logoHeim: string = '';
   toreReihenfolge: TorEreignis[] = [];
   saison: string = '';
   spiel: number = 0;
@@ -105,12 +104,16 @@ export class MatchDetailsComponent implements OnInit {
   }
 
   nachbearbeitung(spiel: Spieltag, torvideos: FileItem[]): void {
-    this.toreWir = spiel.ergebnis.substring(0, spiel.ergebnis.indexOf(':')) as unknown as number;
-    this.toreGegner = spiel.ergebnis.substring(spiel.ergebnis.indexOf(':') + 1) as unknown as number;
-    this.nameGegner = spiel.gegner;
-    this.nameWir = 'SpVg Emsdetten 05';
-    this.toreStrWir = spiel.geschossen;
-    this.toreStrGegner = spiel.kassiert;
+    let heimspiel = (spiel.heimOderAuswaerts === 'H');
+    let toreVorne = spiel.ergebnis.substring(0, spiel.ergebnis.indexOf(':')) as unknown as number;
+    let toreHinten = spiel.ergebnis.substring(spiel.ergebnis.indexOf(':') + 1) as unknown as number;
+    this.toreHeim = (heimspiel) ? toreVorne : toreHinten;
+    this.toreGast = (heimspiel) ? toreHinten : toreVorne;
+    this.nameHeim = (heimspiel) ? 'SpVg Emsdetten 05' : spiel.gegner;
+    this.nameGast = (heimspiel) ? spiel.gegner : 'SpVg Emsdetten 05';
+    this.nameGegner = spiel.gegner;    
+    this.logoHeim = (heimspiel) ? '/assets/pictures/teams/logo_sve.png' : '';
+    this.logoGast = (heimspiel) ? '' : '/assets/pictures/teams/logo_sve.png';
     this.toreReihenfolge = this.saisonService.erstelleTorreihenfolgeAlsArray(spiel.geschossen, spiel.kassiert);
     //this.isLoading = false;
     this.torvideos = [];
