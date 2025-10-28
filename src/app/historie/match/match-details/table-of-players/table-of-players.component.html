@@ -1,7 +1,7 @@
 <h3 *ngIf="titel !== ''">{{ titel }}</h3>
 <table>
     <tbody>
-    <tr *ngFor="let player of playerstable" [class]="getClassForPlayer(typ, player.einsatz)">
+    <tr *ngFor="let player of playerstable"(click)="goToPlayerDetail(player)" [class]="getClassForPlayer(typ, player.einsatz)">
         <td width="150px">{{ player.vorname }} {{ player.nachname }}</td>
         <td>
             <span *ngIf="typ === 'startelf' && player.einsatz.indexOf('-') !== -1">⬇️</span>

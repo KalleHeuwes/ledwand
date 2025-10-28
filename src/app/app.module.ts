@@ -33,6 +33,7 @@ import { MatListModule } from '@angular/material/list';
 import { SpielanzeigeComponent } from './temp/spielanzeige/spielanzeige.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatchDetailsComponent } from './historie/match/match-details/match-details.component';
+import { SpielerprofilComponent } from './history/spielerprofil/spielerprofil.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { MatchDetailsComponent } from './historie/match/match-details/match-deta
       {path: 'smartupdate', 			component: SmartupdateComponent},
       {path: 'checkitout', 				component: CheckitoutComponent},
       {path: 'historie',				component: HistorieComponent},
+      {path: 'spielerprofil/:nachname/:vorname',				component: SpielerprofilComponent},
       {path: 'spiel/:saison/:spieltag',	component: MatchDetailsComponent},
       {path: 'temp', 					component: SpielanzeigeComponent},
       {path: '', redirectTo: '/startseite', pathMatch: 'full'},

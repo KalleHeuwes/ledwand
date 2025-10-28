@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { SaisonsService } from 'src/app/historie/saisonauswahl/saisons.service';
 import { SpieltagskaderEintrag } from 'src/app/historie/match/match.module';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 interface Spiel {
   saison: string;
@@ -42,8 +43,22 @@ export class SpielerprofilComponent implements OnInit {
   filteredPlayers: Observable<string[]> | undefined;
   displayedColumns: string[] = ['saison', 'spieltag', 'einsatzzeit'];
   daten: SpieltagskaderEintrag[] = [];
-  constructor( private saisonService: SaisonsService) {}
+
+  constructor( private saisonService: SaisonsService, private route: ActivatedRoute) {}
+
   ngOnInit() {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      const nachname = params.get('nachname');
+      const vorname = params.get('vorname');
+      if (nachname && vorname) {
+        this.spieler.name = nachname;
+        this.spieler.vorname = vorname;
+        this.saisonService.getSpieleEinesSpielers(nachname, vorname).subscribe(data => {
+          this.daten = data;
+        });
+      }
+    });
+
     this.saisonService.getSpielerliste().subscribe(data => {
       this.players = data;
     });
