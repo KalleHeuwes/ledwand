@@ -1,4 +1,3 @@
-<div class="profil-container">
   <div>
     <mat-form-field>
       <mat-label>Spieler suchen</mat-label>
@@ -17,26 +16,36 @@
     </mat-autocomplete>
   </div>
 
+<div class="profil-container">
+
+
 
   <!-- Linkes Drittel -->
   <div class="profil-links">
     <mat-card class="foto-card">
-      <div class="bilder">
-        <img src="assets/spieler-aktuell.jpg" alt="Aktuelles Foto" class="foto-aktuell">
-        <div class="fotos-alt">
-          <img src="assets/spieler-alt1.jpg" alt="Altes Foto 1" class="foto-alt">
-          <img src="assets/spieler-alt2.jpg" alt="Altes Foto 2" class="foto-alt">
-        </div>
-      </div>
+
       <div class="info">
-        <p><strong>Name:</strong>{{spieler.name}}</p>
-        <p><strong>Vorname:</strong>{{spieler.vorname}}</p>
-        <p><strong>Geburtsdatum:</strong>{{spieler.geburtsdatum}}</p>
-        <p><strong>Im Verein seit:</strong>{{spieler.imVereinSeit}}</p>
-        <p><strong>Position:</strong>{{spieler.position}}</p>
+        <table>
+          <tbody>
+            <tr><td><strong>Name:</strong></td><td>{{spieler.name}}</td></tr>
+            <tr><td><strong>Vorname:</strong></td><td>{{spieler.vorname}}</td></tr>
+            <tr><td><strong>Geburtsdatum:</strong></td><td>{{spieler.geburtsdatum}}</td></tr>
+            <tr><td><strong>Im Verein seit:</strong></td><td>{{spieler.imVereinSeit}}</td></tr>
+            <tr><td><strong>Position:</strong></td><td>{{spieler.position}}</td></tr>
+          </tbody>
+        </table>
         <p class="beschreibung">
           {{spieler.beschreibung}}
         </p>
+      </div>
+      <div class="bilder">
+        <img src="{{spieler.photo01}}" alt="{{spieler.photo01}}" class="foto-aktuell">
+        <!--
+          <div class="fotos-alt">
+            <img src="assets/spieler-alt1.jpg" alt="Altes Foto 1" class="foto-alt">
+            <img src="assets/spieler-alt2.jpg" alt="Altes Foto 2" class="foto-alt">
+          </div>
+        -->
       </div>
     </mat-card>
   </div>

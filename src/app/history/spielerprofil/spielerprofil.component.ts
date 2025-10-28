@@ -31,15 +31,16 @@ interface Spiel {
 })
 export class SpielerprofilComponent implements OnInit {
   spieler = {
-    name: 'Mustermann',
-    vorname: 'Max',
-    geburtsdatum: '01.01.1995',
-    imVereinSeit: '2010',
-    position: 'Stürmer',
-    beschreibung: 'Max ist ein schneller, wendiger Stürmer mit großem Torriecher. Seine Stärken liegen im 1-gegen-1 und im Abschluss mit beiden Füßen. Er gilt als Publikumsliebling durch seinen Einsatz.'
+    name: '.',
+    vorname: '.',
+    geburtsdatum: '.',
+    imVereinSeit: '.',
+    position: '.',
+    beschreibung: '...',
+    photo01: '...'
   };
   myControl = new FormControl('');
-  players: string[] = ['Spieler A', 'Spieler B', 'Max Mustermann', 'Erika Musterfrau']; // Beispiel-Daten
+  players: string[] = ['']; // Beispiel-Daten
   filteredPlayers: Observable<string[]> | undefined;
   displayedColumns: string[] = ['saison', 'spieltag', 'einsatzzeit'];
   daten: SpieltagskaderEintrag[] = [];
@@ -52,7 +53,9 @@ export class SpielerprofilComponent implements OnInit {
       const vorname = params.get('vorname');
       if (nachname && vorname) {
         this.spieler.name = nachname;
-        this.spieler.vorname = vorname;
+        this.spieler.vorname = vorname; //assets/spieler-aktuell.jpg
+        this.spieler.photo01 = `assets/pictures/players/${vorname}_${nachname}.jpg`;
+        console.log('Foto: ' + this.spieler.photo01);
         this.saisonService.getSpieleEinesSpielers(nachname, vorname).subscribe(data => {
           this.daten = data;
         });
@@ -81,6 +84,7 @@ export class SpielerprofilComponent implements OnInit {
     console.log(`Der ausgewählte Spieler ist: ${spielername}`);
     this.spieler.name = spielername.split(',')[0].trim() || '';
     this.spieler.vorname = spielername.split(',')[1].trim() || '';
+    this.spieler.photo01 = `assets/pictures/players/${this.spieler.vorname}_${this.spieler.name}.jpg`;
     this.saisonService.getSpieleEinesSpielers(this.spieler.name, this.spieler.vorname).subscribe(data => {
       this.daten = data;
     });
