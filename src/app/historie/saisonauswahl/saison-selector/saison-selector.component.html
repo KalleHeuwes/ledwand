@@ -2,11 +2,7 @@
   <label for="saison-select">Saison auswählen:</label>
   
   <ng-container *ngIf="saisons$ | async as saisons">
-    <select
-      id="saison-select"
-      [(ngModel)]="aktuelleSaison"
-      (change)="onSaisonChange()"
-    >
+    <select id="saison-select" [(ngModel)]="aktuelleSaison" (change)="onSaisonChange()" >
       <option *ngFor="let saison of saisons" [ngValue]="saison.saison">
         {{ saison.saison + ' - ' + saison.liga + ' ' + saison.bemerkungen}}
       </option>

@@ -18,7 +18,7 @@ export class SaisonsService {
   private urlSpiel = 'http://localhost:8080/api/historie/spieltag?saison={saison}&spieltag={spieltag}';
   private urlKader = 'http://localhost:8080/api/historie/spieltagskader?saison={saison}&spiel={spiel}';
   private urlDokumente = 'http://localhost:8080/api/historie/documents?typ={typ}&saison={saison}&spieltag={spieltag}';
-  private urlEinsaetze = 'http://localhost:8080/api/historie/einsaetze?nachname={nachname}&vorname={vorname}';
+  private urlEinsaetze = 'http://localhost:8080/api/historie/einsaetze?nachname={nachname}&vorname={vorname}&saison={saison}';
   private aktuelleSaisonSubject = new BehaviorSubject<Saison | null>(null);
 
   constructor(private http: HttpClient) {}
@@ -30,13 +30,13 @@ export class SaisonsService {
   }
 
   /** Liste aller Spieler im Kader eines Spieltags */
-  getSpieleEinesSpielers(nachname: string, vorname: string): Observable<SpieltagskaderEintrag[]> {
-    const url = this.urlEinsaetze.replace('{nachname}', nachname).replace('{vorname}', vorname);
+  getSpieleEinesSpielers(nachname: string, vorname: string, saison: string): Observable<SpieltagskaderEintrag[]> {
+    const url = this.urlEinsaetze.replace('{nachname}', nachname).replace('{vorname}', vorname).replace('{saison}', saison);
     return this.http.get<SpieltagskaderEintrag[]>(url);
   }
 
   /** Liste aller verfügbaren Saisons aus dem Backend laden */
-  getSaisons(): Observable<Saison[]> {
+  getSaisons(filter: string): Observable<Saison[]> {
     return this.http.get<Saison[]>(this.urlSaisons);
   }
 

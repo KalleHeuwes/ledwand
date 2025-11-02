@@ -15,7 +15,7 @@ export class SeasonsComponent implements OnInit {
   constructor(private saisonService: SaisonsService) {}
 
   ngOnInit() {
-    this.saisonService.getSaisons().subscribe((data: Saison[]) => {
+    this.saisonService.getSaisons("*").subscribe((data: Saison[]) => {
        this.tableData = data;
     });
   }

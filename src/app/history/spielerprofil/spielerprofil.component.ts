@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { SaisonsService } from 'src/app/historie/saisonauswahl/saisons.service';
 import { SpieltagskaderEintrag } from 'src/app/historie/match/match.module';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { SaisonSelectorComponent } from '../../historie/saisonauswahl/saison-selector/saison-selector.component';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 interface Spiel {
   saison: string;
@@ -25,7 +26,8 @@ interface Spiel {
 @Component({
   selector: 'app-spielerprofil',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatTableModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule],
+  imports: [CommonModule, MatCardModule, MatTableModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule
+    , ReactiveFormsModule, SaisonSelectorComponent],
   templateUrl: './spielerprofil.component.html',
   styleUrls: ['./spielerprofil.component.css']
 })
@@ -39,6 +41,7 @@ export class SpielerprofilComponent implements OnInit {
     beschreibung: '...',
     photo01: '...'
   };
+  saisonId: string = '*';
   myControl = new FormControl('');
   players: string[] = ['']; // Beispiel-Daten
   filteredPlayers: Observable<string[]> | undefined;
@@ -56,7 +59,7 @@ export class SpielerprofilComponent implements OnInit {
         this.spieler.vorname = vorname; //assets/spieler-aktuell.jpg
         this.spieler.photo01 = `assets/pictures/players/${vorname}_${nachname}.jpg`;
         console.log('Foto: ' + this.spieler.photo01);
-        this.saisonService.getSpieleEinesSpielers(nachname, vorname).subscribe(data => {
+        this.saisonService.getSpieleEinesSpielers(nachname, vorname, this.saisonId).subscribe(data => {
           this.daten = data;
         });
       }
@@ -85,7 +88,15 @@ export class SpielerprofilComponent implements OnInit {
     this.spieler.name = spielername.split(',')[0].trim() || '';
     this.spieler.vorname = spielername.split(',')[1].trim() || '';
     this.spieler.photo01 = `assets/pictures/players/${this.spieler.vorname}_${this.spieler.name}.jpg`;
-    this.saisonService.getSpieleEinesSpielers(this.spieler.name, this.spieler.vorname).subscribe(data => {
+    this.saisonService.getSpieleEinesSpielers(this.spieler.name, this.spieler.vorname, this.saisonId).subscribe(data => {
+      this.daten = data;
+    });
+  }
+
+  handleSaisonAuswahl(saisonId: string): void {
+    this.saisonId = saisonId.replace('/', '');
+    console.log(`Spielerprofil lädt Daten für Saison-ID: ${this.saisonId}`);
+    this.saisonService.getSpieleEinesSpielers(this.spieler.name, this.spieler.vorname, this.saisonId).subscribe(data => {
       this.daten = data;
     });
   }

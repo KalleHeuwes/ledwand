@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Saison } from '../saison';
 import { map, Observable, tap } from 'rxjs';
 import { SaisonsService } from '../saisons.service';
@@ -16,11 +16,12 @@ export class SaisonSelectorComponent implements OnInit {
   aktuelleSaison: string | undefined;
   @Output()
   saisonGewaehlt = new EventEmitter<string>();
+  @Input() filter: string = '*';
 
   constructor(private saisonService: SaisonsService) { }
 
   ngOnInit(): void {
-    this.saisons$ = this.saisonService.getSaisons().pipe(
+    this.saisons$ = this.saisonService.getSaisons(this.filter).pipe(
       tap(saisons => {
         if (saisons && saisons.length > 0) {
           this.aktuelleSaison = saisons[0].saison;
