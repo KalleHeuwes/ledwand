@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { SpielanzeigeComponent } from './temp/spielanzeige/spielanzeige.componen
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatchDetailsComponent } from './historie/match/match-details/match-details.component';
 import { SpielerprofilComponent } from './history/spielerprofil/spielerprofil.component';
+import { PerformanceGraphComponent } from './historie/performance-graph/performance-graph.component';
 
 @NgModule({
   declarations: [
@@ -57,9 +59,12 @@ import { SpielerprofilComponent } from './history/spielerprofil/spielerprofil.co
     SpieltagComponent,
     BrowserModule,
     FormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot([
       {path: 'startseite', 				component: StartseiteComponent},
+      {path: 'grafik', 				component: PerformanceGraphComponent},
       {path: 'players-list', 			component: SpielerListeComponent},
       {path: 'aufstellung', 			component: AufstellungComponent},
       {path: 'spieltag', 				component: SpieltagComponent},

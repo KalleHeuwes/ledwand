@@ -1,0 +1,16 @@
+<h2>{{ title }}</h2>
+
+<ngx-charts-line-chart
+  [view]="view"                  
+  [scheme]="colorScheme"         
+  [legend]="legend"              
+  [results]="performanceData"    
+  [xAxis]="xAxis"                
+  [yAxis]="yAxis"                
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"      
+  [yAxisLabel]="yAxisLabel"      
+  [timeline]="timeline"          
+  (select)="onSelect($event)">   
+</ngx-charts-line-chart>
