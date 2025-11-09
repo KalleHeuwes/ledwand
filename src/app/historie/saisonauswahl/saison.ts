@@ -5,7 +5,7 @@ export interface Saison {
     platz: string;
     punkte: string;
     bemerkungen: string;
-    performanceindex: string;
+    performanceIndex: number;
     import_tabelle: string;
     import_spiele: string;
     quelle: string;

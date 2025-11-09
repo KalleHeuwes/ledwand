@@ -10,6 +10,7 @@ import { SpielerprofilComponent } from '../history/spielerprofil/spielerprofil.c
 import { FootballTableComponent } from '../history/football-table/football-table.component';
 import { HistorieAdminComponent } from '../history/historie-admin/historie-admin.component';
 import { MenuCardComponent } from './menu-card/menu-card.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-historie',
@@ -21,7 +22,7 @@ import { MenuCardComponent } from './menu-card/menu-card.component';
     styleUrl: './historie.component.css'
 })
 export class HistorieComponent {
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private router: Router, private snackBar: MatSnackBar) {}
   selectedView: string = 'menu'; // Standardauswahl
   onAction(action: string) {
     this.snackBar.open(`Card "${action}" geklickt!`, 'Schließen', {   // Toast öffnen, 3 Sekunden sichtbar
@@ -30,8 +31,16 @@ export class HistorieComponent {
       verticalPosition: 'bottom',
       panelClass: 'retro-snackbar-creme',
     });
-    this.selectedView = action;
-    // this.router.navigate(['/detail', action]); // Beispiel: wenn du Routing willst:
+    
+    if (action === 'abschlusstabellen') {
+      this.router.navigate(['historie', action]);
+    } else if (action === 'performancegraph') {
+      this.router.navigate(['historie', action]);
+    } else if (action === 'spiele') {
+      this.router.navigate(['historie', action]);
+    } else {
+      this.selectedView = action;
+    }
   }
 
 }

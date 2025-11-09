@@ -1,16 +1,37 @@
 <h2>{{ title }}</h2>
 
 <ngx-charts-line-chart
+  *ngIf="performanceData && performanceData.length > 0"
   [view]="view"                  
-  [scheme]="colorScheme"         
-  [legend]="legend"              
+  [scheme]="colorScheme"        
   [results]="performanceData"    
   [xAxis]="xAxis"                
   [yAxis]="yAxis"                
   [showXAxisLabel]="showXAxisLabel"
   [showYAxisLabel]="showYAxisLabel"
+  [xAxisTickFormatting]="xAxisTickFormatting"
   [xAxisLabel]="xAxisLabel"      
   [yAxisLabel]="yAxisLabel"      
-  [timeline]="timeline"          
+  [timeline]="timeline"    
+  [tooltipDisabled]="false"      
   (select)="onSelect($event)">   
 </ngx-charts-line-chart>
+
+<div style="position: fixed; z-index: 1000; top: 0; left: 0;">
+    <button [matMenuTriggerFor]="contextMenu" #contextMenuTrigger hidden></button>
+</div>
+
+<mat-menu #contextMenu="matMenu">
+  <div mat-menu-item disabled style="font-weight: bold;">
+    Saison: {{ selectedSaison }}
+  </div>
+  <mat-divider></mat-divider>
+  
+  <button mat-menu-item (click)="navigateToAbschlusstabelle()">
+    Abschlusstabelle
+  </button>
+  
+  <button mat-menu-item (click)="navigateToSpiele()">
+    Spiele
+  </button>
+</mat-menu>

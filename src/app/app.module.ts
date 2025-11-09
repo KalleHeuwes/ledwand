@@ -36,6 +36,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatchDetailsComponent } from './historie/match/match-details/match-details.component';
 import { SpielerprofilComponent } from './history/spielerprofil/spielerprofil.component';
 import { PerformanceGraphComponent } from './historie/performance-graph/performance-graph.component';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { FootballTableComponent } from './history/football-table/football-table.component';
+import { MatchdaysComponent } from './history/matchdays/matchdays.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,7 @@ import { PerformanceGraphComponent } from './historie/performance-graph/performa
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    OverlayModule,
     HttpClientModule,
     RouterModule.forRoot([
       {path: 'startseite', 				component: StartseiteComponent},
@@ -71,6 +75,9 @@ import { PerformanceGraphComponent } from './historie/performance-graph/performa
       {path: 'smartupdate', 			component: SmartupdateComponent},
       {path: 'checkitout', 				component: CheckitoutComponent},
       {path: 'historie',				component: HistorieComponent},
+      {path: 'historie/abschlusstabellen',				component: FootballTableComponent},
+      {path: 'historie/spiele',				component: MatchdaysComponent},
+      {path: 'historie/performancegraph',				component: PerformanceGraphComponent},
       {path: 'spielerprofil/:nachname/:vorname',				component: SpielerprofilComponent},
       {path: 'spiel/:saison/:spieltag',	component: MatchDetailsComponent},
       {path: 'temp', 					component: SpielanzeigeComponent},
