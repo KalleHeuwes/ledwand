@@ -25,22 +25,17 @@ export class HistorieComponent {
   constructor(private router: Router, private snackBar: MatSnackBar) {}
   selectedView: string = 'menu'; // Standardauswahl
   onAction(action: string) {
+    /*
     this.snackBar.open(`Card "${action}" geklickt!`, 'Schließen', {   // Toast öffnen, 3 Sekunden sichtbar
       duration: 3000, // ms
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
       panelClass: 'retro-snackbar-creme',
     });
+    */
     
-    if (action === 'abschlusstabellen') {
-      this.router.navigate(['historie', action]);
-    } else if (action === 'performancegraph') {
-      this.router.navigate(['historie', action]);
-    } else if (action === 'spiele') {
-      this.router.navigate(['historie', action]);
-    } else {
-      this.selectedView = action;
-    }
+    this.router.navigate(['historie', action]);
+    this.selectedView = action;
   }
 
 }

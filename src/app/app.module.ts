@@ -39,6 +39,8 @@ import { PerformanceGraphComponent } from './historie/performance-graph/performa
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FootballTableComponent } from './history/football-table/football-table.component';
 import { MatchdaysComponent } from './history/matchdays/matchdays.component';
+import { SeasonsComponent } from './history/seasons/seasons.component';
+import { HistorieAdminComponent } from './history/historie-admin/historie-admin.component';
 
 @NgModule({
   declarations: [
@@ -74,8 +76,11 @@ import { MatchdaysComponent } from './history/matchdays/matchdays.component';
       {path: 'spieltag', 				component: SpieltagComponent},
       {path: 'smartupdate', 			component: SmartupdateComponent},
       {path: 'checkitout', 				component: CheckitoutComponent},
-      {path: 'historie',				component: HistorieComponent},
+      {path: 'historie',				component: HistorieComponent},      
+      {path: 'historie/admin',				component: HistorieAdminComponent},
       {path: 'historie/abschlusstabellen',				component: FootballTableComponent},
+      {path: 'historie/historisch',				component: SeasonsComponent},
+      {path: 'historie/spieler',				component: SpielerprofilComponent},
       {path: 'historie/spiele',				component: MatchdaysComponent},
       {path: 'historie/performancegraph',				component: PerformanceGraphComponent},
       {path: 'spielerprofil/:nachname/:vorname',				component: SpielerprofilComponent},
