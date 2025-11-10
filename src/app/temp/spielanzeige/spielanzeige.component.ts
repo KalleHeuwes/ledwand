@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { PerformanceGraphComponent } from 'src/app/historie/performance-graph/performance-graph.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-spielanzeige',
   templateUrl: './spielanzeige.component.html',
   styleUrls: ['./spielanzeige.component.css'],
   standalone: true,
-  imports: [PerformanceGraphComponent]
+  imports: [MatGridListModule]
 })
 export class SpielanzeigeComponent implements OnInit {
   aktuelleMinute: number = 0;

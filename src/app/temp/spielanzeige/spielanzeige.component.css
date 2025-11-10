@@ -1,69 +1,21 @@
-.background {
-  background-image: url('../../../assets/hintergrund.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+mat-grid-tile {
+  /* Zielt auf den inneren Container, der den eigentlichen visuellen Block darstellt */
+
+    /* WICHTIG: Die Kachel braucht eine Hintergrundfarbe, damit der Schatten sichtbar wird! */
+    background: lightgrey; 
+    
+    /* Abgerundete Ecken */
+    border-radius: 8px;
+    
+    /* Leichter Schatten (Box Shadow) */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Optional: Übergang für einen schönen Hover-Effekt */
+    transition: box-shadow 0.3s ease-in-out;
+
 }
 
-.grid {
-  display: grid;
-  grid-template-rows: 1fr 3fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
-  width: 90%;
-  height: 90%;
-  color: white;
-  font-size: 2em;
-  text-align: center;
-  /*gap: 1rem; */
-}
-
-.spielstand {
-  grid-column: 2;
-  display: flex;
-  font-size: 5em;
-  justify-content: center;
-  align-items: center;
-}
-
-.cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-img {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-}
-
-.ticker-container {
-  grid-column: 1 / span 3;
-  white-space: nowrap;
-  overflow: hidden;
-  position: relative;
-  height: 100%;
-  align-items: center;
-  display: flex;
-}
-
-.ticker-text {
-  position: absolute;
-  animation: ticker 20s linear infinite;
-  white-space: nowrap;
-}
-
-@keyframes ticker {
-  0% {
-    left: 100%;
-  }
-  100% {
-    left: -100%;
-  }
+/* Optional: Schatten beim Hover verstärken */
+mat-grid-tile:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15) !important; 
 }
