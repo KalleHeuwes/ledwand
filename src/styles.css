@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+mat-grid-tile {
+  /* Stellt sicher, dass das Kind-Element 100% Höhe übernehmen kann */
+  display: flex !important;
+  flex-direction: column !important;
 
+  background: rgb(211, 207, 207); 
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+mat-grid-tile:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); 
+}
 
 * {
   margin: 0;

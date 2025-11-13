@@ -1,30 +1,38 @@
-<div class="container mt-4">
-  <button mat-raised-button color="primary" (click)="openPerformanceDialog()">
-    Performance-Index anzeigen
-  </button>
-  <h2 class="mb-3">Spielzeiten</h2>
-  <table class="table table-striped table-bordered table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>Saison</th>
-        <th>Liga</th>
-        <th>Spiele</th>
-        <th>Platz</th>
-        <th>Punkte</th>
-        <th>Bemerkungen</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let season of tableData"
-      [class.table-danger]="season.bemerkungen.includes('Absteiger')"
-      [class.table-success]="season.bemerkungen.includes('Aufsteiger')">
-        <td>{{ season.saison }}</td>
-        <td>{{ season.liga }}</td>
-        <td>{{ season.spiele }}</td>
-        <td>{{ season.platz }}</td>
-        <td>{{ season.punkte }}</td>
-        <td>{{ season.bemerkungen }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<mat-grid-list cols="3" rowHeight="100px" gutterSize="10px">
+  <mat-grid-tile colspan="2"><h2 class="mb-3">Spielzeiten</h2></mat-grid-tile>
+  <mat-grid-tile>
+    <button mat-raised-button color="primary" (click)="openPerformanceDialog()">
+      Performance-Index anzeigen
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" rowspan="5">
+    <div class="scroll-table-wrapper">
+      <h2>Spielzeiten 2</h2>
+      <table class="tablexxx table-stripedxxx table-borderedxxx table-hoverxxx">
+        <thead class="table-darkxxx">
+          <tr>
+            <th>Saison</th>
+            <th>Liga</th>
+            <th>Spiele</th>
+            <th>Platz</th>
+            <th>Punkte</th>
+            <th>Bemerkungen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let season of tableData"
+          [class.table-danger]="season.bemerkungen.includes('Absteiger')"
+          [class.table-success]="season.bemerkungen.includes('Aufsteiger')">
+            <td>{{ season.saison }}</td>
+            <td>{{ season.liga }}</td>
+            <td>{{ season.spiele }}</td>
+            <td>{{ season.platz }}</td>
+            <td>{{ season.punkte }}</td>
+            <td>{{ season.bemerkungen }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+

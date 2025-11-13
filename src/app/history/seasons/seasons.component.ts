@@ -7,11 +7,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { PerformanceGraphComponent } from 'src/app/historie/performance-graph/performance-graph.component';
 import { Router } from '@angular/router';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-seasons',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatMenuModule],
+  imports: [CommonModule, MatDialogModule, MatMenuModule, MatGridListModule],
   templateUrl: './seasons.component.html'
 })
 export class SeasonsComponent implements OnInit {

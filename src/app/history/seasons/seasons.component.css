@@ -1,3 +1,18 @@
+.scroll-table-wrapper {
+  height: 100%;
+  flex-grow: 1; 
+  /* Die feste Höhe für den Scroll-Effekt */
+  overflow-y: auto;
+  /* Fügt eine minimale Höhe hinzu, falls es keine anderen fixen Elemente gibt */
+  min-height: 0;
+}
+
+/* WICHTIG: Die Tabelle selbst darf keinen festen height-Wert haben,
+   damit sie lang genug wird, um den Scroll-Container zu füllen. */
+table {
+  width: 100%;
+}
+
 .row-absteiger {
   background-color: #f8d7da !important;
   color: #842029;
