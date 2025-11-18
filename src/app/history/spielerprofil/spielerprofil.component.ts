@@ -45,7 +45,7 @@ export class SpielerprofilComponent implements OnInit {
   myControl = new FormControl('');
   players: string[] = ['']; // Beispiel-Daten
   filteredPlayers: Observable<string[]> | undefined;
-  displayedColumns: string[] = ['saison', 'spieltag', 'einsatzzeit'];
+  displayedColumns: string[] = ['spieltag', 'einsatzzeit'];
   daten: SpieltagskaderEintrag[] = [];
 
   constructor( private saisonService: SaisonsService, private route: ActivatedRoute) {}

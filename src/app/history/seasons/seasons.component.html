@@ -2,11 +2,11 @@
   <mat-grid-tile colspan="2"><h2 class="mb-3">Spielzeiten</h2></mat-grid-tile>
   <mat-grid-tile>
     <button mat-raised-button color="primary" (click)="openPerformanceDialog()">
-      Performance-Index anzeigen2
+      Performance-Index anzeigen
     </button>
   </mat-grid-tile>
-  <mat-grid-tile colspan="3" rowspan="5">
-      <table class="scroll-table-wrapper table table-striped table-bordered table-hover">
+  <mat-grid-tile id="scrollMichXXX" colspan="3" rowspan="5">
+      <table class="table table-striped table-bordered table-hover" style="width: 100%; overflow-y: scroll; max-height: 100vh; display: block;">
         <thead class="table-dark">
           <tr>
             <th>Saison</th>

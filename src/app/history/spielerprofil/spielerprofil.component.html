@@ -54,16 +54,10 @@
       <mat-card-content>
         <table mat-table [dataSource]="daten" class="mat-elevation-z2 full-width-table">
 
-          <ng-container matColumnDef="saison">
-            <th mat-header-cell *matHeaderCellDef> Spielzeit </th>
-            <td mat-cell *matCellDef="let element"> {{element.saison}} </td>
-          </ng-container>
-
           <ng-container matColumnDef="spieltag">
             <th mat-header-cell *matHeaderCellDef> Spieltag </th>
             <td mat-cell *matCellDef="let element"> {{element.spiel}} </td>
           </ng-container>
-
 
           <ng-container matColumnDef="einsatzzeit">
             <th mat-header-cell *matHeaderCellDef> Einsatzzeit </th>

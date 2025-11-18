@@ -19,12 +19,6 @@ mat-grid-tile-content {
   background: lightpink;
 }
 
-.scrollable {
-  overflow-y: scroll;
-  max-height: 100vh;
-  display: flex !important;
-  align-items: flex-start !important;
-}
 
 /* Optional: Schatten beim Hover verstärken */
 mat-grid-tile:hover {
