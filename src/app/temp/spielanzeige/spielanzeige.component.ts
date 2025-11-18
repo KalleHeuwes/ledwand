@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 
@@ -6,12 +7,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
   templateUrl: './spielanzeige.component.html',
   styleUrls: ['./spielanzeige.component.css'],
   standalone: true,
-  imports: [MatGridListModule]
+  imports: [MatGridListModule, CommonModule]
 })
 export class SpielanzeigeComponent implements OnInit {
   aktuelleMinute: number = 0;
   aktuelleUhrzeit: string = '';
   spielstand: string = '1 : 0';
+  dummies: string[] = [];
   torschuetzen: string[] = [
     '12. Min: Müller (1:0)',
     '47. Min: Schulz (2:0)',
@@ -21,6 +23,7 @@ export class SpielanzeigeComponent implements OnInit {
   tickerText: string = '';
 
   ngOnInit(): void {
+    this.dummies = Array.from({ length: 50 }, (_, i) => `Dummy ${i + 1}`);
     this.updateUhrzeit();
     setInterval(() => this.updateUhrzeit(), 1000);
 

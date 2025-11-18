@@ -1,18 +1,29 @@
 mat-grid-tile {
-  /* Zielt auf den inneren Container, der den eigentlichen visuellen Block darstellt */
-
-    /* WICHTIG: Die Kachel braucht eine Hintergrundfarbe, damit der Schatten sichtbar wird! */
-    background: lightgrey; 
-    
-    /* Abgerundete Ecken */
+    background: lime; 
     border-radius: 8px;
-    
-    /* Leichter Schatten (Box Shadow) */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-    
-    /* Optional: Übergang für einen schönen Hover-Effekt */
     transition: box-shadow 0.3s ease-in-out;
+}
 
+
+mat-grid-tile-content {
+  max-height: 100vh;
+  display: flex !important;
+  align-items: flex-start !important;
+} 
+
+#scrollMich {
+  overflow-y: scroll;
+  align-items: flex-start !important;
+  max-height: 100vh;
+  background: lightpink;
+}
+
+.scrollable {
+  overflow-y: scroll;
+  max-height: 100vh;
+  display: flex !important;
+  align-items: flex-start !important;
 }
 
 /* Optional: Schatten beim Hover verstärken */

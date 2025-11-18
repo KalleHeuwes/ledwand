@@ -1,9 +1,9 @@
 .scroll-table-wrapper {
-  height: 100%;
   flex-grow: 1; 
-  /* Die feste Höhe für den Scroll-Effekt */
-  overflow-y: auto;
-  /* Fügt eine minimale Höhe hinzu, falls es keine anderen fixen Elemente gibt */
+  display: flex !important;
+  overflow-y: scroll !important;
+  max-height: 100vh;
+  align-items: flex-start !important;
   min-height: 0;
 }
 

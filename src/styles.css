@@ -4,10 +4,16 @@ mat-grid-tile {
   display: flex !important;
   flex-direction: column !important;
 
-  background: rgb(211, 207, 207); 
+  background: lightgray; 
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease-in-out;
+}
+
+.mat-grid-tile-content {
+  max-height: 100vh;
+  display: flex !important;
+  align-items: flex-start !important;
 }
 
 mat-grid-tile:hover {
