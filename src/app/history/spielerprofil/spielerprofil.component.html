@@ -1,40 +1,41 @@
-  <app-saison-selector (saisonGewaehlt)="handleSaisonAuswahl($event)"></app-saison-selector>
-  <div>
-    <mat-form-field>
-      <mat-label>Spieler suchen</mat-label>
-      <input type="text"
-            placeholder="Name eingeben"
-            aria-label="Spieler"
-            matInput
-            [formControl]="myControl"
-            [matAutocomplete]="auto">
-    </mat-form-field>
+<div>
+  <table>
+    <tr>
+      <td>
+        <app-saison-selector (saisonGewaehlt)="handleSaisonAuswahl($event)"></app-saison-selector>
+      </td>
+      <td>  
+        <mat-form-field>
+          <mat-label>Spieler suchen</mat-label>
+          <input type="text"
+                placeholder="Name eingeben"
+                aria-label="Spieler"
+                matInput
+                [formControl]="myControl"
+                [matAutocomplete]="auto">
+        </mat-form-field>
+      </td>
+      <td>
+        <div class="info">
+          <span class="spielername">{{spieler.vorname}} {{spieler.name}}</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+  
+    
 
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="spielerGewaehlt($event.option.value)">
-      <mat-option *ngFor="let option of filteredPlayers | async" [value]="option">
-        {{ option }}
-      </mat-option>
-    </mat-autocomplete>
-  </div>
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="spielerGewaehlt($event.option.value)">
+    <mat-option *ngFor="let option of filteredPlayers | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+</div>
 <div class="profil-container">
   <!-- Linkes Drittel -->
   <div class="profil-links">
     <mat-card class="foto-card">
-
-      <div class="info">
-        <table>
-          <tbody>
-            <tr><td><strong>Name:</strong></td><td>{{spieler.name}}</td></tr>
-            <tr><td><strong>Vorname:</strong></td><td>{{spieler.vorname}}</td></tr>
-            <tr><td><strong>Geburtsdatum:</strong></td><td>{{spieler.geburtsdatum}}</td></tr>
-            <tr><td><strong>Im Verein seit:</strong></td><td>{{spieler.imVereinSeit}}</td></tr>
-            <tr><td><strong>Position:</strong></td><td>{{spieler.position}}</td></tr>
-          </tbody>
-        </table>
-        <p class="beschreibung">
-          {{spieler.beschreibung}}
-        </p>
-      </div>
       <div class="bilder">
         <img src="{{spieler.photo01}}" alt="{{spieler.photo01}}" class="foto-aktuell">
         <!--
@@ -49,7 +50,10 @@
 
   <!-- Rechtes Zweidrittel -->
   <div class="profil-rechts" style="overflow-y: auto;">
+    
+
     <mat-card>
+
       <mat-card-title>Spieleinsätze</mat-card-title>
       <mat-card-content style="overflow-y: scroll;">
         <table mat-table [dataSource]="daten" class="mat-elevation-z2 full-width-table">

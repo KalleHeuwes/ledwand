@@ -66,3 +66,12 @@
 .row-red {
   background-color: #f08080 !important;
 } 
+
+.spielername {
+  margin: 50px;
+  padding: 20px;
+  background-color: #d0f0c0;
+  font-size: 4.5em;
+  font-weight: bold;
+  border-radius: 10px;
+}
