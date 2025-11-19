@@ -32,6 +32,12 @@ export interface SpieltagskaderEintrag {
     vorname: string;
     einsatz: string;
     gruppe: string;
+    punkte: number;
+    spielminuten: number;
+    datum: string;
+    ha: string;
+    ergebnis: string;
+    gegner: string;
 }
 
 export interface MatchData {

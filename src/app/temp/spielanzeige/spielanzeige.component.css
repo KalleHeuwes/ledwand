@@ -24,3 +24,34 @@ mat-grid-tile-content {
 mat-grid-tile:hover {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15) !important; 
 }
+
+path {
+  stroke: #0ff;
+  stroke-width: 1.2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw 4s ease-out forwards;
+  filter: drop-shadow(0 0 3px #0ff)
+          drop-shadow(0 0 6px #0ff)
+          drop-shadow(0 0 12px #0ff);
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+button {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.25);
+}

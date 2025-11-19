@@ -1,8 +1,17 @@
+<button>Zu scrollbarem Bereich springen</button>
+<div style="margin: 0px; width: 200px; height: 100px; border: 1px solid black;">
+  <svg viewBox="0 0 500 500">
+    <path d="M30,150 C 80,20 120,20 170,150" />
+  </svg>
+</div>
 <div style="margin: 20px;">
   <mat-grid-list cols="4" rowHeight="125px" gutterSize="10px">
     <mat-grid-tile>{{aktuelleUhrzeit}}</mat-grid-tile>
     <mat-grid-tile colspan="3">Kachel 2</mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="4">Navi</mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="4">
+      Navi2
+
+    </mat-grid-tile>
     <mat-grid-tile id="scrollMich" colspan="3" rowspan="4">
         <ul>
           <li *ngFor="let dummy of dummies">{{dummy}}</li>
