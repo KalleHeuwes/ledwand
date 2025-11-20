@@ -64,6 +64,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
               3px 3px 0 #b89c7d !important;
 }
 
+.row-green {
+  background-color: #d0f0c0 !important;
+}
+
+.row-yellow {
+  background-color: #fffacd !important;
+}
+
+.row-red {
+  background-color: #f08080 !important;
+} 
+
 .erg-sieg {
   background-color: #0bf742 !important;
 }

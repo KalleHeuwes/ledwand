@@ -18,8 +18,8 @@
       (click)="zeigeSpielDetails(matchday.spieltag)"
       class="game-row"
       [class.table-success]="matchday.punkte === 3"
-      [class.erg-unentschieden]="matchday.punkte === 1"
-      [class.table-danger]="matchday.punkte === 0">
+      [class.table-warning]="matchday.punkte === 1"
+      [class.table-danger]="matchday.punkte === 0 && matchday.ergebnis !== ''">
         <td>{{ matchday.spieltag }}</td>
         <td>{{ matchday.datum }}</td>
         <td>{{ matchday.heimOderAuswaerts }}</td>

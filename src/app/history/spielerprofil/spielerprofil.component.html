@@ -90,10 +90,10 @@
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let element; columns: displayedColumns;" [ngClass]="{
-                'row-green': element.punkte === 3,
-                'row-yellow': element.punkte === 1,
-                'row-red': element.punkte === 0
-              }"></tr>
+             'row-green': element.punkte === 3,
+             'row-yellow': element.punkte === 1,
+             'row-red': element.punkte === 0
+            }"></tr>
         </table>
       </mat-card-content>
     </mat-card>
