@@ -105,7 +105,7 @@ export class PerformanceGraphComponent {
 
   navigateToAbschlusstabelle(): void {
     if (this.selectedSaison) {
-      this.router.navigate(['historie', 'abschluss', this.selectedSaison]);
+      this.router.navigate(['historie', 'abschlusstabellen', this.selectedSaison]);
       console.log(`Navigiere zu: historie/abschluss/${this.selectedSaison}`);
     }
   }
