@@ -5,6 +5,7 @@ import { Saison } from './saison';
 import { TeamPerformance } from './team-performance';
 import { Spieltag } from './spieltag';
 import { FileItem, SpieltagskaderEintrag, TorEreignis } from '../match/match.module';
+import { SpielerPerformance } from './spieler-performance';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class SaisonsService {
   private urlKader = 'http://localhost:8080/api/historie/spieltagskader?saison={saison}&spiel={spiel}';
   private urlDokumente = 'http://localhost:8080/api/historie/documents?typ={typ}&saison={saison}&spieltag={spieltag}';
   private urlEinsaetze = 'http://localhost:8080/api/historie/einsaetze?nachname={nachname}&vorname={vorname}&saison={saison}';
+  private urlPerformance = 'http://localhost:8080/api/historie/einsaetze/saisons?nachname={nachname}&vorname={vorname}';
   private aktuelleSaisonSubject = new BehaviorSubject<Saison | null>(null);
 
   constructor(private http: HttpClient) {}
@@ -29,10 +31,16 @@ export class SaisonsService {
     return this.http.get<SpieltagskaderEintrag[]>(url);
   }
 
-  /** Liste aller Spieler im Kader eines Spieltags */
+  /** Liste aller Spiele eines Spielers */
   getSpieleEinesSpielers(nachname: string, vorname: string, saison: string): Observable<SpieltagskaderEintrag[]> {
     const url = this.urlEinsaetze.replace('{nachname}', nachname).replace('{vorname}', vorname).replace('{saison}', saison);
     return this.http.get<SpieltagskaderEintrag[]>(url);
+  }
+
+  /** Liste aller Spiele eines Spielers */
+  getSpielerPerformance(nachname: string, vorname: string): Observable<SpielerPerformance[]> {
+    const url = this.urlPerformance.replace('{nachname}', nachname).replace('{vorname}', vorname);
+    return this.http.get<SpielerPerformance[]>(url);
   }
 
   /** Liste aller verfügbaren Saisons aus dem Backend laden */

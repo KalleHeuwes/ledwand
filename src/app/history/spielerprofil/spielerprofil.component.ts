@@ -51,6 +51,7 @@ export class SpielerprofilComponent implements OnInit {
   constructor( private saisonService: SaisonsService, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    console.log('SpielerprofilComponent.ngOnInit');
     this.route.paramMap.subscribe((params: ParamMap) => {
       const nachname = params.get('nachname');
       const vorname = params.get('vorname');
@@ -64,6 +65,7 @@ export class SpielerprofilComponent implements OnInit {
         });
       }
     });
+
 
     this.saisonService.getSpielerliste().subscribe(data => {
       this.players = data;
@@ -90,6 +92,10 @@ export class SpielerprofilComponent implements OnInit {
     this.spieler.photo01 = `assets/pictures/players/${this.spieler.vorname}_${this.spieler.name}.jpg`;
     this.saisonService.getSpieleEinesSpielers(this.spieler.name, this.spieler.vorname, this.saisonId).subscribe(data => {
       this.daten = data;
+    });
+    
+    this.saisonService.getSpielerPerformance(this.spieler.name, this.spieler.vorname).subscribe(data => {
+      console.table(data);
     });
   }
 

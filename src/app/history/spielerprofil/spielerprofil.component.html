@@ -22,10 +22,6 @@
       </td>
     </tr>
   </table>
-  
-    
-
-
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="spielerGewaehlt($event.option.value)">
     <mat-option *ngFor="let option of filteredPlayers | async" [value]="option">
       {{ option }}
