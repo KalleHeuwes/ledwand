@@ -11,8 +11,8 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { SaisonsService } from 'src/app/historie/saisonauswahl/saisons.service';
 import { SpieltagskaderEintrag } from 'src/app/historie/match/match.module';
-import { SaisonSelectorComponent } from '../../historie/saisonauswahl/saison-selector/saison-selector.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { SpielerPerformance } from 'src/app/historie/saisonauswahl/spieler-performance';
 
 interface Spiel {
   saison: string;
@@ -27,7 +27,7 @@ interface Spiel {
   selector: 'app-spielerprofil',
   standalone: true,
   imports: [CommonModule, MatCardModule, MatTableModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule
-    , ReactiveFormsModule, SaisonSelectorComponent],
+    , ReactiveFormsModule],
   templateUrl: './spielerprofil.component.html',
   styleUrls: ['./spielerprofil.component.css']
 })
@@ -47,8 +47,10 @@ export class SpielerprofilComponent implements OnInit {
   players: string[] = ['']; // Beispiel-Daten
   filteredPlayers: Observable<string[]> | undefined;
   displayedColumns: string[] = ['spieltag', 'einsatzzeit', 'spielminuten', 'datum', 'ergebnis', 'gegner'];
-  headerPerf: string[] = ['Saison', 'Nachname', 'Vorname', 'Liga', 'Spiele', 'Minuten'];
+  headerPerf: string[] = ['Saison', 'Liga', 'Spiele', 'Minuten', 'Punkte'];
   daten: SpieltagskaderEintrag[] = [];
+  performances: SpielerPerformance[] = [];
+  performance: SpielerPerformance | undefined | null;
 
   constructor( private saisonService: SaisonsService, private route: ActivatedRoute) {}
 
@@ -98,11 +100,9 @@ export class SpielerprofilComponent implements OnInit {
 
     this.filterSaison = spielername;
     
-    /*
     this.saisonService.getSpielerPerformance(this.spieler.name, this.spieler.vorname).subscribe(data => {
-      console.table(data);
+      this.performances = data;
     });
-    */
   }
 
   handleSaisonAuswahl(saisonId: string): void {
@@ -111,6 +111,22 @@ export class SpielerprofilComponent implements OnInit {
     this.saisonService.getSpieleEinesSpielers(this.spieler.name, this.spieler.vorname, this.saisonId).subscribe(data => {
       this.daten = data;
     });
+  }
+
+  /**
+   * Speichert die ausgewählte Performance-Metrik.
+   * @param selectedMetric Das beim Klick übergebene Performance-Objekt.
+   */
+  selectPerformance(selectedMetric: SpielerPerformance): void {
+    // Überprüfen, ob bereits diese Zeile ausgewählt ist (optional: zum De-Selektieren)
+    if (this.performance === selectedMetric) {
+      this.performance = null; // De-Selektieren
+    } else {
+      this.performance = selectedMetric; // Selektieren
+    }
+
+    console.log('Ausgewählte Performance:', this.performance);
+    this.handleSaisonAuswahl(selectedMetric.saison);
   }
 
 }

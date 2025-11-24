@@ -7,7 +7,6 @@
           <input type="text" placeholder="Name eingeben" aria-label="Spieler" 
                 matInput [formControl]="myControl" [matAutocomplete]="auto">
         </mat-form-field>
-        <app-saison-selector (saisonGewaehlt)="handleSaisonAuswahl($event)" [filter]="filterSaison"></app-saison-selector>
       </td>
       <td>
         <div class="info">
@@ -44,21 +43,19 @@
       <mat-card-content style="overflow-y: scroll;">
         <table class="table table-sm table-striped table-bordered table-hover">
           <thead class="table-dark">
-            <tr *ngFor="let h of headerPerf">
-              <th>{{h}}</th>
+            <tr>
+              <th *ngFor="let h of headerPerf">{{h}}</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let e of daten"
-            class="game-row"
-            [class.table-success]="e.punkte === 3"
-            [class.table-warning]="e.punkte === 1"
-            [class.table-danger]="e.punkte === 0 && e.ergebnis !== ''">
+            <tr *ngFor="let e of performances; let i = index"
+            (click)="selectPerformance(e)"
+      [class.selected-row]="performance === e">
               <td>{{ e.saison }}</td>
-              <td>{{ e.nachname }}</td>
-              <td>{{ e.vorname }}</td>
-              <td>{{ e.gegner }}</td>
-              <td>{{ e.spielminuten }}</td>
+              <td>{{ e.liga }}</td>
+              <td>{{ e.spieleSpieler }}/ {{ e.spieleTeam }} ({{ e.spieleAnteil }} %)</td>
+              <td>{{ e.spielminutenSpieler }}/ {{ e.spieleTeam *90 }} ({{ e.spielminutenAnteil }} %)</td>
+              <td>{{ e.punkteSpieler }}/ {{ e.punkteTeam }} ({{ e.punkteAnteil }} %)</td>
             </tr>
           </tbody>
         </table>

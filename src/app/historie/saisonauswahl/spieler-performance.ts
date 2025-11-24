@@ -4,16 +4,16 @@ export interface SpielerPerformance {
   vorname: string;
   saison: string;
   liga: string;
-  spieleSpieler: string;
-  spieleTeam: string;
-  spieleAnteil: string;
-  spielminutenSpieler: string;
-  spielminutenTeam: string;
-  spielminutenAnteil: string;
-  punkteSpieler: string;
-  punkteTeam: string;
-  punkteAnteil: string;
-  spielMin: string;
-  spielMax: string;
+  spieleSpieler: number;
+  spieleTeam: number;
+  spieleAnteil: number;
+  spielminutenSpieler: number;
+  spielminutenTeam: number;
+  spielminutenAnteil: number;
+  punkteSpieler: number;
+  punkteTeam: number;
+  punkteAnteil: number;
+  spielMin: number;
+  spielMax: number;
   bemerkungen: string;
 }
