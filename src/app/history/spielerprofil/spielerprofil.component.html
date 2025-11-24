@@ -2,18 +2,12 @@
   <table>
     <tr>
       <td>
-        <app-saison-selector (saisonGewaehlt)="handleSaisonAuswahl($event)"></app-saison-selector>
-      </td>
-      <td>  
         <mat-form-field>
           <mat-label>Spieler suchen</mat-label>
-          <input type="text"
-                placeholder="Name eingeben"
-                aria-label="Spieler"
-                matInput
-                [formControl]="myControl"
-                [matAutocomplete]="auto">
+          <input type="text" placeholder="Name eingeben" aria-label="Spieler" 
+                matInput [formControl]="myControl" [matAutocomplete]="auto">
         </mat-form-field>
+        <app-saison-selector (saisonGewaehlt)="handleSaisonAuswahl($event)" [filter]="filterSaison"></app-saison-selector>
       </td>
       <td>
         <div class="info">
@@ -46,14 +40,29 @@
 
   <!-- Rechtes Zweidrittel -->
   <div class="profil-rechts" style="overflow-y: auto;">
-    
-
     <mat-card>
-
-      <mat-card-title>Spieleinsätze</mat-card-title>
       <mat-card-content style="overflow-y: scroll;">
+        <table class="table table-sm table-striped table-bordered table-hover">
+          <thead class="table-dark">
+            <tr *ngFor="let h of headerPerf">
+              <th>{{h}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of daten"
+            class="game-row"
+            [class.table-success]="e.punkte === 3"
+            [class.table-warning]="e.punkte === 1"
+            [class.table-danger]="e.punkte === 0 && e.ergebnis !== ''">
+              <td>{{ e.saison }}</td>
+              <td>{{ e.nachname }}</td>
+              <td>{{ e.vorname }}</td>
+              <td>{{ e.gegner }}</td>
+              <td>{{ e.spielminuten }}</td>
+            </tr>
+          </tbody>
+        </table>
         <table mat-table [dataSource]="daten" class="mat-elevation-z2 full-width-table">
-
           <ng-container matColumnDef="spieltag">
             <th mat-header-cell *matHeaderCellDef> Spieltag </th>
             <td mat-cell *matCellDef="let element"> {{element.spiel}} </td>

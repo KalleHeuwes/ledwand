@@ -42,10 +42,12 @@ export class SpielerprofilComponent implements OnInit {
     photo01: '...'
   };
   saisonId: string = '*';
+  filterSaison: string = '*';
   myControl = new FormControl('');
   players: string[] = ['']; // Beispiel-Daten
   filteredPlayers: Observable<string[]> | undefined;
   displayedColumns: string[] = ['spieltag', 'einsatzzeit', 'spielminuten', 'datum', 'ergebnis', 'gegner'];
+  headerPerf: string[] = ['Saison', 'Nachname', 'Vorname', 'Liga', 'Spiele', 'Minuten'];
   daten: SpieltagskaderEintrag[] = [];
 
   constructor( private saisonService: SaisonsService, private route: ActivatedRoute) {}
@@ -93,10 +95,14 @@ export class SpielerprofilComponent implements OnInit {
     this.saisonService.getSpieleEinesSpielers(this.spieler.name, this.spieler.vorname, this.saisonId).subscribe(data => {
       this.daten = data;
     });
+
+    this.filterSaison = spielername;
     
+    /*
     this.saisonService.getSpielerPerformance(this.spieler.name, this.spieler.vorname).subscribe(data => {
       console.table(data);
     });
+    */
   }
 
   handleSaisonAuswahl(saisonId: string): void {

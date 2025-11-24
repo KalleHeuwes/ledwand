@@ -15,4 +15,5 @@ export interface SpielerPerformance {
   punkteAnteil: string;
   spielMin: string;
   spielMax: string;
+  bemerkungen: string;
 }
