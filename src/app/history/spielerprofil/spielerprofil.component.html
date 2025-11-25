@@ -13,6 +13,19 @@
           <span class="spielername">{{spieler.vorname}} {{spieler.name}}</span>
         </div>
       </td>
+      <td>
+        <ngx-charts-gauge
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="chartData"
+          [legend]="false"
+          [legendPosition]="legendPosition"
+          (select)="onSelect($event)"
+          (activate)="onActivate($event)"
+          (deactivate)="onDeactivate($event)"
+          >
+        </ngx-charts-gauge>
+      </td>
     </tr>
   </table>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="spielerGewaehlt($event.option.value)">

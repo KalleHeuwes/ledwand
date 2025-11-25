@@ -13,6 +13,7 @@ import { SaisonsService } from 'src/app/historie/saisonauswahl/saisons.service';
 import { SpieltagskaderEintrag } from 'src/app/historie/match/match.module';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SpielerPerformance } from 'src/app/historie/saisonauswahl/spieler-performance';
+import { Color, NgxChartsModule, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
 
 interface Spiel {
   saison: string;
@@ -27,7 +28,7 @@ interface Spiel {
   selector: 'app-spielerprofil',
   standalone: true,
   imports: [CommonModule, MatCardModule, MatTableModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule
-    , ReactiveFormsModule],
+    , ReactiveFormsModule, NgxChartsModule],
   templateUrl: './spielerprofil.component.html',
   styleUrls: ['./spielerprofil.component.css']
 })
@@ -51,6 +52,27 @@ export class SpielerprofilComponent implements OnInit {
   daten: SpieltagskaderEintrag[] = [];
   performances: SpielerPerformance[] = [];
   performance: SpielerPerformance | undefined | null;
+
+  // Diagramm-Einstellungen
+  view: [number, number] = [500, 400];
+  legend: boolean = true;
+  legendPosition: LegendPosition = LegendPosition.Below;
+  chartData = [
+    { "name": "Germany", "value": 8940000 },
+    { "name": "USA", "value": 5000000 },
+    { "name": "France", "value": 7200000 },
+    { "name": "UK", "value": 5200000 },
+    { "name": "Italy", "value": 7700000 },
+    { "name": "Spain", "value": 4300000 }
+  ];
+
+colorScheme: Color = { 
+    name: 'customGaugeScheme', // Ein eindeutiger Name für Ihr Schema
+    selectable: true,
+    group: ScaleType.Ordinal,
+    // Die 'domain' ist das Array der Farben (Hex-Werte)
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] // Ihre Farben
+  };
 
   constructor( private saisonService: SaisonsService, private route: ActivatedRoute) {}
 
@@ -127,6 +149,18 @@ export class SpielerprofilComponent implements OnInit {
 
     console.log('Ausgewählte Performance:', this.performance);
     this.handleSaisonAuswahl(selectedMetric.saison);
+  }
+
+    onSelect(data: any): void {
+    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  }
+
+  onActivate(data: any): void {
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  }
+
+  onDeactivate(data: any): void {
+    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
 }

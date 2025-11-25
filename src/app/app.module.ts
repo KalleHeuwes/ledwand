@@ -15,7 +15,6 @@ import { SpielerListeComponent } from './spieler-liste/spieler-liste.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AufstellungComponent } from './aufstellung/aufstellung.component';
 import { SpieltagComponent } from './spieltag/spieltag.component';
-
 import { CheckitoutComponent } from './checkitout/checkitout.component';
 import { StartseiteComponent } from './startseite/startseite.component';
 import { SmartupdateComponent } from './smartupdate/smartupdate.component';
@@ -41,6 +40,7 @@ import { FootballTableComponent } from './history/football-table/football-table.
 import { MatchdaysComponent } from './history/matchdays/matchdays.component';
 import { SeasonsComponent } from './history/seasons/seasons.component';
 import { HistorieAdminComponent } from './history/historie-admin/historie-admin.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -96,6 +96,7 @@ import { HistorieAdminComponent } from './history/historie-admin/historie-admin.
     MatPaginatorModule,
     MatSortModule, 
     MatSnackBarModule,
+    NgxChartsModule,
   ],
   providers: [
     provideAnimationsAsync()
