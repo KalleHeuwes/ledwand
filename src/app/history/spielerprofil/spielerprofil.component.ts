@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -28,7 +29,7 @@ interface Spiel {
   selector: 'app-spielerprofil',
   standalone: true,
   imports: [CommonModule, MatCardModule, MatTableModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule
-    , ReactiveFormsModule, NgxChartsModule],
+    , ReactiveFormsModule, NgxChartsModule, MatTabsModule],
   templateUrl: './spielerprofil.component.html',
   styleUrls: ['./spielerprofil.component.css']
 })
@@ -52,6 +53,7 @@ export class SpielerprofilComponent implements OnInit {
   daten: SpieltagskaderEintrag[] = [];
   performances: SpielerPerformance[] = [];
   performance: SpielerPerformance | undefined | null;
+  @ViewChild('tabGroup') tabGroup!: MatTabGroup;
 
   // Diagramm-Einstellungen
   view: [number, number] = [500, 400];
@@ -133,6 +135,15 @@ colorScheme: Color = {
     this.saisonService.getSpieleEinesSpielers(this.spieler.name, this.spieler.vorname, this.saisonId).subscribe(data => {
       this.daten = data;
     });
+    if (this.tabGroup) {
+      // 3. Den gewünschten Tab-Index setzen.
+      // Für den Sprung von Tab 1 (Index 0) zu Tab 2 (Index 1) setzen wir 1.
+      const targetTabIndex = 1; 
+      
+      this.tabGroup.selectedIndex = targetTabIndex;
+      
+      // Optional: Hier könnten Sie auch die Daten des geklickten Elements an Tab 2 übergeben.
+    }
   }
 
   /**

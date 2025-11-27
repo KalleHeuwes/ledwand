@@ -13,19 +13,6 @@
           <span class="spielername">{{spieler.vorname}} {{spieler.name}}</span>
         </div>
       </td>
-      <td>
-        <ngx-charts-gauge
-          [view]="view"
-          [scheme]="colorScheme"
-          [results]="chartData"
-          [legend]="false"
-          [legendPosition]="legendPosition"
-          (select)="onSelect($event)"
-          (activate)="onActivate($event)"
-          (deactivate)="onDeactivate($event)"
-          >
-        </ngx-charts-gauge>
-      </td>
     </tr>
   </table>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="spielerGewaehlt($event.option.value)">
@@ -54,62 +41,80 @@
   <div class="profil-rechts" style="overflow-y: auto;">
     <mat-card>
       <mat-card-content style="overflow-y: scroll;">
-        <table class="table table-sm table-striped table-bordered table-hover">
-          <thead class="table-dark">
-            <tr>
-              <th *ngFor="let h of headerPerf">{{h}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let e of performances; let i = index"
-            (click)="selectPerformance(e)"
-      [class.selected-row]="performance === e">
-              <td>{{ e.saison }}</td>
-              <td>{{ e.liga }}</td>
-              <td>{{ e.spieleSpieler }}/ {{ e.spieleTeam }} ({{ e.spieleAnteil }} %)</td>
-              <td>{{ e.spielminutenSpieler }}/ {{ e.spieleTeam *90 }} ({{ e.spielminutenAnteil }} %)</td>
-              <td>{{ e.punkteSpieler }}/ {{ e.punkteTeam }} ({{ e.punkteAnteil }} %)</td>
-            </tr>
-          </tbody>
-        </table>
-        <table mat-table [dataSource]="daten" class="mat-elevation-z2 full-width-table">
-          <ng-container matColumnDef="spieltag">
-            <th mat-header-cell *matHeaderCellDef> Spieltag </th>
-            <td mat-cell *matCellDef="let element"> {{element.spiel}} </td>
-          </ng-container>
+        <mat-tab-group animationDuration="500ms" #tabGroup>
+          <mat-tab label="Saisons">
+            <table class="table table-sm table-striped table-bordered table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th *ngFor="let h of headerPerf">{{h}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of performances; let i = index"
+                (click)="selectPerformance(e)" [class.selected-row]="performance === e">
+                  <td>{{ e.saison }}</td>
+                  <td>{{ e.liga }}</td>
+                  <td>{{ e.spieleSpieler }}/ {{ e.spieleTeam }} ({{ e.spieleAnteil }} %)</td>
+                  <td>{{ e.spielminutenSpieler }}/ {{ e.spieleTeam *90 }} ({{ e.spielminutenAnteil }} %)</td>
+                  <td>{{ e.punkteSpieler }}/ {{ e.punkteTeam }} ({{ e.punkteAnteil }} %)</td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-tab>
+          <mat-tab label="Spiele">
+            <table mat-table [dataSource]="daten" class="mat-elevation-z2 full-width-table">
+              <ng-container matColumnDef="spieltag">
+                <th mat-header-cell *matHeaderCellDef> Spieltag </th>
+                <td mat-cell *matCellDef="let element"> {{element.spiel}} </td>
+              </ng-container>
 
-          <ng-container matColumnDef="datum">
-            <th mat-header-cell *matHeaderCellDef> Datum </th>
-            <td mat-cell *matCellDef="let element"> {{element.ha}} {{element.datum}} </td>
-          </ng-container>
+              <ng-container matColumnDef="datum">
+                <th mat-header-cell *matHeaderCellDef> Datum </th>
+                <td mat-cell *matCellDef="let element"> {{element.ha}} {{element.datum}} </td>
+              </ng-container>
 
-          <ng-container matColumnDef="gegner">
-            <th mat-header-cell *matHeaderCellDef> Gegner </th>
-            <td mat-cell *matCellDef="let element"> {{element.gegner}} </td>
-          </ng-container>
+              <ng-container matColumnDef="gegner">
+                <th mat-header-cell *matHeaderCellDef> Gegner </th>
+                <td mat-cell *matCellDef="let element"> {{element.gegner}} </td>
+              </ng-container>
 
-          <ng-container matColumnDef="ergebnis">
-            <th mat-header-cell *matHeaderCellDef> Ergebnis </th>
-            <td mat-cell *matCellDef="let element"> {{element.ergebnis}} </td>
-          </ng-container>
+              <ng-container matColumnDef="ergebnis">
+                <th mat-header-cell *matHeaderCellDef> Ergebnis </th>
+                <td mat-cell *matCellDef="let element"> {{element.ergebnis}} </td>
+              </ng-container>
 
-          <ng-container matColumnDef="einsatzzeit">
-            <th mat-header-cell *matHeaderCellDef> Einsatzzeit </th>
-            <td mat-cell *matCellDef="let element"> {{element.einsatz}} </td>
-          </ng-container>
+              <ng-container matColumnDef="einsatzzeit">
+                <th mat-header-cell *matHeaderCellDef> Einsatzzeit </th>
+                <td mat-cell *matCellDef="let element"> {{element.einsatz}} </td>
+              </ng-container>
 
-          <ng-container matColumnDef="spielminuten">
-            <th mat-header-cell *matHeaderCellDef> Spielminuten </th>
-            <td mat-cell *matCellDef="let element"> {{element.spielminuten}} </td>
-          </ng-container>
+              <ng-container matColumnDef="spielminuten">
+                <th mat-header-cell *matHeaderCellDef> Spielminuten </th>
+                <td mat-cell *matCellDef="let element"> {{element.spielminuten}} </td>
+              </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let element; columns: displayedColumns;" [ngClass]="{
-             'row-green': element.punkte === 3,
-             'row-yellow': element.punkte === 1,
-             'row-red': element.punkte === 0
-            }"></tr>
-        </table>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let element; columns: displayedColumns;" [ngClass]="{
+                'row-green': element.punkte === 3,
+                'row-yellow': element.punkte === 1,
+                'row-red': element.punkte === 0
+                }"></tr>
+            </table>
+          </mat-tab>
+          <mat-tab label="Performance">
+            <ngx-charts-gauge
+              [view]="view"
+              [scheme]="colorScheme"
+              [results]="chartData"
+              [legend]="false"
+              [legendPosition]="legendPosition"
+              (select)="onSelect($event)"
+              (activate)="onActivate($event)"
+              (deactivate)="onDeactivate($event)"
+              >
+            </ngx-charts-gauge>
+          </mat-tab>        
+        </mat-tab-group>
       </mat-card-content>
     </mat-card>
   </div>
