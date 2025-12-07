@@ -1,66 +1,56 @@
 <div>
   <table>
     <tr>
+      <div [hidden]="!sucheAnzeigen">
+        <td>
+          <mat-form-field>
+            <mat-label>Spieler suchen</mat-label>
+            <input type="text" placeholder="Name eingeben" aria-label="Spieler" 
+                  matInput [formControl]="myControl" [matAutocomplete]="auto">
+          </mat-form-field>
+        </td>
+      </div>
       <td>
-        <mat-form-field>
-          <mat-label>Spieler suchen</mat-label>
-          <input type="text" placeholder="Name eingeben" aria-label="Spieler" 
-                matInput [formControl]="myControl" [matAutocomplete]="auto">
-        </mat-form-field>
+        <div class="spielername">{{spieler.vorname}} {{spieler.name}}</div>
       </td>
-      <td>
-        <div class="info">
-          <span class="spielername">{{spieler.vorname}} {{spieler.name}}</span>
-        </div>
+      <td style="height: 150px;">
+          <table class="table table-sm table-striped table-bordered table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th *ngFor="let h of headerPerf">{{h}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e of performances; let i = index"
+              (click)="selectPerformance(e)" [class.selected-row]="performance === e">
+                <td>{{ e.saison }}</td>
+                <td>{{ e.liga }}</td>
+                <td>{{ e.spieleSpieler }}/ {{ e.spieleTeam }} ({{ e.spieleAnteil }} %)</td>
+                <td>{{ e.spielminutenSpieler }}/ {{ e.spieleTeam *90 }} ({{ e.spielminutenAnteil }} %)</td>
+                <td>{{ e.punkteSpieler }}/ {{ e.punkteTeam }} ({{ e.punkteAnteil }} %)</td>
+              </tr>
+            </tbody>
+          </table>
       </td>
     </tr>
   </table>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="spielerGewaehlt($event.option.value)">
-    <mat-option *ngFor="let option of filteredPlayers | async" [value]="option">
-      {{ option }}
-    </mat-option>
+    <mat-option *ngFor="let option of filteredPlayers | async" [value]="option">{{ option }}</mat-option>
   </mat-autocomplete>
 </div>
 <div class="profil-container">
-  <!-- Linkes Drittel -->
   <div class="profil-links">
     <mat-card class="foto-card">
       <div class="bilder">
         <img src="{{spieler.photo01}}" alt="{{spieler.photo01}}" class="foto-aktuell">
-        <!--
-          <div class="fotos-alt">
-            <img src="assets/spieler-alt1.jpg" alt="Altes Foto 1" class="foto-alt">
-            <img src="assets/spieler-alt2.jpg" alt="Altes Foto 2" class="foto-alt">
-          </div>
-        -->
       </div>
     </mat-card>
   </div>
 
-  <!-- Rechtes Zweidrittel -->
   <div class="profil-rechts" style="overflow-y: auto;">
     <mat-card>
       <mat-card-content style="height:70vh">
         <mat-tab-group animationDuration="500ms" #tabGroup>
-          <mat-tab label="Saisons">
-            <table class="table table-sm table-striped table-bordered table-hover">
-              <thead class="table-dark">
-                <tr>
-                  <th *ngFor="let h of headerPerf">{{h}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let e of performances; let i = index"
-                (click)="selectPerformance(e)" [class.selected-row]="performance === e">
-                  <td>{{ e.saison }}</td>
-                  <td>{{ e.liga }}</td>
-                  <td>{{ e.spieleSpieler }}/ {{ e.spieleTeam }} ({{ e.spieleAnteil }} %)</td>
-                  <td>{{ e.spielminutenSpieler }}/ {{ e.spieleTeam *90 }} ({{ e.spielminutenAnteil }} %)</td>
-                  <td>{{ e.punkteSpieler }}/ {{ e.punkteTeam }} ({{ e.punkteAnteil }} %)</td>
-                </tr>
-              </tbody>
-            </table>
-          </mat-tab>
           <mat-tab label="Spiele">
             <table mat-table [dataSource]="daten" class="mat-elevation-z2 full-width-table">
               <ng-container matColumnDef="spieltag">

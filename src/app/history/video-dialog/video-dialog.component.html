@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Video ansehen</h2>
+
+<mat-dialog-content class="mat-typography">
+  <div *ngIf="data.url" class="video-container">
+    <iframe
+      [src]="getSafeUrl(data.url)"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  </mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Schließen</button>
+</mat-dialog-actions>

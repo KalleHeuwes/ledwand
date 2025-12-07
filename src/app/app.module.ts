@@ -26,7 +26,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HistorieComponent } from './historie/historie.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
@@ -53,6 +53,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
     MatListModule,
     MatCardModule, 
     MatButtonModule,

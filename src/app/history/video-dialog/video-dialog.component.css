@@ -1,0 +1,25 @@
+/* Globale Stile in styles.css oder styles.scss */
+.video-container {
+  /* Definiert das 16:9 Seitenverhältnis */
+  position: relative; 
+  padding-bottom: 56.25%; /* (9 / 16) * 100% */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe,
+.video-container video {
+  /* Erzwingt 100% Breite und Höhe des Containers */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Entfernt das Standard-Padding von mat-dialog-content für das Video */
+/* WICHTIG: Verwenden Sie eine Klasse nur für Video-Dialoge, um andere Dialoge nicht zu beeinflussen */
+.video-dialog-custom .mat-mdc-dialog-content {
+    padding: 0;
+    margin: 0; /* Sicherheitshalber */
+}

@@ -9,6 +9,14 @@
                 <mat-icon aria-hidden="false" aria-label="Video ansehen">videocam</mat-icon>
                 <span class="visually-hidden">Video ansehen</span>
             </a>
+            <span 
+            *ngIf="goal.videourl" 
+            (click)="openVideoDialog(goal.videourl)"
+            class="video-link-trigger" 
+            title="Video ansehen">
+                <mat-icon aria-hidden="false" aria-label="Video ansehen">videocam</mat-icon>
+                <span class="visually-hidden">Video ansehen</span>
+            </span>
         </td>
     </tr>
     </tbody>

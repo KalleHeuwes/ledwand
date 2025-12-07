@@ -55,10 +55,11 @@
   width: 100%;
 }
 
-
 .spielername {
   margin: 50px;
   padding: 20px;
+  height: 150px;
+  width: 600px;
   background-color: #d0f0c0;
   font-size: 4.5em;
   font-weight: bold;

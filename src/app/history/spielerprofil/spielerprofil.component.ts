@@ -28,8 +28,8 @@ interface Spiel {
 @Component({
   selector: 'app-spielerprofil',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatTableModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule
-    , ReactiveFormsModule, NgxChartsModule, MatTabsModule],
+  imports: [CommonModule, MatCardModule, MatTableModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule,
+    ReactiveFormsModule, NgxChartsModule, MatTabsModule],
   templateUrl: './spielerprofil.component.html',
   styleUrls: ['./spielerprofil.component.css']
 })
@@ -43,6 +43,7 @@ export class SpielerprofilComponent implements OnInit {
     beschreibung: '...',
     photo01: '...'
   };
+  sucheAnzeigen: boolean = true;
   saisonId: string = '*';
   filterSaison: string = '*';
   myControl = new FormControl('');
@@ -84,12 +85,18 @@ colorScheme: Color = {
       const nachname = params.get('nachname');
       const vorname = params.get('vorname');
       if (nachname && vorname) {
+        this.sucheAnzeigen = false;
         this.spieler.name = nachname;
         this.spieler.vorname = vorname; //assets/spieler-aktuell.jpg
         this.spieler.photo01 = `assets/pictures/players/${vorname}_${nachname}.jpg`;
         console.log('Foto: ' + this.spieler.photo01);
         this.saisonService.getSpieleEinesSpielers(nachname, vorname, this.saisonId).subscribe(data => {
           this.daten = data;
+        });
+         this.filterSaison = nachname + ', ' + vorname;
+        
+        this.saisonService.getSpielerPerformance(this.spieler.name, this.spieler.vorname).subscribe(data => {
+          this.performances = data;
         });
       }
     });
@@ -138,7 +145,7 @@ colorScheme: Color = {
     if (this.tabGroup) {
       // 3. Den gewünschten Tab-Index setzen.
       // Für den Sprung von Tab 1 (Index 0) zu Tab 2 (Index 1) setzen wir 1.
-      const targetTabIndex = 1; 
+      const targetTabIndex = 0; 
       
       this.tabGroup.selectedIndex = targetTabIndex;
       
