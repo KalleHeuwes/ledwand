@@ -91,18 +91,10 @@
                 }"></tr>
             </table>
           </mat-tab>
-          <mat-tab label="Performance">
-            <ngx-charts-gauge
-              [view]="view"
-              [scheme]="colorScheme"
-              [results]="chartData"
-              [legend]="false"
-              [legendPosition]="legendPosition"
-              (select)="onSelect($event)"
-              (activate)="onActivate($event)"
-              (deactivate)="onDeactivate($event)"
-              >
-            </ngx-charts-gauge>
+          <mat-tab label="Fotos">
+            <div class="bilder">
+              <img *ngFor="let foto of fotos" [src]="foto" alt="{{foto}}" class="foto">
+            </div>
           </mat-tab>        
         </mat-tab-group>
       </mat-card-content>

@@ -41,6 +41,7 @@ import { MatchdaysComponent } from './history/matchdays/matchdays.component';
 import { SeasonsComponent } from './history/seasons/seasons.component';
 import { HistorieAdminComponent } from './history/historie-admin/historie-admin.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { OpenCloseComponent } from './open-close/open-close.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     OverlayModule,
     HttpClientModule,
     RouterModule.forRoot([
+      {path: 'openclose', 				component: OpenCloseComponent},
       {path: 'startseite', 				component: StartseiteComponent},
       {path: 'grafik', 				component: PerformanceGraphComponent},
       {path: 'players-list', 			component: SpielerListeComponent},

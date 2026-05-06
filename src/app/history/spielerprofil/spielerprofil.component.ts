@@ -54,28 +54,12 @@ export class SpielerprofilComponent implements OnInit {
   daten: SpieltagskaderEintrag[] = [];
   performances: SpielerPerformance[] = [];
   performance: SpielerPerformance | undefined | null;
+  fotos: string[] = ['assets/spieler-aktuell.jpg',
+    'assets/spieler-aktuell.jpg',
+    'assets/spieler-aktuell.jpg'
+  ];
   @ViewChild('tabGroup') tabGroup!: MatTabGroup;
 
-  // Diagramm-Einstellungen
-  view: [number, number] = [500, 400];
-  legend: boolean = true;
-  legendPosition: LegendPosition = LegendPosition.Below;
-  chartData = [
-    { "name": "Germany", "value": 8940000 },
-    { "name": "USA", "value": 5000000 },
-    { "name": "France", "value": 7200000 },
-    { "name": "UK", "value": 5200000 },
-    { "name": "Italy", "value": 7700000 },
-    { "name": "Spain", "value": 4300000 }
-  ];
-
-colorScheme: Color = { 
-    name: 'customGaugeScheme', // Ein eindeutiger Name für Ihr Schema
-    selectable: true,
-    group: ScaleType.Ordinal,
-    // Die 'domain' ist das Array der Farben (Hex-Werte)
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] // Ihre Farben
-  };
 
   constructor( private saisonService: SaisonsService, private route: ActivatedRoute) {}
 
@@ -143,13 +127,9 @@ colorScheme: Color = {
       this.daten = data;
     });
     if (this.tabGroup) {
-      // 3. Den gewünschten Tab-Index setzen.
-      // Für den Sprung von Tab 1 (Index 0) zu Tab 2 (Index 1) setzen wir 1.
       const targetTabIndex = 0; 
       
       this.tabGroup.selectedIndex = targetTabIndex;
-      
-      // Optional: Hier könnten Sie auch die Daten des geklickten Elements an Tab 2 übergeben.
     }
   }
 
