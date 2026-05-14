@@ -34,7 +34,7 @@ html, body {
   width: 100%;
 }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .retro-snackbar {
   background-color: #f8f0de; /* cremeweiß */
@@ -86,5 +86,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .erg-niederlage {
   background-color: #f00943 !important;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

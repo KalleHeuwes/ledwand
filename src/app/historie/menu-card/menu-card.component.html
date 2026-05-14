@@ -1,16 +1,18 @@
-<mat-card class="retro-card" (click)="onCardClick()">
-  <mat-card-header>
-    <mat-card-title>{{ title }}</mat-card-title>
-  </mat-card-header>
+<div class="glasscard" (click)="onCardClick()">
+  <h2>{{ title }}</h2>
+  <img [src]="imageSrc" [alt]="imageAlt" class="card-image" />
+  <p>{{ cardText }}</p>
+  <!--
+  <mat-card class="retro-card" (click)="onCardClick()">
+    <mat-card-header>
+      <mat-card-title>{{ title }}</mat-card-title>
+    </mat-card-header>
 
-  <mat-card-content>
-    <img
-      [src]="imageSrc"
-      [alt]="imageAlt"
-      class="card-image"
-    />
-    <p class="card-text">
-      {{ cardText }}
-    </p>
-  </mat-card-content>
-</mat-card>
+    <mat-card-content>
+      <h2>{{ title }}</h2>
+      <img [src]="imageSrc" [alt]="imageAlt" class="card-image" />
+      <p class="card-text">{{ cardText }}</p>
+    </mat-card-content>
+  </mat-card>
+  -->
+</div>
