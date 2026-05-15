@@ -2,25 +2,25 @@
   <div class="spgriditem">
     <div class="table-cell-flex">
         <img src="{{spieler.photo01}}" alt="{{spieler.photo01}}" class="cell-image">
-        <span class="cell-text">{{spieler.vorname}} {{spieler.name}}</span>
+        <span style="width: 300px;" class="cell-text">{{spieler.vorname}} {{spieler.name}}</span>
     </div>
-    <table class="table table-sm table-striped table-bordered table-hover">
-            <thead class="table-dark">
-              <tr>
-                <th *ngFor="let h of headerPerf">{{h}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let e of performances; let i = index"
-              (click)="selectPerformance(e)" [class.selected-row]="performance === e">
-                <td>{{ e.saison }}</td>
-                <td>{{ e.liga }}</td>
-                <td>{{ e.spieleSpieler }}/ {{ e.spieleTeam }} ({{ e.spieleAnteil }} %)</td>
-                <td>{{ e.spielminutenSpieler }}/ {{ e.spieleTeam *90 }} ({{ e.spielminutenAnteil }} %)</td>
-                <td>{{ e.punkteSpieler }}/ {{ e.punkteTeam }} ({{ e.punkteAnteil }} %)</td>
-              </tr>
-            </tbody>
-          </table>
+    <table class="sptable table table-sm table-striped table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th *ngFor="let h of headerPerf">{{h}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of performances; let i = index"
+        (click)="selectPerformance(e)" [class.selected-row]="performance === e">
+          <td>{{ e.saison }}</td>
+          <td>{{ e.liga }}</td>
+          <td>{{ e.spieleSpieler }}/ {{ e.spieleTeam }} ({{ e.spieleAnteil }} %)</td>
+          <td>{{ e.spielminutenSpieler }}/ {{ e.spieleTeam *90 }} ({{ e.spielminutenAnteil }} %)</td>
+          <td>{{ e.punkteSpieler }}/ {{ e.punkteTeam }} ({{ e.punkteAnteil }} %)</td>
+        </tr>
+      </tbody>
+    </table>
     <div [hidden]="!sucheAnzeigen">
           <mat-form-field>
             <mat-label>Spieler suchen</mat-label>
