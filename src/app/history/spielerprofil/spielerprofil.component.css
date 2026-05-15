@@ -1,3 +1,31 @@
+:host {
+  /* Stellt sicher, dass die Angular-Komponente selbst den Platz einnimmt */
+  display: block;
+  height: 100vh;
+  overflow: hidden; /* Verhindert Scrollen auf Komponentenebene */
+}
+
+.spcontainer {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-rows: 1fr 3fr;
+  align-items: stretch;
+  padding: 16px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.spgriditem {
+  display: flex;
+  justify-content: flex-start;
+  background-color: lightgray;
+  font-size: 3em;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+
+
 .profil-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -29,9 +57,27 @@
 }
 
 .foto-aktuell {
-  width: 100%;
-  height: 60vh;
+  width: 60px;
+  height: 90px;
   border-radius: 8px;
+}
+
+.table-cell-flex {
+  display: flex;
+  align-items: center;    /* Zentriert Bild und Text vertikal auf einer Linie */
+  gap: 10px;              /* Erzeugt einen sauberen Abstand zwischen Bild und Text */
+}
+
+/* Optionale Formatierung für das Bild, damit es die Zelle nicht sprengt */
+.cell-image {
+  width: 70px;            /* Gewünschte Breite des Bildes */
+  height: 100;           /* Gewünschte Höhe des Bildes */
+  object-fit: cover;      /* Verhindert Verzerrungen */
+}
+
+.cell-text {
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .foto-alt {
@@ -56,12 +102,27 @@
 }
 
 .spielername {
-  margin: 50px;
+  margin: 10px;
   padding: 20px;
-  height: 150px;
+  height: 50px;
   width: 600px;
-  background-color: #d0f0c0;
-  font-size: 4.5em;
+  background-color: transparent;
+  
+  font-size: 3em;
   font-weight: bold;
   border-radius: 10px;
+}
+
+.mat-mdc-row {
+  height: 16px;
+}
+
+table {
+  border-collapse: collapse;
+  font-family: Ringside Narrow,Cambria,Times,sans-serif;
+  font-size: 10px;
+}
+
+body{
+  font-family: Ringside Narrow,Cambria,Times,sans-serif;
 }

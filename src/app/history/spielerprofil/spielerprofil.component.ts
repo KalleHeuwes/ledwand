@@ -72,8 +72,9 @@ export class SpielerprofilComponent implements OnInit {
         this.sucheAnzeigen = false;
         this.spieler.name = nachname;
         this.spieler.vorname = vorname; //assets/spieler-aktuell.jpg
-        this.spieler.photo01 = `assets/pictures/players/${vorname}_${nachname}.jpg`;
-        console.log('Foto: ' + this.spieler.photo01);
+        let fotoname = this.spieler.name + ',' + this.spieler.vorname.substring(0, 1) + '.png';
+        this.spieler.photo01 = `assets/pictures/players/${fotoname}`;
+        console.log('Foto: ' + fotoname);
         this.saisonService.getSpieleEinesSpielers(nachname, vorname, this.saisonId).subscribe(data => {
           this.daten = data;
         });
@@ -108,7 +109,9 @@ export class SpielerprofilComponent implements OnInit {
     console.log(`Der ausgewählte Spieler ist: ${spielername}`);
     this.spieler.name = spielername.split(',')[0].trim() || '';
     this.spieler.vorname = spielername.split(',')[1].trim() || '';
-    this.spieler.photo01 = `assets/pictures/players/${this.spieler.vorname}_${this.spieler.name}.jpg`;
+    let fotoname = this.spieler.name + ',' + this.spieler.vorname.substring(0, 1) + '.png';
+    console.log('Foto: ' + fotoname);
+    this.spieler.photo01 = `assets/pictures/players/${fotoname}`;
     this.saisonService.getSpieleEinesSpielers(this.spieler.name, this.spieler.vorname, this.saisonId).subscribe(data => {
       this.daten = data;
     });
