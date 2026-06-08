@@ -1,9 +1,20 @@
 <div class="carousel-container">
+      <div class="dots-container">
+    @for (img of images; track img.url; let i = $index) {
+      <span class="dot" 
+            [class.active]="i === currentIndex" 
+            (click)="goToSlide(i)">
+      </span>
+    }
+  </div>
   <div class="carousel">
-    @for (img of images; track img; let i = $index) {
+    @for (img of images; track img.url; let i = $index) {
       <div class="carousel-item" [class.active]="i === currentIndex">
         @if (i === currentIndex) {
-          <img [src]="img" alt="Saison Foto" />
+          <div class="slide-content">
+            <img [src]="img.url" [alt]="img.filename" />
+            <div class="image-caption">{{ img.filename }}</div>
+          </div>
         }
       </div>
     }
@@ -12,12 +23,9 @@
     <button class="next" (click)="nextSlide()">&#10095;</button>
   </div>
 
-  <div class="dots-container">
-    @for (img of images; track img; let i = $index) {
-      <span class="dot" 
-            [class.active]="i === currentIndex" 
-            (click)="goToSlide(i)">
-      </span>
-    }
+  <div class="carousel-caption-zone">
+    <span class="file-label">Datei:</span> {{ images[currentIndex]?.filename }}
   </div>
+
+
 </div>

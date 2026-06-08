@@ -1,39 +1,62 @@
-.carousel-container {
-  max-width: 800px;
-  margin: 20px auto;
-  position: relative;
-}
-
+/* 1. Das Karussell-Gefäß */
 .carousel {
   position: relative;
   width: 100%;
-  height: 450px;
+  /* Entferne feste Höhenbegrenzungen (wie height: 450px), 
+     wenn sich das Karussell komplett nach dem Bild richten soll.
+     Alternativ lässt du die Höhe, wenn der Kasten starr bleiben soll. */
+  height: 500px; 
   overflow: hidden;
   background-color: #1a1a1a;
-  border: 4px solid #f5ebe0; /* Dezenter Retro-Rahmen */
+  border: 4px solid #f5ebe0;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-.carousel-item {
-  display: none;
-  width: 100%;
-  height: 100%;
-}
-
+/* 2. Der aktive Slide-Container */
 .carousel-item.active {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0; /* Verhindert inneren Abstand, um maximale Fläche zu nutzen */
 }
 
+/* 3. Das Bild selbst für maximale, proportionale Größe */
 .carousel-item img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* Verhindert Verzerrung */
+  /* Zwingt das Bild, sich bis an die Grenzen des Karussells auszudehnen */
+  width: 100%;
+  height: 100%;
+  
+  /* ENTSCHEIDEND FÜR DIE PROPORTIONEN:
+     'contain' sorgt dafür, dass das komplette Bild unverzerrt sichtbar ist 
+     und sich perfekt in die Breite oder Höhe einpasst (je nachdem was zuerst anstößt). */
+  object-fit: cover; 
+  
+  pointer-events: none; 
 }
 
-/* Buttons */
+/* Die neue, kontrastreiche Text-Zone unter dem Bild */
+.carousel-caption-zone {
+  margin-top: 12px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace; /* Klassischer Monospace-Look */
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff9f1c; /* Starker Kontrast: Retro-Orange/Gelb */
+  background-color: #2b2b2b;
+  padding: 8px 16px;
+  border: 2px solid #f5ebe0;
+  border-radius: 4px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+
+.carousel-caption-zone .file-label {
+  color: #f5ebe0; /* Cremeweiß für das Label */
+  margin-right: 5px;
+}
+
+/* Die Pfeile müssen über dem Bild liegen (z-index) */
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -41,42 +64,39 @@
   transform: translateY(-50%);
   width: auto;
   padding: 16px;
-  color: white;
+  color: #f5ebe0; /* Retro-Cremeweiß */
   font-weight: bold;
-  font-size: 20px;
+  font-size: 24px;
   border: none;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 0 3px 3px 0;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 0 5px 5px 0;
   user-select: none;
-  transition: 0.3s ease;
+  transition: 0.2s ease;
+  
+  /* WICHTIG: Bringt die Buttons ganz nach vorn, 
+     damit das Bild sie nicht überlagert und Klicks schluckt */
+  z-index: 10; 
 }
 
 .next {
   right: 0;
-  border-radius: 3px 0 0 3px;
+  border-radius: 5px 0 0 5px;
 }
 
+.prev {
+  left: 0;
+}
+
+/* Visuelles Feedback beim Drüberfahren */
 .prev:hover, .next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #ff9f1c; /* Wechselt auf das Retro-Orange */
+  color: #1a1a1a;
 }
 
-/* Dots */
-.dots-container {
-  text-align: center;
-  padding: 10px;
-}
-
-.dot {
-  cursor: pointer;
-  height: 12px;
-  width: 12px;
-  margin: 0 5px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.dot.active, .dot:hover {
-  background-color: #ff9f1c; /* Akzentfarbe (z.B. Retro-Orange) */
+/* Sicherstellen, dass das Bild selbst keine Klicks blockiert */
+.carousel-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none; /* Verhindert, dass das Bild Drag- oder Klick-Events abfängt */
 }

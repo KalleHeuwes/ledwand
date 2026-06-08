@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+interface CarouselImage {
+  url: string;
+  filename: string;
+}
 @Component({
   selector: 'app-image-carousel',
   standalone: true,
@@ -25,11 +29,16 @@ export class ImageCarouselComponent implements OnInit {
 ];
 
   // Dieses Array hält die für den Browser lesbaren URLs
-  images: string[] = [];
+images: CarouselImage[] = [];
   currentIndex: number = 0;
 
   ngOnInit() {
-    this.images = this.rawPaths.map(path => this.transformToWebPath(path));
+    this.images = this.rawPaths.map(path => {
+      return {
+        url: this.transformToWebPath(path),
+        filename: this.getFilenameFromPath(path)
+      };
+    });
   }
 
   // Wandelt den Windows-Pfad in einen Pfad um, den dein Webserver versteht
@@ -49,6 +58,14 @@ private transformToWebPath(windowsPath: string): string {
   // Das Ergebnis ist dann: "/api/static-files/Saison2526/Fotos/Saison2526_06_Schomaker,J.png"
   return `/api/static-files/${cleanPath}`; 
 }
+
+// Extrahiert den reinen Dateinamen (z.B. "Saison2526_06_Schomaker,J")
+  private getFilenameFromPath(windowsPath: string): string {
+    // Holt den Teil nach dem letzten Backslash
+    const baseName = windowsPath.substring(windowsPath.lastIndexOf('/') + 1);
+    // Schneidet die Dateiendung (.png / .jpg) ab
+    return baseName.substring(0, baseName.lastIndexOf('.'));
+  }
 
   nextSlide() {
     this.currentIndex = (this.currentIndex + 1) % this.images.length;
