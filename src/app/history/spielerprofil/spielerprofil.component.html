@@ -78,7 +78,10 @@
           </mat-tab>
           <mat-tab label="Fotos">
             <div class="bilder">
+              <app-image-carousel></app-image-carousel>
+              <!-- [images]="fotos"
               <img *ngFor="let foto of fotos" [src]="foto" alt="{{foto}}" class="foto">
+              -->
             </div>
           </mat-tab>        
         </mat-tab-group>

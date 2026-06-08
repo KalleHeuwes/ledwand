@@ -14,6 +14,7 @@ import { SaisonsService } from 'src/app/historie/saisonauswahl/saisons.service';
 import { SpieltagskaderEintrag } from 'src/app/historie/match/match.module';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SpielerPerformance } from 'src/app/historie/saisonauswahl/spieler-performance';
+import { ImageCarouselComponent } from '../image-carousel/image-carousel.component';
 import { Color, NgxChartsModule, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
 
 interface Spiel {
@@ -29,7 +30,7 @@ interface Spiel {
   selector: 'app-spielerprofil',
   standalone: true,
   imports: [CommonModule, MatCardModule, MatTableModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule,
-    ReactiveFormsModule, NgxChartsModule, MatTabsModule],
+    ReactiveFormsModule, NgxChartsModule, MatTabsModule, ImageCarouselComponent],
   templateUrl: './spielerprofil.component.html',
   styleUrls: ['./spielerprofil.component.css']
 })

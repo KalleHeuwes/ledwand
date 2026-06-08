@@ -61,7 +61,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "allowedHosts": ["localhost","heuweslap3"]
+            "allowedHosts": ["localhost","heuweslap3"],
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

@@ -1,19 +1,18 @@
-/// <reference types="jest" />
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatchdaysComponent } from './matchdays.component';
+import { ImageCarouselComponent } from './image-carousel.component';
 
-describe('MatchdaysComponent', () => {
-  let component: MatchdaysComponent;
-  let fixture: ComponentFixture<MatchdaysComponent>;
+describe('ImageCarouselComponent', () => {
+  let component: ImageCarouselComponent;
+  let fixture: ComponentFixture<ImageCarouselComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatchdaysComponent]
+      imports: [ImageCarouselComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MatchdaysComponent);
+    fixture = TestBed.createComponent(ImageCarouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
