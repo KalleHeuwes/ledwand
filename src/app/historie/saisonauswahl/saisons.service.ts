@@ -21,9 +21,16 @@ export class SaisonsService {
   private urlDokumente = 'http://localhost:8080/api/historie/documents?typ={typ}&saison={saison}&spieltag={spieltag}';
   private urlEinsaetze = 'http://localhost:8080/api/historie/einsaetze?nachname={nachname}&vorname={vorname}&saison={saison}';
   private urlPerformance = 'http://localhost:8080/api/historie/einsaetze/saisons?nachname={nachname}&vorname={vorname}';
+  private urlPlayerImages = 'http://localhost:8080/api/historie/player-images?spielername={spielerkurz}';
   private aktuelleSaisonSubject = new BehaviorSubject<Saison | null>(null);
 
   constructor(private http: HttpClient) {}
+
+  /** Liste aller Bilder eines Spielers */
+  getSpielerBilder(spielerkurz: string): Observable<string[]> {
+    const url = this.urlPlayerImages.replace('{spielerkurz}', spielerkurz);
+    return this.http.get<string[]>(url);
+  }
 
   /** Liste aller Spieler im Kader eines Spieltags */
   getSpieltagskader(saison: string, spiel: string): Observable<SpieltagskaderEintrag[]> {

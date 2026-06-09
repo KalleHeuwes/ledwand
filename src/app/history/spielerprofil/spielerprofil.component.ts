@@ -137,6 +137,10 @@ export class SpielerprofilComponent implements OnInit {
     }
   }
 
+  getSpielerkurz(): string {
+    return this.spieler.name + ',' + this.spieler.vorname.substring(0, 1);
+  }
+  
   /**
    * Speichert die ausgewählte Performance-Metrik.
    * @param selectedMetric Das beim Klick übergebene Performance-Objekt.
