@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-table-of-goals',
-  imports: [CommonModule, MatIconModule, VideoDialogComponent],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './table-of-goals.component.html',
   styleUrl: './table-of-goals.component.css'
 })

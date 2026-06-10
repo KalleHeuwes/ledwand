@@ -24,7 +24,10 @@
   </div>
 
   <div class="carousel-caption-zone">
-    <span class="file-label">Datei:</span> {{ images[currentIndex]?.filename }}
+    @if (images[currentIndex]) {
+      <span class="file-label">Datei:</span> {{ images[currentIndex].filename }}
+    }
+    
   </div>
 
 
