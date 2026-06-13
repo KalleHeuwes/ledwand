@@ -63,8 +63,13 @@
               </ng-container>
 
               <ng-container matColumnDef="spielminuten">
-                <th mat-header-cell *matHeaderCellDef> Spielminuten </th>
+                <th mat-header-cell *matHeaderCellDef> Spielminuten</th>
                 <td mat-cell *matCellDef="let element"> {{element.spielminuten}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ev-baelle">
+                <th mat-header-cell *matHeaderCellDef> EV-Bälle</th>
+                <td mat-cell *matCellDef="let element"> {{element.evBaelle}} </td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

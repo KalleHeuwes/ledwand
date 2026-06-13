@@ -50,7 +50,7 @@ export class SpielerprofilComponent implements OnInit {
   myControl = new FormControl('');
   players: string[] = ['']; // Beispiel-Daten
   filteredPlayers: Observable<string[]> | undefined;
-  displayedColumns: string[] = ['spieltag', 'datum', 'gegner', 'ergebnis', 'einsatzzeit', 'spielminuten'];
+  displayedColumns: string[] = ['spieltag', 'datum', 'gegner', 'ergebnis', 'einsatzzeit', 'spielminuten', 'ev-baelle'];
   headerPerf: string[] = ['Saison', 'Liga', 'Spiele', 'Minuten', 'Punkte'];
   daten: SpieltagskaderEintrag[] = [];
   performances: SpielerPerformance[] = [];
