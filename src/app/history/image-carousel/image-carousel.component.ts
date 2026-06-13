@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SaisonsService } from 'src/app/historie/saisonauswahl/saisons.service';
 
 interface CarouselImage {
   url: string;
   filename: string;
+  spieltag: string;
 }
 @Component({
   selector: 'app-image-carousel',
@@ -13,38 +14,27 @@ interface CarouselImage {
   templateUrl: './image-carousel.component.html',
   styleUrls: ['./image-carousel.component.css']
 })
-export class ImageCarouselComponent implements OnInit {
+export class ImageCarouselComponent implements OnChanges {
   @Input() spielerkurz: string = '';
   constructor(private saisonService: SaisonsService) {}
 
   // Die Rohdaten aus deinem Array
-  rawPaths: string[] = 
-    [
-    "V:/05/Saison2526/Fotos/Saison2526_06_Schomaker,J.png",
-    "V:/05/Saison2526/Fotos/Saison2526_06_Schomaker,M.png",
-    "V:/05/Saison2526/Fotos/Saison2526_11_Schomaker,M-Demirdag,E.png",
-    "V:/05/Saison2526/Fotos/Saison2526_12_Schomaker,M.png",
-    "V:/05/Saison2526/Fotos/Saison2526_13_Schomaker,M.png",
-    "V:/05/Saison2526/Fotos/Saison2526_22_Möllers,H-Matsubara,D-Schomaker,M.png",
-    "V:/05/Saison2526/Fotos/Saison2526_23_Schomaker,M-Matsubara,D.png",
-    "V:/05/Saison2526/Fotos/Saison2526_28_Schomaker,M.png",
-    "V:/05/Saison2526/Fotos/Saison2526_32_Fousseni,A-Kötter,M-Wenning,T-Schomaker,J.png",
-    "V:/05/Spieler/Schomaker_Jonas_0_20250701.jpg",
-    "V:/05/Spieler/Schomaker_Marius_0_20250701.jpg"
-  ];
+  rawPaths: string[] = [];
 
   // Dieses Array hält die für den Browser lesbaren URLs
   images: CarouselImage[] = [];
   currentIndex: number = 0;
 
-  ngOnInit() {
+  ngOnChanges() {
     this.saisonService.getSpielerBilder(this.spielerkurz).subscribe(data => {
       console.table(data); // Überprüfe die erhaltenen Daten in der Konsole
       this.rawPaths = data;
       this.images = this.rawPaths.map(path => {
+        console.log('Verarbeite Pfad:', path); // Debug-Ausgabe für jeden Pfad
       return {
         url: this.transformToWebPath(path),
-        filename: this.getFilenameFromPath(path)
+        filename: this.getFilenameFromPath(path),
+        spieltag: this.getSpieltag(path)
       };
     });
     });
@@ -65,8 +55,13 @@ private transformToWebPath(windowsPath: string): string {
 
 // Extrahiert den reinen Dateinamen (z.B. "Saison2526_06_Schomaker,J")
   private getFilenameFromPath(windowsPath: string): string {    
-    const baseName = windowsPath.substring(windowsPath.lastIndexOf('/') + 1); // Holt den Teil nach dem letzten Backslash    
+    const baseName = windowsPath.substring(windowsPath.lastIndexOf('\\') + 1); // Holt den Teil nach dem letzten Backslash    
     return baseName.substring(0, baseName.lastIndexOf('.'));  // Schneidet die Dateiendung (.png / .jpg) ab
+  }
+
+ private getSpieltag(windowsPath: string): string {    
+    const baseName = windowsPath.substring(windowsPath.lastIndexOf('\\') + 1); // Holt den Teil nach dem letzten Backslash    
+    return baseName.substring(baseName.indexOf('_') + 1, baseName.indexOf('_', baseName.indexOf('_') + 1));
   }
 
   nextSlide() {

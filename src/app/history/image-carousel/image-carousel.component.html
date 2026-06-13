@@ -1,4 +1,4 @@
-<div class="carousel-container">
+<div class="carousel-container">    
       <div class="dots-container">
     @for (img of images; track img.url; let i = $index) {
       <span class="dot" 
@@ -25,7 +25,7 @@
 
   <div class="carousel-caption-zone">
     @if (images[currentIndex]) {
-      <span class="file-label">Datei:</span> {{ images[currentIndex].filename }}
+      <span class="file-label">Spieltag:</span> {{ images[currentIndex].spieltag }}
     }
     
   </div>
