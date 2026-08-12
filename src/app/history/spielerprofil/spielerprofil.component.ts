@@ -157,7 +157,16 @@ export class SpielerprofilComponent implements OnInit {
     this.handleSaisonAuswahl(selectedMetric.saison);
   }
 
-    onSelect(data: any): void {
+  saisonakte(): void {
+    console.log('Saisonakte für Spieler:', this.spieler.name, this.spieler.vorname, this.performance);
+    if (this.performance) {
+      this.saisonService.getSaisonakte(this.spieler.name, this.spieler.vorname, this.performance.saison.replace('/', '')).subscribe(data => {
+        console.log('Saisonakte-Daten:', data);
+      });
+    }
+  }
+
+  onSelect(data: any): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
 
