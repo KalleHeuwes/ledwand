@@ -160,7 +160,8 @@ export class SpielerprofilComponent implements OnInit {
   saisonakte(): void {
     console.log('Saisonakte für Spieler:', this.spieler.name, this.spieler.vorname, this.performance);
     if (this.performance) {
-      this.saisonService.getSaisonakte(this.spieler.name, this.spieler.vorname, this.performance.saison.replace('/', '')).subscribe(data => {
+      this.saisonService.getSaisonakte(this.spieler.name, this.spieler.vorname, //
+        this.performance.saison.replace('/', ''), this.performance.liga).subscribe(data => {
         console.log('Saisonakte-Daten:', data);
       });
     }
